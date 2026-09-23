@@ -1,0 +1,483 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Sph}{\mathbb S^2}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\B}{\mathcal B}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\VM}{V_{\mathrm M}}
+\numberwithin{equation}{section}
+\title{\Large\bfseries A rational quadratic support formulation for the sharp gap\\[5pt]
+\normalsize Exact finite realizability, a fixed energy matrix, and an explicit volume error}
+\author{}\date{23 September 2026}
+\begin{document}\maketitle
+\begin{abstract}
+We replace the volume of a sample convex hull by a fixed quadratic objective
+on finitely many support values. The support points satisfy exact antipodal
+and diameter constraints, so every feasible finite array has a genuine
+constant-width completion. On an antipodal spherical triangulation, the
+piecewise linear homogeneous interpolant has a Dirichlet energy whose entire
+matrix is rational when the normals are rational. A boundary integration
+formula eliminates all angular integrals from that matrix. Uniform curvature
+bounds give an explicit quadratic-in-mesh error for its volume objective.
+The finite optimization is a concave quadratic minimization over a convex
+second-order-cone feasible set; it is not a convex optimization problem.
+Its exact global optima converge to the true constant-width minimum on
+shape-regular refinements. We give a rational sufficient certificate for an
+energy bound and exact checks of two finite matrices. No competitive global
+minimum is computed here, and no new numerical lower bound or sharpness
+claim is made.
+\end{abstract}
+
+\section{The objective: keep actual support data and remove hull combinatorics}
+Let $K\subset\R^3$ have constant width one. Its support function satisfies
+$h(n)+h(-n)=1$. Put
+\[
+ u=h-\frac12,\qquad u(-n)=-u(n),\qquad
+ \Q u=\nabla^2_{\Sph}u+uI.
+\]
+The curvature-radius tensor of $K$ lies between zero and the identity:
+\begin{equation}\label{eq:curvature}
+ -\frac12 I\preceq\Q u\preceq\frac12 I.
+\end{equation}
+These statements have an almost-everywhere interpretation for $C^{1,1}$
+support functions. The regularity follows, for example, from
+$K+(-K)=\overline B(0,1)$: both support functions are convex summands of the
+unit-ball support function, giving bounded second derivatives on spherical
+charts. Standard support and mixed-volume facts are as in \cite{Schneider}.
+
+Define the quadratic form
+\begin{equation}\label{eq:energy}
+ E(v)=\int_{\Sph}\bigl(|\nabla v|^2-2v^2\bigr)\dd\sigma,
+ \qquad
+ \mathcal V(v)=\frac\pi6-\frac14 E(v).
+\end{equation}
+For the actual centered support $u$,
+\begin{equation}\label{eq:volume}
+ \Vol(K)=\mathcal V(u).
+\end{equation}
+For completeness, the Codazzi property of $\Q h$ gives
+$\operatorname{div}\operatorname{cof}(\Q h)=0$. Integration by parts then
+shows
+\[
+ S(K)=\int\det(\Q h)
+     =\int\left(h^2-\frac12|\nabla h|^2\right).
+\]
+Together with Blaschke's identity $\Vol(K)=S(K)/2-\pi/3$, and the vanishing
+mean of the odd function $u$, this proves \cref{eq:volume}.
+The eigenvalues of $-\Delta_{\Sph}$ are $l(l+1)$; hence $E(v)\ge0$ for every
+odd $v\in H^1(\Sph)$, with equality precisely on linear functions
+$v(n)=a\cdot n$. This also follows by applying the mean-zero spherical
+Poincare inequality, whose equality space is the degree-one harmonics.
+
+The proposal below has no independently assigned random curvature. Its
+finite variables are actual support points. The only error is the explicit
+interpolation error proved in \cref{sec:error}. The remaining difficulty is
+a global finite quadratic optimization, not an unmeasured geometric
+realizability error.
+
+\section{Exact finite support interpolation}
+Let $N=\{n_i\}\subset\Sph$ be finite and antipodally closed, with
+$n_{\bar i}=-n_i$. Prescribe points $z_i\in\R^3$ and optionally a fixed finite
+set $Y$ of diameter at most one.
+
+\begin{lemma}[Diameter-one completion]\label{lem:completion}
+Every nonempty finite set of diameter at most one is contained in a convex
+body of constant width one.
+\end{lemma}
+\begin{proof}
+For a current finite set $Z$, let
+$C=\B(Z)=\bigcap_{z\in Z}\overline B(z,1)$.
+The minimum containing ball of $Z$ has radius at most $\sqrt{3/8}$: its
+center is a positive convex combination of at most four contact points,
+and the weighted squared-distance identity gives
+$R^2\le(1-\sum\lambda_i^2)/2\le3/8$.
+Thus $C$ has a strictly feasible point.
+
+For a unit $n$, choose $x$ maximizing $n\cdot x$ on $C$. The active-normal
+rule gives $n=\sum a_i(x-z_i)$, where $a_i\ge0$, $|x-z_i|=1$, and
+$\sum a_i\ge1$. If $w\in C$, then
+\[
+ (x-z_i)\cdot(w-x)\le-\frac12|w-x|^2,
+\]
+so $|w-(x-n)|^2\le1$. Consequently $Z\cup\{x,x-n\}$ still has diameter at
+most one: $x$ lies in every old ball, $Z\subset C$, and $x-n\in\B(C)$.
+Adjoin such a pair successively in a countable dense sequence of directions.
+The sets stay in a fixed unit ball about an original point. The closed
+convex hull of their union has diameter at most one and has width one in
+every selected direction. Continuity of width in direction proves the claim.
+\end{proof}
+
+\begin{theorem}[Exact interpolation]\label{thm:interpolation}
+A width-one body containing $Y$ has support point $z_i$ in direction $n_i$
+for every $i$ if and only if
+\begin{equation}\label{eq:finiteconstraints}
+ \boxed{z_i-z_{\bar i}=n_i,\qquad
+ |z_i-z_j|\le1,\qquad |z_i-y|\le1\quad(y\in Y),}
+\end{equation}
+with the already assumed diameter constraints within $Y$.
+\end{theorem}
+\begin{proof}
+Opposite support points of a width-one body have scalar separation one in
+their normal direction and Euclidean distance at most one. Their difference
+is therefore exactly that unit normal, proving necessity.
+Conversely apply \cref{lem:completion} to the finite set in
+\cref{eq:finiteconstraints}. If $x$ belongs to the resulting body, then
+\[
+ n_i\cdot x\le n_i\cdot z_{\bar i}+|x-z_{\bar i}|
+ \le n_i\cdot z_{\bar i}+1=n_i\cdot z_i.
+\]
+As $z_i$ is in the body, it is the prescribed support point.
+\end{proof}
+
+The feasible set is convex. Every constraint in \cref{eq:finiteconstraints}
+is affine or a second-order-cone constraint. Its support values and centered
+values are
+\[
+ h_i=n_i\cdot z_i,\qquad u_i=h_i-\frac12,
+ \qquad u_{\bar i}=-u_i.
+\]
+For the unrestricted problem, include $\pm e_3$ in $N$ and impose
+$z_{e_3}=e_3/2$, $z_{-e_3}=-e_3/2$. Every body admits this translation,
+and it makes the finite feasible set compact. With a nonempty fixed seed,
+compactness follows instead from a unit ball about one seed point.
+
+\section{A fixed rational energy matrix}
+Let $\mathcal T$ be an antipodally symmetric triangular surface with vertices
+$n_i\in\Sph$, such that radial projection maps its faces bijectively, up to
+shared edges, onto a triangulation of $\Sph$. For example, triangulate the
+facets of an origin-containing inscribed convex polyhedron, consistently at
+antipodes. Every face lies in an open hemisphere.
+
+For an oriented face $\sigma=(n_0,n_1,n_2)$, order its vertices so that
+$\det N_\sigma>0$, where $N_\sigma$ has rows $n_0^T,n_1^T,n_2^T$.
+Let $\Omega_\sigma\subset\Sph$ be its radial image. Define
+\[
+ B_\sigma=N_\sigma^{-1}(u_0,u_1,u_2)^T,\qquad
+ u_{\mathcal T}(n)=B_\sigma\cdot n\quad(n\in\Omega_\sigma).
+\]
+This interpolant is continuous: on a shared edge, the difference of the two
+linear forms vanishes on the plane spanned by its two endpoints.
+It is piecewise smooth, lies in $H^1(\Sph)$, and is odd.
+It need not itself be a convex support function; exact realizability is
+supplied by \cref{thm:interpolation}, not by imposing convexity on this
+interpolant.
+
+\begin{theorem}[Rational boundary formula]\label{thm:rationalmatrix}
+For every face,
+\begin{equation}\label{eq:faceenergy}
+ \boxed{E_\sigma(u_{\mathcal T})
+ =-\sum_{(i,j)=(0,1),(1,2),(2,0)}
+ \frac{[B_\sigma\cdot(n_i\times n_j)]
+       [B_\sigma\cdot(n_i+n_j)]}{1+n_i\cdot n_j}.}
+\end{equation}
+In particular, if all $n_i$ are rational, there is an explicitly computable
+rational symmetric matrix $\mathsf E_{\mathcal T}$ such that
+\begin{equation}\label{eq:matrixenergy}
+ E(u_{\mathcal T})=\mathbf u^T\mathsf E_{\mathcal T}\mathbf u.
+\end{equation}
+On the antipodally odd nodal subspace this matrix is positive semidefinite.
+Its kernel is exactly the three-dimensional space $u_i=a\cdot n_i$.
+\end{theorem}
+\begin{proof}
+A linear spherical function $\ell(n)=B\cdot n$ satisfies $\Delta\ell=-2\ell$.
+Green's identity on $\Omega_\sigma$ gives
+\[
+ \int_{\Omega_\sigma}(|\nabla\ell|^2-2\ell^2)
+ =\int_{\partial\Omega_\sigma}\ell\,\partial_\nu\ell\,\dd s.
+\]
+The outward spherical conormal on the oriented great-circle edge from
+$n_i$ to $n_j$ is the constant vector
+$\nu=-(n_i\times n_j)/|n_i\times n_j|$.
+If the edge length is $\theta\in(0,\pi)$, direct integration on its great
+circle yields
+\[
+ \int_{\text{edge}}n\dd s=(n_i+n_j)\tan(\theta/2),\qquad
+ \frac{\tan(\theta/2)}{|n_i\times n_j|}
+ =\frac1{1+n_i\cdot n_j}.
+\]
+Also $\partial_\nu\ell=B\cdot\nu$. Substitution proves
+\cref{eq:faceenergy}. Everything in this expression is rational in the
+vertices and quadratic in their nodal values. Summing faces gives
+\cref{eq:matrixenergy}. Positivity and the kernel follow from the spherical
+Poincare inequality, since the assembled interpolant is odd. A zero-energy
+interpolant is a global linear spherical function, and conversely every
+such function is interpolated exactly.
+\end{proof}
+
+Here is an explicit matrix assembly formula. Put
+\[
+ T_\sigma=-\frac12\sum_{(i,j)}
+ \frac{(n_i\times n_j)(n_i+n_j)^T+(n_i+n_j)(n_i\times n_j)^T}
+ {1+n_i\cdot n_j}.
+\]
+The local matrix on the three nodal values is
+$N_\sigma^{-T}T_\sigma N_\sigma^{-1}$.
+Add it to the corresponding three-by-three block of the global matrix.
+Only after assembly restrict to one value per antipodal pair.
+A single local matrix need not be positive semidefinite.
+
+The cancellation of all angular integrals is useful: the program's
+quadratic coefficients are exact fractions, not numerical surface integrals.
+In contrast, direct convex-hull volume changes its algebraic expression
+when the sample hull changes facets. Here the triangulation and quadratic
+matrix are fixed before the unknown support data are chosen.
+
+\section{An explicit volume error independent of the unknown body}\label{sec:error}
+For each flat face, define
+\[
+ c_\sigma=\operatorname{dist}(0,\operatorname{aff}\sigma)>0,\qquad
+ d_\sigma=\max_{i,j\in\sigma}|n_i-n_j|,
+\]
+\begin{equation}\label{eq:errors}
+ \epsilon_\sigma=\frac{1-c_\sigma^2}{4c_\sigma^2},\qquad
+ b_\sigma=\frac{\sqrt3\,d_\sigma^2}
+ {4c_\sigma\,\sigma_{\min}(N_\sigma)},\qquad
+ \epsilon=\max_\sigma\epsilon_\sigma,\quad b=\max_\sigma b_\sigma.
+\end{equation}
+Here $\sigma_{\min}$ denotes the smallest singular value.
+No unknown support function occurs in these constants.
+
+\begin{lemma}[Uniform interpolation estimates]\label{lem:interperror}
+For any actual width-one centered support $u$ interpolating the nodal data,
+\begin{equation}\label{eq:interperror}
+ \|u_{\mathcal T}-u\|_\infty\le\epsilon,
+ \qquad |\nabla(u_{\mathcal T}-u)|\le b
+ \quad\text{almost everywhere}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Extend $u$ homogeneously by $\widehat u(x)=|x|u(x/|x|)$.
+Its Euclidean Hessian has radial eigenvalue zero and tangential block
+$|x|^{-1}\Q u(x/|x|)$. By \cref{eq:curvature},
+\[
+ \|D^2\widehat u(x)\|\le\frac1{2|x|}.
+\]
+On a flat face, $|x|\ge c_\sigma$, and the same holds on every segment in
+that face. Hence $\nabla\widehat u$ is Lipschitz there with constant
+$1/(2c_\sigma)$.
+
+Write $x=\sum\lambda_i n_i$, with $\lambda_i\ge0$, $\sum\lambda_i=1$, and
+$r=|x|$. The affine interpolation remainder is bounded by
+\[
+ \left|\sum_i\lambda_i u_i-\widehat u(x)\right|
+ \le\frac1{4c_\sigma}\sum_i\lambda_i|n_i-x|^2
+ =\frac{1-r^2}{4c_\sigma}.
+\]
+Since $u_{\mathcal T}(x/r)=r^{-1}\sum\lambda_i u_i$, division by
+$r\ge c_\sigma$ proves the value estimate.
+
+For the gradient, let $a=\nabla\widehat u(x)$. Euler's identity gives
+$a\cdot x=\widehat u(x)$. Taylor's formula at each vertex thus gives
+\[
+ (B_\sigma-a)\cdot n_i
+ =u_i-\widehat u(x)-a\cdot(n_i-x),
+ \qquad |(B_\sigma-a)\cdot n_i|
+ \le\frac{d_\sigma^2}{4c_\sigma}.
+\]
+Inverting $N_\sigma$ yields $|B_\sigma-a|\le b_\sigma$.
+Spherical gradients are the orthogonal projections of these homogeneous
+Euclidean gradients, so their difference satisfies the same bound.
+\end{proof}
+
+A purely algebraic replacement for the singular-value bound is
+\begin{equation}\label{eq:betaexplicit}
+ b_\sigma^2\le
+ \frac{9d_\sigma^6}{8c_\sigma^2(\det N_\sigma)^2}.
+\end{equation}
+Indeed $\sigma_1(N_\sigma)\le\sqrt3$. Subtracting the rank-one matrix with
+all rows $n_0^T$ gives $\sigma_2(N_\sigma)\le\sqrt2d_\sigma$.
+Their product and the determinant identity then give
+$\sigma_{\min}\ge|\det N_\sigma|/(\sqrt6d_\sigma)$.
+Both $c_\sigma^2$ and the right side of \cref{eq:betaexplicit} are rational
+when the vertices are rational.
+
+\begin{theorem}[Uniform quadratic-objective error]\label{thm:volumeerror}
+Every genuine completion of an exact finite array satisfies
+\begin{equation}\label{eq:errorbound}
+ \boxed{\mathcal V(u_{\mathcal T})-2\pi\epsilon
+ \le\Vol(K)\le
+ \mathcal V(u_{\mathcal T})+2\pi\epsilon+\pi b^2.}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $w=u_{\mathcal T}-u$, which is odd, and let $L=-\Delta-2$.
+By \cref{eq:curvature}, $Lu=-\tr\Q u$ lies in $[-1,1]$ almost everywhere.
+Weak integration by parts is legitimate for $u\in C^{1,1}$ and
+$w\in H^1$. Expanding the energy gives the exact identity
+\[
+ \Vol(K)-\mathcal V(u_{\mathcal T})
+ =\frac12\int (Lu)w+\frac14 E(w).
+\]
+The first term has absolute value at most $2\pi\epsilon$.
+Oddness gives $E(w)\ge0$, while
+$E(w)\le\int|\nabla w|^2\le4\pi b^2$.
+This proves both bounds. Notice that the lower bound does not require
+shape regularity or the gradient-error constant $b$.
+\end{proof}
+
+On a shape-regular sequence of meshes with maximum edge length $h\to0$,
+$c_\sigma\to1$ uniformly, $1-c_\sigma^2=O(h^2)$, and
+$|\det N_\sigma|$ is comparable to $d_\sigma^2$. Consequently
+$\epsilon+b^2=O(h^2)$.
+The needed geometric condition can be checked directly from
+\cref{eq:errors,eq:betaexplicit}; there is no appeal to regularity of an
+unknown minimizing body. Antipodally symmetric rational perturbations of
+shape-regular refinements preserve these bounds if their displacement is
+sufficiently smaller than the mesh size.
+
+\section{The finite optimization and a rational certificate target}
+Let $\mathcal Z_{\mathcal T}$ be the compact feasible set in
+\cref{eq:finiteconstraints}, with the diametral normalization when there is
+no fixed seed. Define
+\[
+ Q_{\mathcal T}=\max_{z\in\mathcal Z_{\mathcal T}}
+          \mathbf u(z)^T\mathsf E_{\mathcal T}\mathbf u(z),\qquad
+ q_{\mathcal T}=\frac\pi6-\frac14Q_{\mathcal T}.
+\]
+The finite objective is convex in the support values when written as the
+energy to be maximized. Equivalently its volume form is a concave quadratic
+to be minimized. Either optimization is generally nonconvex.
+
+\begin{theorem}[A finite quadratic enclosure of the true minimum]
+Let $V_*$ be the unrestricted width-one minimum, or the minimum in the
+class containing the prescribed seed. Then
+\begin{equation}\label{eq:minbound}
+ \boxed{q_{\mathcal T}-2\pi\epsilon\le V_*
+ \le q_{\mathcal T}+2\pi\epsilon+\pi b^2.}
+\end{equation}
+In particular, if $\epsilon+b^2\to0$, then $q_{\mathcal T}\to V_*$.
+\end{theorem}
+\begin{proof}
+Every body produces a feasible finite array. Its interpolated quadratic
+value is at least $q_{\mathcal T}$, so the lower bound follows from
+\cref{thm:volumeerror}. Conversely, a minimizing finite array exists by
+compactness and continuity. It has an actual completion by
+\cref{thm:interpolation}. The upper bound in \cref{thm:volumeerror}, applied
+to that completion, proves the other inequality.
+\end{proof}
+
+The finite values $q_{\mathcal T}$ are not claimed to be monotone under
+refinement. Monotone lower and upper sequences can be formed by taking,
+respectively, running maxima of the certified lower endpoints and running
+minima of the certified upper endpoints in \cref{eq:minbound}.
+
+For a practical sufficient certificate, eliminate all affine equations and
+write the remaining support-point variables as a vector $x$. The diameter
+constraints take the form
+\[
+ g_e(x)=1-|D_ex+d_e|^2\ge0,
+ \qquad \mathbf u=Ux+v.
+\]
+For rational normals and a rational fixed seed, all these coefficients and
+$\mathsf E_{\mathcal T}$ are rational. Any exact identity
+\begin{equation}\label{eq:sdpcert}
+ B-(Ux+v)^T\mathsf E_{\mathcal T}(Ux+v)
+ =\begin{pmatrix}1\\x\end{pmatrix}^{\!T}
+ Z\begin{pmatrix}1\\x\end{pmatrix}
+ +\sum_e\lambda_e g_e(x),
+ \qquad Z\succeq0,\quad\lambda_e\ge0,
+\end{equation}
+proves $Q_{\mathcal T}\le B$. It therefore implies
+\[
+ V_*\ge\frac\pi6-\frac B4-2\pi\epsilon.
+\]
+Coefficient equality and a rational positive-semidefinite factorization of
+$Z$ are finite verification tasks. This is only a sufficient certificate;
+we do not assert that constant multipliers $\lambda_e$ always attain the
+exact finite maximum. Branch-and-bound or stronger polynomial certificates
+may be necessary. An optimizer's feasible array supplies no upper bound on
+$Q_{\mathcal T}$.
+
+To reach the sharp Meissner value by this formulation, it would suffice to
+prove, for meshes with $\epsilon\to0$,
+\[
+ Q_{\mathcal T}\le E_M+\delta_{\mathcal T},\qquad
+ \delta_{\mathcal T}\to0,\qquad
+ E_M=4\left(\frac\pi6-\VM\right)
+ =\pi\sqrt3\arccos\frac13-2\pi.
+\]
+No such family of upper certificates is produced here. The new result makes
+the required objective a fixed rational quadratic form while preserving
+finite realizability; it does not solve its global maximization.
+
+\section{Exact algebraic checks and numerical status}
+The accompanying standard-library script constructs two rational normal
+sets by stereographic grids of orders one and two, with duplicates removed.
+It enumerates all supporting facets exactly, triangulates them antipodally,
+and verifies oriented edge cancellation, vertex use, Euler's identity, and
+positive radial orientation. For each triangulation it constructs the
+matrix in \cref{thm:rationalmatrix} using fractions only, restricts to odd
+values, and performs an exact semidefinite elimination. It also checks
+that all three translation vectors lie in its kernel.
+
+For a nonspherical feasible test body, take
+\[
+ h(n)=\frac12+\frac1{10}n_1n_2n_3.
+\]
+If $P(X)=X_1X_2X_3$, then
+$\Q(P|_{\Sph})=D^2P|_{T\Sph}-2PI$.
+On the sphere, $\|D^2P\|\le2$ and $|P|\le1/5$, so the perturbation's
+curvature norm is at most $6/25<1/2$. The displayed $h$ is therefore a
+width-one support function. Its support points at rational normals are
+rational:
+\[
+ z(n)=\left(\frac12-\frac15P(n)\right)n+\frac1{10}\nabla P(n).
+\]
+The program checks all finite diameter inequalities and antipodal identities
+for these data. Since $P|_{\Sph}$ has harmonic degree three and
+$\int P^2\dd\sigma=4\pi/105$, its exact volume is
+\[
+ \frac\pi6-\frac{\pi}{1050}.
+\]
+This is a test body, not a minimum. Its computed finite energy is a check of
+the rational matrix construction; the rigorous error estimates above are
+proved analytically and can be coarse on these two small meshes.
+
+The executed checks give:
+\begin{center}
+\begin{tabular}{rrrrrr}
+\toprule
+Grid & Vertices & Triangles & Odd variables & Energy rank & Nullity\\
+\midrule
+1&14&24&7&4&3\\
+2&38&72&19&16&3\\
+\bottomrule
+\end{tabular}
+\end{center}
+The two exact test energies are $16/2025$ and $368/54675$.
+They are values for the displayed test body, not maxima over feasible arrays.
+All $91$ and $703$ pairwise diameter inequalities, respectively, pass.
+The complete rational matrices and triangulations are supplied as JSON data.
+
+Run \texttt{python check\_rational\_energy.py}. The script prints and writes
+its exact counts, rational energies, kernel dimensions, and geometric error
+constants. It does not solve a global quadratic optimization, certify a new
+volume lower bound, or verify the sharp inequality. The universal value
+$0.4144$ is established in the separate main manuscript and its fully rerun
+certificate; the sharp gap is still open in this continuation.
+
+\begin{thebibliography}{9}\small
+\bibitem{Schneider} R. Schneider, \emph{Convex Bodies: The Brunn--Minkowski
+Theory}, second expanded edition, Encyclopedia of Mathematics and its
+Applications 151, Cambridge University Press.
+\url{https://doi.org/10.1017/CBO9781139003858}.
+\bibitem{Hynd} R. Hynd, \emph{On extreme constant width bodies in $\R^3$},
+arXiv:2501.16940. Background on support-function constraints; the finite
+interpolation and error estimates used here are proved in the text.
+\end{thebibliography}
+\end{document}

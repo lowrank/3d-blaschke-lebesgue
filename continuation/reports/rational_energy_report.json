@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "scope": "Exact finite matrix and interpolation sanity checks; no global optimization.",
+  "octant_boundary_formula": "PASS",
+  "runs": [
+    {
+      "m": 1,
+      "vertices": 14,
+      "supporting_facets": 16,
+      "triangles": 24,
+      "undirected_edges": 36,
+      "odd_dimension": 7,
+      "energy_rank": 4,
+      "translation_kernel_dimension": 3,
+      "diameter_comparisons": 91,
+      "test_energy": "16/2025",
+      "epsilon_upper": "1/4",
+      "gradient_error_squared_upper": "64",
+      "matrix_data_sha256": "4c78176236d60763c5abadb10ee42c8e41f374e6c9d929b30a5ffb976c347bd4",
+      "status": "PASS",
+      "scope": "Matrix and feasible test evaluation; not an optimized bound."
+    },
+    {
+      "m": 2,
+      "vertices": 38,
+      "supporting_facets": 52,
+      "triangles": 72,
+      "undirected_edges": 108,
+      "odd_dimension": 19,
+      "energy_rank": 16,
+      "translation_kernel_dimension": 3,
+      "diameter_comparisons": 703,
+      "test_energy": "368/54675",
+      "epsilon_upper": "1/8",
+      "gradient_error_squared_upper": "486/25",
+      "matrix_data_sha256": "f482ceb94236f29729032ce13211e7fee922a46b31a3e7e3e34d3c76ef9af24a",
+      "status": "PASS",
+      "scope": "Matrix and feasible test evaluation; not an optimized bound."
+    }
+  ],
+  "source_sha256": "e3b79ba92cb8f9a518a009c1d317341a97c3680b4f9c2c1a21862346a291a562"
+}
