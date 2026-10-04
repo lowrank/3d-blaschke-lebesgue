@@ -7,7 +7,10 @@
 
     Vol(K) > (259/625) w^3 = 0.4144 w^3
 
-for every three-dimensional convex body of constant width w > 0.
+for every three-dimensional convex body of constant width w > 0. Improving
+the existing result by Hyra's [0.411040](https://github.com/Tencent-Hunyuan/Hyra-results/tree/main/AI4Science/3d_blaschke_lebesgue).
+
+
 The manuscript includes support-function and mixed-volume preliminaries,
 Blaschke's relation, all contact and clipping arguments, the complete
 spherical-face/edge volume derivation, the weighted completion estimate,
