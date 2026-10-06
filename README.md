@@ -7,9 +7,11 @@
 
     Vol(K) > (259/625) w^3 = 0.4144 w^3
 
-for every three-dimensional convex body of constant width w > 0. Improving
-the existing result by Hyra [0.411040](https://github.com/Tencent-Hunyuan/Hyra-results/tree/main/AI4Science/3d_blaschke_lebesgue).
+for every three-dimensional convex body of constant width w > 0. 
 
+- The GitHub repo owner is responsible for the correctness (after a painful reading). 
+- This improves the existing result by Hyra [0.411040](https://github.com/Tencent-Hunyuan/Hyra-results/tree/main/AI4Science/3d_blaschke_lebesgue).
+- It is not uploaded to arXiv. Either a formal verification or a readable version will be made in near future. 
 
 The manuscript includes support-function and mixed-volume preliminaries,
 Blaschke's relation, all contact and clipping arguments, the complete
