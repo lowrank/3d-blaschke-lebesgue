@@ -198,6 +198,13 @@ run_cmd do
       ``BlaschkeLebesgue.Completion.F_eq_intervalIntegral,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.active_projective_completion_integral_lower_of_contacts,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.active_antipodal_completion_integral_lower,
+      ``BlaschkeLebesgue.BalancedContacts.clippedOuterBody_relabel,
+      ``BlaschkeLebesgue.BalancedContacts.clippedInnerBody_relabel,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_supportContactLabels,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_opposite_supportContactLabels,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.pairPatches_pairwise_disjoint,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.completion_integral_ge_sum,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.clipped_volume_ge_completion_sum,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

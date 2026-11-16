@@ -618,14 +618,34 @@ hypotheses supplied by the constant-width body and its contacts.
 manuscript's `F(a,b) = 4 * integral_[0,T]^2 Phi`, including equality to the
 iterated interval integral. `AntipodalPatchIntegral.lean` proves that the union
 of the patch and its antipodal image contributes at least `2 * F(a,b)` to the
-actual missing-width/curvature integral. Disjointness between different
-opposite-edge pairs remains to be proved.
+actual missing-width/curvature integral. Milestone 25 proves disjointness
+between different opposite-edge pairs and sums their contributions.
+
+## Milestone 25: disjoint edge patches and the geometric completion estimate
+
+`ClippedRelabeling.lean` proves that arbitrary permutations of the four
+contacts preserve the actual clipped outer and inner bodies.
+`ActiveSupportLabels.lean` proves that the actual support point of every
+retained normal has exactly its two defining unit balls active. It lies
+strictly inside the other two balls; the antipodal normal selects the
+opposite edge.
+
+`DisjointCompletionPatches.lean` constructs a common-normal frame for each
+of the three opposite-edge partitions and proves that their patch pairs
+are disjoint. The proof compares the exact active contact labels of the
+unique actual support point, and covers all six edge labels.
+
+`CompletionPatchSum.lean` integrates over this disjoint union and applies
+the weighted completion bound. It proves the manuscript's geometric estimate
+`V_K >= (47 V_D - V_C)/46 + (8/23) * sum_j F(a_j,b_j)` for actual clipped
+bodies constructed from the original constant-width body and its contacts.
+All frames, integrability, circle support, curvature, and disjointness facts
+used in this estimate have been proved.
 
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the clipped-body boundary
-decomposition and volume formulas, disjoint summation of the
-completion patches, the completion-integral and clipped-hull certificate
+decomposition and volume formulas, the completion-integral and clipped-hull certificate
 verifiers, and final assembly. None of these is hidden behind a custom axiom
 or an assumed instance claiming the main theorem.
 The radial branch and the support-volume formula need no further smoothing.

@@ -2,6 +2,7 @@ module
 
 public import BlaschkeLebesgue.ActiveCompletionIntegral
 public import BlaschkeLebesgue.ActiveProjectiveRegion
+public import BlaschkeLebesgue.ActiveSupportLabels
 public import BlaschkeLebesgue.AntipodalCompletion
 public import BlaschkeLebesgue.AntipodalIntegration
 public import BlaschkeLebesgue.AntipodalPatchIntegral
@@ -17,10 +18,12 @@ public import BlaschkeLebesgue.CircleNormalCone
 public import BlaschkeLebesgue.CircleSupport
 public import BlaschkeLebesgue.CircleSupportRegion
 public import BlaschkeLebesgue.ClippedBodies
+public import BlaschkeLebesgue.ClippedRelabeling
 public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra
 public import BlaschkeLebesgue.CompletionObliquity
+public import BlaschkeLebesgue.CompletionPatchSum
 public import BlaschkeLebesgue.CompletionPhi
 public import BlaschkeLebesgue.CompletionPhiCalculus
 public import BlaschkeLebesgue.CompletionRegion
@@ -41,6 +44,7 @@ public import BlaschkeLebesgue.CurvatureIntegrals
 public import BlaschkeLebesgue.CurvatureOperator
 public import BlaschkeLebesgue.CurvatureReflection
 public import BlaschkeLebesgue.CurvatureWeight
+public import BlaschkeLebesgue.DisjointCompletionPatches
 public import BlaschkeLebesgue.FrameProductCoordinates
 public import BlaschkeLebesgue.EnclosingBall
 public import BlaschkeLebesgue.HomogeneousDifferentiation
