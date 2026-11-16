@@ -795,8 +795,26 @@ intervals and proves containment of all three real components. Reciprocal
 checks exclude zero. Square-root jet checks require a positive input enclosure
 and exclude zero from both derivative denominators. Thus the interval output
 can bound the actual derivatives once the certificate expressions and their
-input boxes are supplied. The full expression evaluator and finite grid
-checks remain open.
+input boxes are supplied. Milestone 34 supplies the full expression evaluator.
+
+## Milestone 34: checked expressions and their actual derivatives
+
+`Certificates/IntervalExpression.lean` gives expressions four interpretations:
+real values, real second-order jets, executable intervals, and executable
+interval jets. Expressions include rational constants, variables, arithmetic,
+squares, square roots, and a binding operation for shared intermediate values.
+The executable interpreters return `none` when a required domain check fails.
+
+Structural induction proves that every successful evaluation encloses the
+corresponding real value or all three real jet components. A second theorem
+uses the successful domain checks to prove actual differentiability: the jet's
+first derivative component is the derivative of the ordinary real expression,
+and its second derivative component is the derivative of the first. This includes bindings whose
+stored intermediate values depend on the differentiation parameter.
+
+The evaluator and its soundness are complete. Encoding the particular
+certificate formulas, evaluating the finite grids, and deriving the candidate
+analytic bounds remain to be done; no report column is assumed correct.
 
 ## Remaining proof obligations
 

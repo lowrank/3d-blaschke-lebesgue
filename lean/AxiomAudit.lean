@@ -262,6 +262,11 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.FixedPoint.Jet.contains_sq,
       ``BlaschkeLebesgue.Certificates.FixedPoint.Jet.contains_inv,
       ``BlaschkeLebesgue.Certificates.FixedPoint.Jet.contains_sqrt,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Expr.realJet_v,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Expr.interval_sound,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Expr.jet_sound,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Expr.jet_validAt,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Expr.jet_derivatives,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
