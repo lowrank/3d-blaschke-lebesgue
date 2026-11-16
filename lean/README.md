@@ -1,17 +1,32 @@
 # Lean 4.35 formalization
 
-**Status: incomplete. The manuscript's volume theorem has not yet been proved in Lean.**
+**Status: the full unconditional theorem compiled locally in Lean 4.35.0;
+the final CI validation is pending.**
 
 Source: `volume_bound_04144.tex` at upstream commit
 `8e57642c283f232ae9a782ad86408bfb7182dfb0`. The target is the strict bound
 `Vol(K) > (259/625) * w^3` for three-dimensional convex bodies of constant width
 `w > 0`. `BlaschkeLebesgue.ConstantWidthVolumeBound` records this statement using
 Lebesgue volume, compact convex sets, nonempty interior, and opposite support
-functions. It is a proposition definition, not a proved theorem.
+functions. `BlaschkeLebesgue.constantWidth_volume_gt`, in
+`BlaschkeLebesgue/Final.lean`, proves this target without certificate premises.
 
-The completion criterion is an end-to-end proof of this proposition, with no
-`sorry`, custom axioms, or unproved geometric interfaces. Intermediate milestones
-do not satisfy that criterion.
+On 2026-11-16, the full build completed successfully (5,314 jobs), and
+`FinalAxiomAudit.lean` passed for all 96,894 imported project declarations.
+The final theorem depends only on `propext`, `Classical.choice`, and `Quot.sound`:
+there are no `sorry`, custom axioms, native-evaluation axioms, or unproved
+geometric interfaces in its transitive proof. Final validation requires the
+complete unconditional CI workflow to succeed as well.
+
+```lean
+theorem constantWidth_volume_gt (K : ConvexBody Space)
+    (hinterior : (interior (K : Set Space)).Nonempty) (w : ℝ) (hw : 0 < w)
+    (hwidth : HasConstantWidth K w) :
+    (259 / 625 : ℝ) * w ^ 3 < bodyVolume K
+```
+
+Here `Space = EuclideanSpace ℝ (Fin 3)`, `bodyVolume` is actual Lebesgue volume,
+and `HasConstantWidth` uses the support function on every unit direction.
 
 ## Build and audit
 
@@ -38,7 +53,14 @@ checks generated candidate provenance, and checks the existing manuscript report
 The axiom audit permits
 only `propext`, `Classical.choice`, and `Quot.sound`; it rejects placeholders,
 custom axioms, and native-evaluation axioms. CI passing certifies the implemented
-lemmas, not the unproved main proposition.
+lemmas in the default library. The separate complete-theorem workflow builds
+`BlaschkeLebesgue.Final` and audits the unconditional endpoint.
+
+## Milestone history
+
+The numbered milestones below record the proof status when each was introduced.
+Their historical descriptions of open obligations are superseded by the current
+verification record above and the final assembly record below.
 
 ## Milestone 1: support functions and unit-ball duality
 
@@ -1449,103 +1471,76 @@ axioms or geometric interfaces; they must be discharged by the pending kernel
 suites. The unconditional main theorem is still unproved until every suite
 passes and its verified declarations are assembled and audited.
 
-## Final certificate assembly workflow (pending full verification)
+## Milestone 64: the unconditional theorem compiles and passes its axiom audit
 
-`generate_hull_assembly.py` joins the already checked strip declarations with
-finite eliminators; it does not recompute their arithmetic. The first sign
-and secant assembly modules compile locally. `restore_hull_artifacts.py`
-restores the completed CI modules into Lake's shared artifact cache using
-atomic file replacement. A completed CI strip was restored and confirmed
-up to date with `lake --no-build build`.
+All 64 projective kernel shards in run `43884585133` passed. All 584 analytic
+box modules were assembled locally from their restored kernel declarations.
+`Generated/ProjectiveSuite.lean` compiled and proves the global affine bound
+for the actual completion integral. The suite uses 76,784 kernel row checks,
+568,064 point cells, and 3,243,136 gradient cells, evaluated with `decide +kernel`.
 
-`BlaschkeLebesgue/Final.lean` supplies the proposed unconditional theorem
-`constantWidth_volume_gt` by applying the full reduction to the three suites.
-This file and the complete hull assembly modules are outside the default
-library imports while their kernel dependencies are incomplete. Their source
-must not be mistaken for a compiled theorem.
+Both hull suites are also complete:
+
+- Sign run `43923248067`: all 32 jobs passed, covering 3,200 edge boxes and
+  32 baseline strips. `HullSignAxiomAudit.lean` passed for 5,859 declarations.
+- Secant run `43924066736`: all 32 jobs passed, covering 512 radius buckets.
+  `HullSecantAxiomAudit.lean` passed for 3,121 declarations.
+
+`BlaschkeLebesgue/Final.lean` combines these proved finite statements with
+`MainAssembly.lean`. The complete local build passed (5,314 jobs), followed
+by `FinalAxiomAudit.lean` for 96,894 project declarations. The final endpoint
+`constantWidth_volume_gt` has only the standard axioms `propext`,
+`Classical.choice`, and `Quot.sound`. Its hypotheses are precisely a convex
+body in Euclidean three-space, nonempty interior, positive width, and actual
+constant width. No numerical checker result is an assumption of the theorem.
+
+The default library imports the analytic development; use
+`import BlaschkeLebesgue.Final` for the complete theorem and its certificate
+suites. The suites are separate to allow incremental certificate compilation.
+
+## Reproducing the complete theorem
+
+From the repository root, with all kernel modules built or restored:
+
+```sh
+LEAN_NUM_THREADS=2 python3 lean/scripts/assemble_final.py
+```
+
+The script checks all 584 projective and 64 hull kernel modules with
+`lake --no-build build`, compiles `BlaschkeLebesgue.Final`, and runs the full
+axiom audit. It refuses to recompute missing or stale kernel modules. For
+an existing checked build, the audit can also be run from `lean/` with:
+
+```sh
+lake env lean FinalAxiomAudit.lean
+```
 
 The **Complete unconditional Lean theorem** workflow requires three successful
-certificate runs, restores their artifacts, refuses to recompute missing or
-stale kernel modules, compiles `BlaschkeLebesgue.Final`, and runs
-`FinalAxiomAudit.lean`. The audit checks every imported project declaration,
-the explicit geometric endpoint, and its transitive axioms. Completion is
-pending a successful execution of that workflow and local verification.
+certificate runs, downloads their checked modules, restores them into Lake's
+shared artifact cache using atomic replacement, compiles the complete theorem,
+and runs the same full axiom audit. Final CI validation remains pending; the
+local unconditional proof and audit have passed.
 
-## Complete secant certificate: kernel-verified and audited
+## Certificate generation and artifact reuse
 
-All 32 jobs of secant run `43924066736` passed. The 512 checked bucket
-comparisons were restored locally; Lake confirmed all kernel modules up to
-date without recomputation. `Generated/HullSecantSuite.lean` compiled and
-`HullSecantAxiomAudit.lean` passed for 3,121 imported project declarations.
-The assembled `all_secant_checks` uses only `propext`, `Classical.choice`,
-and `Quot.sound`. The audit also typechecks the unconditional statement that
-every bucket has positive secant slope and bound strictly above `259/625`.
+`scripts/generate_hull_assembly.py` joins checked strip declarations with finite
+eliminators. `scripts/generate_projective_suite.py --check` verifies deterministic
+regeneration of all 584 projective modules. Each analytic box imports its own
+kernel module independently; the aggregate imports every box explicitly.
 
-The projective suite remains pending. Its analytic box modules now import
-their own kernel module independently,
-and the aggregate suite imports all 584 modules explicitly. This permits safe
-incremental assembly of completed shards. The final assembly script still checks
-every kernel module with `--no-build` before compiling the unconditional theorem.
-
-## Watching the remaining certificate jobs
+The **Complete projective kernel certificate** workflow checks 64 balanced
+shards, with one box at a time in each runner. Completed module artifacts are
+cached even if a later box fails. After all shards pass, its assembly job
+compiles the analytic suite and runs `ProjectiveAxiomAudit.lean`.
 
 `scripts/watch_certificates.py --downloads /tmp/blaschke-hull-artifacts`
-collects newly completed artifacts from the pinned certificate runs and assembles
-newly restored projective boxes after a `--no-build` kernel preflight. It stops
-on a failed run, restore, build, or audit; it does not restart CI jobs or commit
-changes. Once all hull-sign jobs pass, it compiles the assembled sign suite and
-runs `HullSignAxiomAudit.lean`. Once all three runs succeed, it invokes the final
-assembly and local axiom audit. `--once` performs a single collection pass.
+collects completed artifacts and incrementally assembles their analytic modules
+after a kernel preflight. It stops on a failed run, restore, build, or audit;
+it does not restart CI jobs or commit changes. `--once` performs one collection
+pass. The collector was stopped after all 64 projective shards had been restored
+and assembled; `assemble_final.py` then completed the local theorem and audit.
 
-A live single-pass test restored completed projective and hull artifacts,
-assembled 280 available projective boxes independently after kernel preflight,
-and rechecked both complete hull suites and their axiom audits. The import-graph
-change preserves all kernel sources, certificate inputs, and proof bodies;
-the aggregate still includes every one of the 584 boxes.
-The final theorem remains pending the remaining kernel jobs and final audits.
-
-## Complete hull-sign certificate: kernel-verified and audited
-
-All 32 jobs of sign run `43923248067` passed. The restored kernel modules were
-confirmed up to date without recomputation. `Generated/HullSignSuite.lean`
-compiled, and `HullSignAxiomAudit.lean` passed for 5,859 imported project
-declarations. Both `all_edge_checks` and `all_baseline_checks` use only
-`propext`, `Classical.choice`, and `Quot.sound`. The audit also typechecks the
-unconditional negative edge-slope and positive baseline-derivative statements
-on the entire required rectangle.
-
-Both hull certificates are therefore verified. The projective kernel suite,
-its analytic assembly, and the final unconditional theorem audit remain pending.
-The background collector continues monitoring the existing projective run.
-
-## Complete projective suite: kernel verification pending
-
-`scripts/generate_projective_suite.py` now emits the proposed proofs for all
-584 boxes, using 76,784 separate kernel row checks. The grid sizes vary by box:
-the proposals use 568,064 point cells and 3,243,136 gradient cells. Their exact
-rational acceptance margins are positive. These external calculations and
-generated proof texts do not establish the all-box theorem before compilation.
-`Generated/ProjectiveProposalChecks.lean`, included in the default build, checks
-the new candidates' exact box cover and rational acceptance arithmetic in Lean;
-it does not assume or certify their proposed center and gradient enclosures.
-
-`Generated/ProjectiveKernel/Box*.lean` recomputes every parameter interval,
-parameter jet, and row total with `decide +kernel`. The corresponding
-`Generated/ProjectiveBoxes/Box*.lean` files assemble the complete analytic
-certificates. `Generated/ProjectiveSuite.lean` connects their exact box list
-to the proved cover and states the resulting unconditional affine bound.
-This suite is not yet imported by the default library target while its full
-kernel verification is pending.
-
-The separate **Complete projective kernel certificate** workflow checks 64
-balanced shards, with one box at a time in each runner. Completed module
-artifacts are cached even if a later box fails. Only after all shards pass
-does the assembly job compile the analytic certificates and run
-`ProjectiveAxiomAudit.lean`. It refuses to recompute missing kernel shards in
-the assembly runner. Each arithmetic runner fetches only the small mathlib
-dependency cache it needs.
-
-To reproduce the proposed integers from this repository's root:
+To reproduce the certificate integers from this repository's root:
 
 ```sh
 g++ -std=c++17 -O3 lean/scripts/propose_projective.cpp -o /tmp/propose-projective
@@ -1560,17 +1555,15 @@ kernel computation. Existing local mathlib artifacts continue to use the
 shared Lake cache; the transfer script also preserves cache hard links when
 replacing build files.
 
-## Remaining proof obligations
+## Remaining validation
 
-The geometric and analytic assembly is proved conditional on the explicit
-finite computational statements. Completion still needs the full projective,
-hull-sign, and secant kernel checks, importing and assembling their verified
-outputs, and the final unconditional theorem and axiom audit. None of these is hidden behind a custom axiom
-or an assumed instance claiming the main theorem.
-The radial branch and the support-volume formula need no further smoothing.
+The full unconditional theorem and its local axiom audit have passed. The
+remaining gate is successful complete-theorem CI validation. The original
+projective run's assembly job is also still being monitored. No mathematical
+proof obligation or finite certificate premise remains in the compiled endpoint.
 
 A fresh execution of the original Python/C++ verifier at 52/192-bit precision
 passed on 2026-11-15: 584 integral rectangles, 3,200 derivative boxes, 512 hull
-intervals, and eight radial rows. That execution is external numerical evidence;
-it is not a kernel verification of the certificate algorithms or their geometric
-soundness.
+intervals, and eight radial rows. This is separate external numerical evidence;
+the Lean theorem uses the kernel-checked computations and their proved geometric
+soundness instead of assuming that external execution is correct.
