@@ -351,15 +351,39 @@ V(K + (epsilon + delta)B) - V(D + epsilon B)
 
 This formula requires no boundary smoothness or assumed mixed-volume identity.
 **Boundary:** removing the positive rounding parameters and extracting the
-volume and area variation identities remain to be done.
+volume and area variation identities are supplied by milestone 13.
+
+## Milestone 13: nonsmooth volume and area variation identities
+
+`MixedTangentDeterminant.lean` proves the quadratic polarization identity for
+the two-dimensional tangent determinant. `MixedCurvature.lean` proves
+measurability and integrability of the actual mixed curvature density.
+
+`ShellPolynomial.lean` integrates the shell determinant exactly in interpolation
+time. `ShellIntegralPolynomial.lean` proves that its spherical integral is a
+polynomial in the rounding parameters, with integrable coefficients.
+`VolumeVariation.lean` removes both positive rounding parameters by polynomial
+continuity and compares the resulting coefficients. For nested actual summands
+`D ⊆ K`, with zero in the interior of `D`, this proves
+
+```text
+3(V_K - V_D) = integral (h_K - h_D)(det Q_D + D2(Q_D,Q_K) + det Q_K)
+2(S_K - S_D) = integral (h_K - h_D)(tr Q_D + tr Q_K)
+  M_K - M_D  = integral (h_K - h_D).
+```
+
+Here `S` and `M` are the coefficients already proved to govern actual parallel
+volume. These are the manuscript's two variation identities, plus the mean-
+coefficient identity, proved without a smoothing assumption or mixed-volume
+interface. The nested clipped bodies used in the completion branch satisfy the
+interior hypothesis.
 
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs quantitative tetrahedral geometry,
-the remaining mixed-volume and curvature variation identities, clipped-body
-boundary formulas, the antipodal completion integral, and the completion-integral
-and clipped-hull certificate verifiers. The algebra and parameter limits needed
-to finish the variation formulas and the final assembly also remain. None of these
+the simplified area and mean-coefficient integral formulas, the weighted completion
+inequality, clipped-body boundary formulas, the antipodal completion integral,
+the completion-integral and clipped-hull certificate verifiers, and final assembly. None of these
 is hidden behind a custom axiom or an assumed instance claiming the main theorem.
 The radial branch and the support-volume formula need no further smoothing.
 

@@ -23,6 +23,8 @@ public import BlaschkeLebesgue.LipschitzJacobian
 public import BlaschkeLebesgue.LocalJacobian
 public import BlaschkeLebesgue.Minkowski
 public import BlaschkeLebesgue.MinkowskiInterpolation
+public import BlaschkeLebesgue.MixedCurvature
+public import BlaschkeLebesgue.MixedTangentDeterminant
 public import BlaschkeLebesgue.NormalDerivative
 public import BlaschkeLebesgue.NormalFrame
 public import BlaschkeLebesgue.Normalization
@@ -45,9 +47,11 @@ public import BlaschkeLebesgue.RadialVolume
 public import BlaschkeLebesgue.ShellCoverage
 public import BlaschkeLebesgue.ShellDerivative
 public import BlaschkeLebesgue.ShellInjectivity
+public import BlaschkeLebesgue.ShellIntegralPolynomial
 public import BlaschkeLebesgue.ShellJacobian
 public import BlaschkeLebesgue.ShellLipschitz
 public import BlaschkeLebesgue.ShellParametrization
+public import BlaschkeLebesgue.ShellPolynomial
 public import BlaschkeLebesgue.ShellVolume
 public import BlaschkeLebesgue.SliceVolume
 public import BlaschkeLebesgue.SmallBallIntersections
@@ -64,6 +68,7 @@ public import BlaschkeLebesgue.TangentDeterminant
 public import BlaschkeLebesgue.TangentJacobian
 public import BlaschkeLebesgue.Target
 public import BlaschkeLebesgue.Translation
+public import BlaschkeLebesgue.VolumeVariation
 
 /-!
 # The 0.4144 constant-width volume bound

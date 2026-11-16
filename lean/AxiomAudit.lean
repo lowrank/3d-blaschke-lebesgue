@@ -90,6 +90,14 @@ run_cmd do
       ``BlaschkeLebesgue.shellJacobian_integral,
       ``BlaschkeLebesgue.integral_annulus_polar,
       ``BlaschkeLebesgue.shellVolume_integral,
+      ``BlaschkeLebesgue.det_tangent_combination,
+      ``BlaschkeLebesgue.integrable_mixedCurvature,
+      ``BlaschkeLebesgue.integral_shellDensity,
+      ``BlaschkeLebesgue.variation_polynomial,
+      ``BlaschkeLebesgue.nested_volume_area_mean_variations,
+      ``BlaschkeLebesgue.volume_variation,
+      ``BlaschkeLebesgue.area_variation,
+      ``BlaschkeLebesgue.mean_coefficient_variation,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
