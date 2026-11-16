@@ -1,8 +1,12 @@
 module
 
 public import BlaschkeLebesgue.Basic
+public import BlaschkeLebesgue.Certificates.RadialRows
+public import BlaschkeLebesgue.CompletionAlgebra
 public import BlaschkeLebesgue.Contacts
+public import BlaschkeLebesgue.InnerOuter
 public import BlaschkeLebesgue.Radial
+public import BlaschkeLebesgue.RadialAnalysis
 public import BlaschkeLebesgue.Target
 
 /-!

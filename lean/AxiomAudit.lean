@@ -21,6 +21,9 @@ run_cmd do
       ``BlaschkeLebesgue.HasConstantWidth.radial_normal,
       ``BlaschkeLebesgue.BalancedContacts.deficit_budget,
       ``BlaschkeLebesgue.Radial.propagation_test_sound,
+      ``BlaschkeLebesgue.Radial.gap_monotoneOn,
+      ``BlaschkeLebesgue.Completion.curvature_weight_lower,
+      ``BlaschkeLebesgue.Certificates.RadialArithmetic.certified_radius_cover,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

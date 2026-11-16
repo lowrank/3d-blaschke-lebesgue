@@ -17,6 +17,7 @@ From this directory:
 lake exe cache get
 lake build
 lake env lean AxiomAudit.lean
+python3 scripts/generate_radial.py --check
 ```
 
 Lean is pinned to **4.35.0**, and mathlib to its matching release
@@ -25,7 +26,8 @@ restored build files use hard links to the shared cache rather than independent
 copies. No machine-specific dependency paths are committed.
 
 CI runs the build, audits all declarations in the `BlaschkeLebesgue` namespace,
-and checks the existing manuscript report provenance. The axiom audit permits
+checks generated candidate provenance, and checks the existing manuscript report provenance.
+The axiom audit permits
 only `propext`, `Classical.choice`, and `Quot.sound`; it rejects placeholders,
 custom axioms, and native-evaluation axioms. CI passing certifies the implemented
 lemmas, not the unproved main proposition.
@@ -62,13 +64,48 @@ The master inequality itself is not assumed as a global axiom or claimed as prov
 unit-width target is equivalent to the full-width target, including preservation
 of nonempty interior. Both target propositions remain unproved.
 
+## Milestone 3: exact radial arithmetic and further analytic lemmas
+
+`Certificates/RadialRows.lean` assembles **eight kernel-checked arithmetic rows**:
+5,836 positive propagation tests and 14,814 negative-cap tests. Each generated
+`Row*.verified` theorem evaluates the rational checker using `decide +kernel`.
+No `native_decide`, external oracle, report status, or trusted generator is used.
+The checker recomputes separation tests, ordering conditions, radical inequalities,
+downward-rounded ring contributions, and the final coefficient. It also verifies
+that the recomputed coefficient equals the coefficient recorded in the candidate
+input. The input coefficient is therefore checked data, not a premise.
+
+`RadialSoundness.lean` proves that downward rounding is conservative, the accepted
+squared tests imply the real square-root inequalities, and each accepted row has
+real value `pi * coefficient > 4144109/10000000`. This uses mathlib's proved
+20-decimal lower bound for pi instead of assuming the manuscript's 40-term arcsine
+evaluation. `certified_radius_cover` proves that these eight intervals cover
+`[3/5, 60849/100000]` without gaps.
+
+The generated imports form a chain so a cold build checks one row at a time.
+On the development machine each row takes roughly 1–2 minutes; cached builds
+reuse the compiled theorems. `scripts/generate_radial.py` only copies the literal
+input data and emits theorem statements. Its `--check` mode verifies deterministic
+regeneration against the original JSON and its SHA256.
+
+`InnerOuter.lean` proves the concentric inner-ball inclusion and the actual clipped
+sandwich. `RadialAnalysis.lean` proves the tangent deficit decreases below its
+tangent point and increases above it, and that a uniform margin survives limits.
+`CompletionAlgebra.lean` proves the polynomial minorant, the scalar curvature-weight
+inequality, the two convexity polynomials, and the coupled affine-budget sum.
+
+**Boundary:** the arithmetic row theorems do not yet bound the volume of an arbitrary
+body. The geometric propagation, disjoint spherical caps, and integration of their
+contributions still need to be formalized. The completion-integral and clipped-hull
+finite certificates have not yet been checked in Lean.
+
 ## Remaining proof obligations
 
 The main proof still needs existence of the minimum circumsphere and balanced contacts,
 mixed-volume and curvature variation identities, clipped-body boundary formulas,
-the antipodal completion integral, the radial integration and cap estimates,
-sound Lean verifiers for all three finite certificate families, and final
-smoothing and assembly. None of these is hidden behind a custom axiom
+the antipodal completion integral, the radial integration and geometric cap estimates,
+the completion-integral and clipped-hull certificate verifiers, and final smoothing
+and assembly. None of these is hidden behind a custom axiom
 or an assumed instance claiming the main theorem.
 
 A fresh execution of the original Python/C++ verifier at 52/192-bit precision
