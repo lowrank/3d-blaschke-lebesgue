@@ -10,9 +10,12 @@ public import BlaschkeLebesgue.Contacts
 public import BlaschkeLebesgue.EnclosingBall
 public import BlaschkeLebesgue.InnerOuter
 public import BlaschkeLebesgue.Normalization
+public import BlaschkeLebesgue.PositivePropagation
 public import BlaschkeLebesgue.Radial
 public import BlaschkeLebesgue.RadialAnalysis
+public import BlaschkeLebesgue.RadialFunction
 public import BlaschkeLebesgue.RadialGeometry
+public import BlaschkeLebesgue.SphericalCaps
 public import BlaschkeLebesgue.Target
 public import BlaschkeLebesgue.Translation
 

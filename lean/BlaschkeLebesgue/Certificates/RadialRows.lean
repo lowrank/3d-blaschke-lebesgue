@@ -1,6 +1,7 @@
 module
 
 public import BlaschkeLebesgue.Certificates.Generated.Row7
+public import BlaschkeLebesgue.Certificates.PositiveCaps
 public import BlaschkeLebesgue.Certificates.RadialGeometry
 public import BlaschkeLebesgue.Certificates.RadialSoundness
 
@@ -8,8 +9,8 @@ public import BlaschkeLebesgue.Certificates.RadialSoundness
 # The eight checked radial rows and their complete radius cover
 
 The generated row imports are chained to serialize the expensive kernel reductions
-on machines with limited memory. The endpoint cover and real-valued margins below
-are the arithmetic layer of the radial certificate, not a volume theorem about bodies.
+on machines with limited memory. The endpoint cover, real-valued margins, and cap
+geometry are proved below. Spherical integration and the volume theorem remain open.
 -/
 
 @[expose] public section
@@ -69,6 +70,56 @@ theorem all_rows_negative_caps_disjoint {K : ConvexBody Space} {b : MinimumEnclo
       (sphericalCap (-c.toBalancedContacts.direction d) (cosine (j + 1) : ℝ)) :=
   checkRow_negative_caps_disjoint (all_rows_verified row) c.toBalancedContacts
     (c.radius_eq ▸ hR) j a d had
+
+/-- All 5,836 positive candidates give lower bounds for the actual radial function. -/
+theorem all_rows_positive_radial_bound {K : ConvexBody Space} (hK : HasConstantWidth K 1)
+    (b : MinimumEnclosingBall K) (c : EnclosingContacts b 4) (row : Fin 8)
+    (hRlo : ((rows row).parameters.lo : ℝ) ≤ b.radius)
+    (hRhi : b.radius ≤ ((rows row).parameters.hi : ℝ))
+    (j : Fin (rows row).positive.length) (i : Fin 4) {u : Space}
+    (hcap : u ∈ sphericalCap (c.toBalancedContacts.direction i) (cosine (j + 1) : ℝ)) :
+    ((((rows row).positive[j] : ℚ) / candidateScale : ℚ) : ℝ) ≤
+      radialFunction b.centeredBody u :=
+  checkRow_enclosing_positive_radial_bound hK b c (all_rows_verified row) hRlo hRhi j i hcap
+
+theorem all_rows_positive_gap_lower {K : ConvexBody Space} (hK : HasConstantWidth K 1)
+    (b : MinimumEnclosingBall K) (c : EnclosingContacts b 4) (row : Fin 8)
+    (hRlo : ((rows row).parameters.lo : ℝ) ≤ b.radius)
+    (hRhi : b.radius ≤ ((rows row).parameters.hi : ℝ))
+    (j : Fin (rows row).positive.length) (i : Fin 4) {u : Space}
+    (hcap : u ∈ sphericalCap (c.toBalancedContacts.direction i) (cosine (j + 1) : ℝ)) :
+    (tangentGap (rows row).parameters ((rows row).positive[j] / candidateScale) : ℝ) ≤
+      Radial.gap (parameterM (rows row).parameters) (rows row).parameters.tangentPoint
+        (radialFunction b.centeredBody u) :=
+  checkRow_positive_gap_lower hK b c (all_rows_verified row) hRlo hRhi j i hcap
+
+theorem all_rows_negative_gap_lower {K : ConvexBody Space} (hK : HasConstantWidth K 1)
+    (b : MinimumEnclosingBall K) (c : EnclosingContacts b 4) (row : Fin 8)
+    (hRlo : ((rows row).parameters.lo : ℝ) ≤ b.radius)
+    (j : Fin (rows row).negative.length) (i : Fin 4) {u : Space}
+    (hcap : u ∈ sphericalCap (-c.toBalancedContacts.direction i) (cosine (j + 1) : ℝ)) :
+    (tangentGap (rows row).parameters ((rows row).negative[j] / candidateScale) : ℝ) ≤
+      Radial.gap (parameterM (rows row).parameters) (rows row).parameters.tangentPoint
+        (radialFunction b.centeredBody u) :=
+  checkRow_negative_gap_lower hK b c (all_rows_verified row) hRlo j i hcap
+
+theorem all_rows_positive_caps_disjoint {K : ConvexBody Space} {b : MinimumEnclosingBall K}
+    (c : EnclosingContacts b 4) (row : Fin 8)
+    (hRlo : ((rows row).parameters.lo : ℝ) ≤ b.radius)
+    (j : Fin (rows row).positive.length) (a d : Fin 4) (had : a ≠ d) :
+    Disjoint (sphericalCap (c.toBalancedContacts.direction a) (cosine (j + 1) : ℝ))
+      (sphericalCap (c.toBalancedContacts.direction d) (cosine (j + 1) : ℝ)) :=
+  checkRow_positive_caps_disjoint (all_rows_verified row) c.toBalancedContacts
+    (c.radius_eq ▸ hRlo) j a d had
+
+theorem all_rows_opposite_caps_disjoint {K : ConvexBody Space} (hK : HasConstantWidth K 1)
+    (b : MinimumEnclosingBall K) (c : EnclosingContacts b 4) (row : Fin 8)
+    (hRlo : ((rows row).parameters.lo : ℝ) ≤ b.radius)
+    (hRhi : b.radius ≤ ((rows row).parameters.hi : ℝ))
+    (j : Fin (rows row).positive.length) (k : Fin (rows row).negative.length) (a d : Fin 4) :
+    Disjoint (sphericalCap (c.toBalancedContacts.direction a) (cosine (j + 1) : ℝ))
+      (sphericalCap (-c.toBalancedContacts.direction d) (cosine (k + 1) : ℝ)) :=
+  checkRow_opposite_caps_disjoint hK b c (all_rows_verified row) hRlo hRhi j k a d
 
 /-- The rational radius intervals cover the entire intermediate-radius branch. -/
 theorem radius_cover {r : ℝ} (hr : r ∈ Set.Icc (3 / 5) (60849 / 100000)) :

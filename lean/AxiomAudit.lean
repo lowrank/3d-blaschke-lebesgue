@@ -32,6 +32,13 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_negative_body_bound,
       ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_negative_caps_disjoint,
       ``BlaschkeLebesgue.Certificates.RadialArithmetic.negativeStep_gap_lower,
+      ``BlaschkeLebesgue.radialFunction_smul_mem_frontier,
+      ``BlaschkeLebesgue.continuousOn_radialFunction,
+      ``BlaschkeLebesgue.HasConstantWidth.positive_cap_step,
+      ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_positive_radial_bound,
+      ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_positive_gap_lower,
+      ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_negative_gap_lower,
+      ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_opposite_caps_disjoint,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

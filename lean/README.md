@@ -99,8 +99,9 @@ tangent point and increases above it, and that a uniform margin survives limits.
 inequality, the two convexity polynomials, and the coupled affine-budget sum.
 
 **Boundary:** the arithmetic row theorems do not yet bound the volume of an arbitrary
-body. Milestone 5 proves the negative-cap bounds and their disjointness. Positive-cap
-propagation and integration of the contributions remain open. The completion-integral and clipped-hull
+body. Milestones 5 and 6 prove both cap bounds, their disjointness, and the
+pointwise tangent-deficit estimates. Integration of the contributions remains open.
+The completion-integral and clipped-hull
 finite certificates have not yet been checked in Lean.
 
 ## Milestone 4: actual circumspheres, contacts, and normalization
@@ -148,11 +149,39 @@ to actual points of the centered body using its constructed enclosing contacts.
 disjoint. Both use the already kernel-checked row theorems, so their statements
 have no hypothesis assuming that the numerical checker succeeds.
 
+## Milestone 6: radial function and positive-cap propagation
+
+`RadialFunction.lean` constructs the radial function from the reciprocal Minkowski
+functional. It proves continuity away from zero, positivity, the exact radial
+membership interval, the boundary-point property, and the values at circumsphere
+contacts. Hahn–Banach separation and the Riesz representation theorem provide a
+supporting unit normal at every radial boundary point.
+
+`PositivePropagation.lean` proves the geometric one-step propagation theorem
+directly from that supporting plane, the opposite-point inequality, and orthogonal
+components of unit vectors. The proof applies to nonsmooth bodies. It compares
+the actual normal with the candidate's normal cone, avoiding a differentiability
+assumption on the boundary or a separate analytic monotonicity assumption.
+
+`SphericalCaps.lean` constructs a preceding direction on a great-circle arc for
+every point in the next cap. `Certificates/RadialGrid.lean` proves that the exact
+rational grid coordinates and step coordinates are the corresponding cosines
+and sines. `Certificates/PositiveCaps.lean` then proves the propagation induction
+for every index of the actual candidate list.
+
+`all_rows_positive_radial_bound` applies all **5,836 positive candidates** to the
+radial function of the centered body. Together with the negative candidates,
+the checked rows now give actual pointwise tangent-deficit bounds on both cap
+families. The four positive caps in each layer are pairwise disjoint, as are the
+four negative caps, and every positive cap is disjoint from every negative cap. These are
+geometric consequences of the kernel-checked arithmetic and the constructed
+contacts; the spherical integration and volume conclusion are still unproved.
+
 ## Remaining proof obligations
 
 The main proof still needs quantitative tetrahedral geometry,
 mixed-volume and curvature variation identities, clipped-body boundary formulas,
-the antipodal completion integral, radial integration and positive-cap propagation,
+the antipodal completion integral, the radial volume and area identities and cap integration,
 the completion-integral and clipped-hull certificate verifiers, and final smoothing
 and assembly. None of these is hidden behind a custom axiom
 or an assumed instance claiming the main theorem.
