@@ -1093,6 +1093,28 @@ inputs. Their explicit inverse-trigonometric evaluation and the integrated
 edge contributions to `M_C` remain to be proved before the manuscript's
 separable one-edge volume formulas follow.
 
+## Milestone 46: spherical height integration and exact cap moments
+
+`SphereHeightIntegral.lean` proves that the pushforward of spherical measure
+under `n -> <u,n>`, for unit `u`, is exactly `2 pi` times Lebesgue measure on
+`[-1,1]`. It derives one-dimensional integration formulas on the sphere and
+on any cap. `SphereIsometry.lean` proves invariance of the actual spherical
+measure under every ambient orthogonal isometry, directly from its cone
+definition.
+
+Reflection about the cap axis then gives the full first-moment formula in
+`CapMoments.lean`:
+
+```text
+integral_{<u,n> >= c} <v,n> d sigma = <v,u> pi (1-c^2),
+```
+
+for every unit `u`, ambient vector `v`, and `-1 <= c <= 1`. In particular,
+the enclosing cap of a contact face has center-weighted first moment
+`-R pi (1-1/(4R^2))`. Removed-piece moments are reduced exactly to
+cap-intersection moments. Those intersection moments and areas, and the
+remaining edge curvature integrals, still require explicit evaluation.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

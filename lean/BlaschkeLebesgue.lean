@@ -16,6 +16,7 @@ public import BlaschkeLebesgue.BlaschkeIdentity
 public import BlaschkeLebesgue.CapArea
 public import BlaschkeLebesgue.CapBoundaries
 public import BlaschkeLebesgue.CapIntegration
+public import BlaschkeLebesgue.CapMoments
 public import BlaschkeLebesgue.Certificates.RadialRows
 public import BlaschkeLebesgue.Certificates.RadialVolume
 public import BlaschkeLebesgue.CircleDerivative
@@ -141,6 +142,8 @@ public import BlaschkeLebesgue.SphericalCaps
 public import BlaschkeLebesgue.SphericalCapPath
 public import BlaschkeLebesgue.SphericalDifferentiation
 public import BlaschkeLebesgue.SphericalMeasure
+public import BlaschkeLebesgue.SphereHeightIntegral
+public import BlaschkeLebesgue.SphereIsometry
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap
