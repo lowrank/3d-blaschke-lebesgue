@@ -17,6 +17,9 @@ public import BlaschkeLebesgue.ClippedBodies
 public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra
+public import BlaschkeLebesgue.CompletionObliquity
+public import BlaschkeLebesgue.CompletionPhi
+public import BlaschkeLebesgue.CompletionPhiCalculus
 public import BlaschkeLebesgue.CompletionRegion
 public import BlaschkeLebesgue.ContactArcCenter
 public import BlaschkeLebesgue.ContactArcIncidence
@@ -29,6 +32,7 @@ public import BlaschkeLebesgue.ContactFrameBounds
 public import BlaschkeLebesgue.ContactNormal
 public import BlaschkeLebesgue.ContactRelabeling
 public import BlaschkeLebesgue.Contacts
+public import BlaschkeLebesgue.ConvexTruncation
 public import BlaschkeLebesgue.CurvatureDensity
 public import BlaschkeLebesgue.CurvatureIntegrals
 public import BlaschkeLebesgue.CurvatureOperator
@@ -69,6 +73,7 @@ public import BlaschkeLebesgue.ProjectiveClipping
 public import BlaschkeLebesgue.ProjectiveCompletionLower
 public import BlaschkeLebesgue.ProjectiveCoordinates
 public import BlaschkeLebesgue.ProjectiveCurvature
+public import BlaschkeLebesgue.ProjectiveFourSigns
 public import BlaschkeLebesgue.ProjectivePairSupport
 public import BlaschkeLebesgue.ProjectivePairing
 public import BlaschkeLebesgue.Radial

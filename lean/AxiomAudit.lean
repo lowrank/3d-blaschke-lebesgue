@@ -167,6 +167,14 @@ run_cmd do
       ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_missingWidth_pair,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_antipodalCurvatureMin_lower,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_completion_pair_lower_of_contacts,
+      ``BlaschkeLebesgue.Completion.hasDerivAt_rawPhi,
+      ``BlaschkeLebesgue.Completion.hasDerivAt_rawPhiDeriv,
+      ``BlaschkeLebesgue.Completion.rawPhiDeriv2_nonneg,
+      ``BlaschkeLebesgue.convexOn_truncate_right,
+      ``BlaschkeLebesgue.Completion.phi_antitoneOn,
+      ``BlaschkeLebesgue.Completion.phi_convexOn,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_phi_sign_average_lower,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_completion_four_sign_lower,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

@@ -538,6 +538,28 @@ the inner-body containment from the original constant-width body.
 The projective area change of variables, obliquity averaging, integration,
 and summation over disjoint patches remain unproved at this milestone.
 
+## Milestone 21: clamped convexity and averaging edge obliquity
+
+`CompletionPhiCalculus.lean` proves both derivatives of the unclamped integrand
+and identifies the second derivative with the manuscript's `B1` and `B2`
+polynomials. Their previously checked bounds prove nonnegative second
+derivative on the active interval.
+
+`ConvexTruncation.lean` proves that a decreasing convex function remains convex
+when extended constantly past an endpoint. `CompletionPhi.lean` applies this
+at the first zero of the two factors, proving monotonicity and convexity for
+the integrand with both positive-part clamps. Thus the cutoff is covered by
+the theorem, not only its smooth interior.
+
+`CompletionObliquity.lean` verifies the parameter domain from the actual
+deficit budgets and proves Jensen averaging of the two coordinate signs,
+followed by the uniform obliquity bound. `ProjectiveFourSigns.lean` combines
+this with milestone 20: the sum over four signs of the actual completion
+weight, multiplied by the explicit projective area factor, is at least four
+times the uniform integrand. Identifying that area factor with spherical
+measure and then integrating and summing the patches remain separate proof
+obligations.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the remaining tetrahedral incidence geometry,
