@@ -990,6 +990,36 @@ enclosures, and final acceptance arithmetic are all proved. This closes
 **one of the 584 parameter boxes**; the remaining boxes and the larger-radius
 volume argument remain open.
 
+## Milestone 42: enclosing-sphere circles and actual corner angles
+
+`ClippingCircle.lean` constructs the circle where a contact unit sphere meets
+the enclosing sphere. It proves both directions of the parametrization, with
+center height `R - 1/(2R)` and radius `sqrt(1 - 1/(4R^2))`, and turns every
+remaining unit-ball constraint into its exact linear inequality in the circle
+direction.
+
+`ClippedVertexAngles.lean` computes the scalar products of the three actual
+sphere normals at a clipped vertex. It projects them into each face's tangent
+plane and proves the manuscript's corner-angle formulas:
+
+```text
+U = arccos(s / (4 R sqrt(1-s^2/4) kappa))
+V = arccos(1 - s^2/(2 kappa^2)),  kappa = sqrt(1-1/(4R^2)).
+```
+
+The angles are defined using mathlib's Euclidean angle, so these identities
+also determine the intended supplementary angles.
+
+`ClippedCapSeparation.lean` proves every contact weight is at least `11/50`
+in the stated deficit range. At any point of the closed enclosing ball,
+three contact distances that are at least one must all equal one. In
+particular, three strict exclusions cannot occur, and a unit-sphere equality
+cannot coexist with two other exclusions. This includes zero deficits.
+
+**Boundary:** these results supply local geometry for the clipped-volume
+calculation. The global boundary decomposition, surface integrals, and
+separable volume identities remain to be proved.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

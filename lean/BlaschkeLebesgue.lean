@@ -21,7 +21,10 @@ public import BlaschkeLebesgue.CircleNormalCone
 public import BlaschkeLebesgue.CircleSupport
 public import BlaschkeLebesgue.CircleSupportRegion
 public import BlaschkeLebesgue.ClippedBodies
+public import BlaschkeLebesgue.ClippedCapSeparation
 public import BlaschkeLebesgue.ClippedRelabeling
+public import BlaschkeLebesgue.ClippedVertexAngles
+public import BlaschkeLebesgue.ClippingCircle
 public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra

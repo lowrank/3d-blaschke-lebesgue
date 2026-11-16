@@ -18,6 +18,13 @@ run_cmd do
       checked := checked + 1
   for name in #[``BlaschkeLebesgue.Certificates.ProjectiveProposals.boxes_verified,
       ``BlaschkeLebesgue.Certificates.ProjectiveProposals.arithmetic_verified,
+      ``BlaschkeLebesgue.BalancedContacts.clippingCirclePoint_mem_spheres,
+      ``BlaschkeLebesgue.BalancedContacts.clipping_spheres_parametrization,
+      ``BlaschkeLebesgue.BalancedContacts.clippingCirclePoint_mem_ball_iff,
+      ``BlaschkeLebesgue.BalancedContacts.clipped_vertex_unit_face_angle,
+      ``BlaschkeLebesgue.BalancedContacts.clipped_vertex_radius_face_angle,
+      ``BlaschkeLebesgue.BalancedContacts.three_unit_constraints_eq_one,
+      ``BlaschkeLebesgue.BalancedContacts.no_three_strict_unit_constraints,
       ``BlaschkeLebesgue.HasConstantWidth.opposite_point,
       ``BlaschkeLebesgue.HasConstantWidth.ballTransform_eq,
       ``BlaschkeLebesgue.HasConstantWidth.radial_normal,
