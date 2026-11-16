@@ -298,6 +298,9 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.grid_sound,
       ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.check_sound,
       ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.check_secantBounds,
+      ``BlaschkeLebesgue.Certificates.ProjectiveAnalyticBounds.center_mem,
+      ``BlaschkeLebesgue.Certificates.ProjectiveAnalyticBounds.check_sound,
+      ``BlaschkeLebesgue.Certificates.ProjectiveAnalyticBounds.completion_affine_lower_of_computations,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

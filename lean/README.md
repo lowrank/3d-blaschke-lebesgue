@@ -893,10 +893,27 @@ Local executable 52-bit evaluations on the first accepted box with the
 `[23361772611441,131824902922151] / 2^52` in the `b` direction. These are
 execution comparisons; the full certificate still requires kernel checks.
 
-Both projective numerical algorithms now have soundness proofs. Applying
-them to every candidate, checking all resulting finite computations in the
-kernel, and removing the analytic premise from the affine completion bound
-remain open.
+Both projective numerical algorithms now have soundness proofs. Milestone 38
+connects them to every candidate. Checking the resulting finite computations
+in the kernel remains open.
+
+## Milestone 38: candidate analytic bounds from a finite computation check
+
+`Certificates/ProjectiveAnalyticBounds.lean` combines the point and gradient
+algorithms with the reported candidate bounds. Its checker verifies the box
+domain, positive grid sizes, all three algorithm outputs, and the rational
+comparisons needed to imply the reported center and slope bounds. The
+soundness theorem constructs `Candidate.AnalyticBounds` for the actual
+fixed-square integral, including the centers outside the geometric triangle.
+
+`allComputations` is the explicit Boolean check for all 584 candidates at
+52-bit precision, using the 192-by-192 point grid and 64-by-64 gradient grid.
+`completion_affine_lower_of_computations` proves that its truth implies the
+affine lower bound for the geometric `F` on the full parameter triangle.
+This theorem's remaining premise is finite computation, with no assumed
+derivative or integral estimates. **The truth of `allComputations` has not
+yet been proved.** The full volume theorem also retains the separate
+clipped-body geometry and clipped-hull certificate obligations below.
 
 ## Remaining proof obligations
 

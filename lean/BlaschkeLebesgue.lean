@@ -155,6 +155,7 @@ public import BlaschkeLebesgue.Certificates.ProjectivePointExample
 public import BlaschkeLebesgue.Certificates.ProjectiveParameterJets
 public import BlaschkeLebesgue.Certificates.ProjectiveGradientCell
 public import BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral
+public import BlaschkeLebesgue.Certificates.ProjectiveAnalyticBounds
 public import BlaschkeLebesgue.SecondOrderJet
 public import BlaschkeLebesgue.UniformGridIntegral
 public import BlaschkeLebesgue.UniformGridBounds
