@@ -1294,6 +1294,32 @@ the mean-curvature coefficient is a global decomposition into the five face
 regions and ten edge regions, with zero contribution from their complement,
 followed by summation. The full volume-bound theorem is still not proved.
 
+## Milestone 55: global mean curvature and the actual dual volume
+
+`ClippedNormalRegions.lean` labels the five face and ten edge regions and proves
+that they are disjoint almost everywhere, by identifying their actual active
+ball constraints. `ClippedCurvatureDecomposition.lean` proves that outside their
+union at least three independent constraints are active, so the actual curvature
+trace is zero. The integral over the sphere is therefore exactly the sum of
+the fifteen region integrals.
+
+`ClippedMeanCurvature.lean` substitutes the proved face and edge contributions
+and obtains the actual quadratic Steiner coefficient:
+
+```text
+M_C = sum_i area(unitFace_i) + R area(radiusFace)
+      + sum_edges r phi arcsin(s/2)
+      + kappa gamma (4 pi - 2 sum_edges Psi).
+```
+
+It also expresses this as a baseline plus six explicit scalar lens terms.
+`ClippedDualVolume.lean` combines this with the proved complementary-body
+identity to give an explicit baseline-plus-six-edge formula for the actual
+volume `V_D`. Thus `V_C`, `S_C`, `M_C`, and `V_D` are now derived from actual
+sets, support maps, and Lebesgue volume, including all edge and vertex regions.
+Rewriting the scalar lens terms into the manuscript's `B_C,f_C,B_D,f_D` notation,
+the remaining certificate verification, and final theorem assembly are pending.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
@@ -1338,9 +1364,8 @@ replacing build files.
 
 ## Remaining proof obligations
 
-The larger-radius completion branch still needs the edge curvature integrals,
-the explicit dual-body volume formula and the scalar identities matching the
-manuscript's coefficients,
+The larger-radius completion branch still needs the scalar identities matching
+the now-proved actual clipped-body and dual-body formulas to the manuscript's coefficients,
 completed kernel verification of the full
 completion-integral certificate, the clipped-hull certificate verifier and its
 kernel checks, and final assembly. None of these is hidden behind a custom axiom

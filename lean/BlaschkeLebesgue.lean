@@ -170,6 +170,10 @@ public import BlaschkeLebesgue.ClippedPairRelabeling
 public import BlaschkeLebesgue.ClippingCircleArcMeasure
 public import BlaschkeLebesgue.UnitEdgeCurvatureIntegral
 public import BlaschkeLebesgue.RadiusEdgeCurvatureIntegral
+public import BlaschkeLebesgue.ClippedNormalRegions
+public import BlaschkeLebesgue.ClippedCurvatureDecomposition
+public import BlaschkeLebesgue.ClippedMeanCurvature
+public import BlaschkeLebesgue.ClippedDualVolume
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap
