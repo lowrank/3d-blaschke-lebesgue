@@ -141,6 +141,8 @@ public import BlaschkeLebesgue.Translation
 public import BlaschkeLebesgue.TwoAxisProjection
 public import BlaschkeLebesgue.Certificates.Generated.ProjectiveCover
 public import BlaschkeLebesgue.Certificates.Generated.ProjectiveAcceptance
+public import BlaschkeLebesgue.Certificates.FixedPointRounding
+public import BlaschkeLebesgue.Certificates.FixedInterval
 public import BlaschkeLebesgue.UniformGridIntegral
 public import BlaschkeLebesgue.UniformGridBounds
 public import BlaschkeLebesgue.VolumeVariation

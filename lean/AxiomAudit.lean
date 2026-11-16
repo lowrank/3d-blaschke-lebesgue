@@ -244,6 +244,16 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.Generated.arithmetic_verified,
       ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.Generated.boxes_match,
       ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.Generated.completion_affine_lower_of_analytic_bounds,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.floorDiv_eq_floor,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.ceilDiv_eq_ceil,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.sqrtFloor_value_le_sqrt,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.sqrt_le_sqrtCeil_value,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Interval.contains_rational,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Interval.contains_mul,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Interval.contains_inv,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Interval.contains_sqrt,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Interval.contains_sq,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Interval.abs_le_absMax,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

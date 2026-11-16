@@ -762,6 +762,26 @@ and the proved quadrature/variation rules. The report values are candidate
 data, not assumed theorems. This is a conditional assembly result, not yet a
 verified completion-integral certificate or a proof of the volume target.
 
+## Milestone 32: sound fixed-dyadic interval arithmetic
+
+`Certificates/FixedPointRounding.lean` implements signed floor/ceiling division
+and integer square-root rounding, and proves that their scaled values bound
+the actual real operations. Negative denominators are normalized before
+Euclidean division. Square-root candidates come from Lean's proved integer
+square root, with no floating-point proposal.
+
+`Certificates/FixedInterval.lean` implements the verifier's interval operations
+at an arbitrary common scale `2^precision`: rational constants, spans,
+addition, subtraction, multiplication, reciprocal, division, square root,
+squaring, positive part, hull with zero, and absolute bound. Every operation
+has a real containment theorem. Reciprocal and root rules require explicit
+domain checks; squaring across zero has exact lower endpoint zero. Unbounded
+integers avoid the C++ implementation's machine overflow issue.
+
+These are sound executable primitives. The second-order jet propagation,
+certificate expression evaluation, and actual finite grid computations still
+need to be implemented and connected to the analytic bounds.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the clipped-body boundary
