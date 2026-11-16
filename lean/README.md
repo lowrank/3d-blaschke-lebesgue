@@ -1135,6 +1135,30 @@ hemispheres, poles, and full angular width. This supplies actual spherical
 coordinates for the remaining cap-intersection integrals; their explicit
 inverse-trigonometric evaluation and the edge curvature integrals remain open.
 
+## Milestone 48: actual cap intersections as latitude integrals
+
+`SphereCoordinates.lean` reconstructs every unit vector from its height and
+longitude, including both poles, and proves Fubini formulas on the full sphere
+and on a cap. `LongitudeSlice.lean` evaluates the angular measure of
+`cos(theta) >= q` as `2 arccos(q)` for every real `q`, using the clamped
+inverse cosine outside `[-1,1]`.
+
+`CapLensSlices.lean` then reduces a coordinate lens to a single real integral.
+`CapLensCoordinates.lean` constructs two orthogonal reflections that put any
+pair of unit axes in those coordinates. For nonparallel unit axes `u,v`,
+`c = <u,v>`, and a continuous height weight `g`, it proves
+
+```text
+integral_{<u,n> >= a, <v,n> >= b} g(<u,n>) d sigma
+  = integral_{a}^{1} 2 arccos((b-c z)/(sqrt(1-c^2) sqrt(1-z^2))) g(z) dz.
+```
+
+This includes the actual lens area (`g=1`) and its first moment along the
+first axis (`g(z)=z`). Endpoint values do not affect the integral, as proved
+using the null singleton sets. Evaluating these one-dimensional integrals in
+closed form, and the edge curvature integrals, remains necessary for the
+separable volume formulas.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

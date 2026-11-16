@@ -146,6 +146,10 @@ public import BlaschkeLebesgue.SphereHeightIntegral
 public import BlaschkeLebesgue.SphereIsometry
 public import BlaschkeLebesgue.LongitudeRotation
 public import BlaschkeLebesgue.LongitudeMeasure
+public import BlaschkeLebesgue.LongitudeSlice
+public import BlaschkeLebesgue.SphereCoordinates
+public import BlaschkeLebesgue.CapLensSlices
+public import BlaschkeLebesgue.CapLensCoordinates
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap
