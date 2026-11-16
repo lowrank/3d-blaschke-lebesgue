@@ -1433,6 +1433,22 @@ the bucket budgets, and final combination with the completion bound are pending.
 The first complete 100-cell sign strip and first 16 secant buckets passed local
 kernel checking; the remaining strips are being checked in CI.
 
+## Milestone 63: full geometric and analytic assembly
+
+`ClippedHullBucket.lean` specializes the exact contact-deficit bounds to the
+512 radius buckets and identifies the computed lower bounds with actual
+weighted clipped volumes. `NearBranchAssembly.lean` combines these with the
+three opposite-edge completion contributions and the affine integral bound.
+`MainAssembly.lean` constructs genuine contacts of a centered minimum enclosing
+ball, combines the larger-radius branch with the proved radial branch, and
+rescales to the requested arbitrary-width statement.
+
+`constantWidthVolumeBound_of_certificates` proves the full target conditional
+on the three explicit finite certificate statements. These premises are not
+axioms or geometric interfaces; they must be discharged by the pending kernel
+suites. The unconditional main theorem is still unproved until every suite
+passes and its verified declarations are assembled and audited.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
@@ -1477,9 +1493,10 @@ replacing build files.
 
 ## Remaining proof obligations
 
-The larger-radius completion branch still needs completed kernel verification of the full
-completion-integral certificate, the clipped-hull certificate verifier and its
-kernel checks, and final assembly. None of these is hidden behind a custom axiom
+The geometric and analytic assembly is proved conditional on the explicit
+finite computational statements. Completion still needs the full projective,
+hull-sign, and secant kernel checks, importing and assembling their verified
+outputs, and the final unconditional theorem and axiom audit. None of these is hidden behind a custom axiom
 or an assumed instance claiming the main theorem.
 The radial branch and the support-volume formula need no further smoothing.
 

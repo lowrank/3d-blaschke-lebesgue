@@ -495,6 +495,12 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.ClippedHull.combinedBaseline_mono,
       ``BlaschkeLebesgue.BalancedContacts.clipped_volume_combination_ge_secant,
       ``BlaschkeLebesgue.BalancedContacts.clipped_volume_combination_ge_bucket,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.radius_bucket_cover,
+      ``BlaschkeLebesgue.BalancedContacts.deficit_in_radius_bucket,
+      ``BlaschkeLebesgue.BalancedContacts.clipped_volume_ge_certified_bucket,
+      ``BlaschkeLebesgue.BalancedContacts.near_volume_bound_of_certificates,
+      ``BlaschkeLebesgue.Certificates.unitWidthVolumeBound_of_certificates,
+      ``BlaschkeLebesgue.Certificates.constantWidthVolumeBound_of_certificates,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
       throwError "Missing required declaration {name}"
