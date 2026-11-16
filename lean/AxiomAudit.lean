@@ -483,6 +483,12 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.ClippedHull.edge_grid_cover,
       ``BlaschkeLebesgue.Certificates.ClippedHull.edgeSigns_of_checks,
       ``BlaschkeLebesgue.Certificates.ClippedHull.baselineSign_of_checks,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.secantEvaluation_sound,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.secantCheck_sound_512,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.secantSlope_manuscript,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.secantBound_manuscript,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.secant_parameter_checks,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.secant_sqrt_checks,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
       throwError "Missing required declaration {name}"

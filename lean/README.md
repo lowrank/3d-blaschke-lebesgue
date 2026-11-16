@@ -1400,6 +1400,23 @@ default target until the full kernel run passes. Their presence alone does
 not prove the full cover or signs. The secant certificate and final assembly
 remain pending.
 
+## Milestone 61: rigorous secant bucket comparisons
+
+`ClippedHullSecantComputation.lean` implements the final 512 bucket evaluations
+using the proved volume programs and directed interval arithmetic.
+`ClippedHullSecantSoundness.lean` proves that a successful check gives both a
+positive secant slope and a bucket bound strictly above `259/625`. It identifies
+the computed slope and baseline with the manuscript functions.
+`ClippedHullSecantParameters.lean` checks the exact rational parameters and
+all radical domains for the 512 buckets in the kernel.
+
+All 512 secant comparisons passed preliminary evaluation. The generated
+`ClippedHullSecantKernel/Strip*.lean` modules propose their kernel proofs;
+the separate secant workflow checks 32 groups of 16 buckets. These modules
+remain outside the default target pending compilation. The analytic step
+from derivative signs and concavity to the six-edge secant lower bound, the
+complete kernel runs, and final geometric theorem assembly remain pending.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
