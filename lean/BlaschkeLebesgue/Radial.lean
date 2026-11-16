@@ -40,7 +40,7 @@ theorem gap_nonneg {m t s : ℝ} (hm : 0 < m) (ht : 0 ≤ t) (hs : 0 ≤ s) :
   rw [gap_factorization hm]
   positivity
 
-/-- The scalar expression used to propagate a radial lower bound, equation (13.8). -/
+/-- The scalar expression used to propagate a radial lower bound (`eq:N` in the manuscript). -/
 def propagation (m x c s : ℝ) : ℝ :=
   x * (x ^ 2 + m) / ((x ^ 2 + m) * c - Real.sqrt (4 * x ^ 2 - (x ^ 2 + m) ^ 2) * s)
 
@@ -70,7 +70,7 @@ theorem propagation_test_sound {m x y c s : ℝ}
   apply (div_le_iff₀ hden).2
   nlinarith
 
-/-- Squared rational tests imply the negative-cap square-root bound, equation (13.11). -/
+/-- The rational tests in `eq:ztest` imply the negative-cap square-root bound. -/
 theorem negative_cap_test_sound {r c s z : ℝ}
     (hsign : 0 ≤ z + r * c)
     (hsquared : 1 - r ^ 2 * s ^ 2 ≤ (z + r * c) ^ 2) :

@@ -189,7 +189,7 @@ theorem HasConstantWidth.forced_inner {K : ConvexBody E} (hK : HasConstantWidth 
   rw [← hK.ballTransform_eq]
   exact ballTransform_antitone hC
 
-/-- The normal inequality used by the radial divergence estimate, equation (13.2). -/
+/-- The radial divergence argument's normal inequality (`eq:radialnormal` in the manuscript). -/
 theorem HasConstantWidth.radial_normal {K : ConvexBody E} (hK : HasConstantWidth K 1)
     {R : ℝ} (hR : 0 ≤ R) (hbound : ∀ y ∈ K, ‖y‖ ≤ R)
     {x n : E} (hx : x ∈ K) (hn : ‖n‖ = 1) (hs : ⟪n, x⟫_ℝ = support K n) :

@@ -9,6 +9,10 @@ Source: `volume_bound_04144.tex` at upstream commit
 Lebesgue volume, compact convex sets, nonempty interior, and opposite support
 functions. It is a proposition definition, not a proved theorem.
 
+The completion criterion is an end-to-end proof of this proposition, with no
+`sorry`, custom axioms, or unproved geometric interfaces. Intermediate milestones
+do not satisfy that criterion.
+
 ## Build and audit
 
 From this directory:
@@ -52,8 +56,8 @@ Their hypotheses do not contain the volume conclusion.
 `Contacts.lean` proves the squared-radius bound `R^2 ≤ 3/8`, the exact centroid
 and weighted-deficit identities, and the two-sided deficit budget, including
 `A < 2/25` when `R ≥ 60849/100000`. Its input is a finite collection of actual
-points on a sphere with balancing weights and diameter at most one. Constructing
-these contacts from a minimum enclosing ball remains open in this formalization.
+points on a sphere with balancing weights and diameter at most one. Milestone 4
+constructs these contacts from the original convex body.
 
 `Radial.lean` proves the tangent majorant by an exact factorization, the soundness
 of the squared rational positive- and negative-cap tests, the rational unit-circle
@@ -99,9 +103,32 @@ body. The geometric propagation, disjoint spherical caps, and integration of the
 contributions still need to be formalized. The completion-integral and clipped-hull
 finite certificates have not yet been checked in Lean.
 
+## Milestone 4: actual circumspheres, contacts, and normalization
+
+`EnclosingBall.lean` defines the enclosing radius as the maximum distance to the
+body and proves the existence of a minimizing center. Its contact set is nonempty
+and compact. The center lies in the contacts' convex hull: otherwise, projection
+onto that hull provides a direction in which a small displacement strictly reduces
+the enclosing radius. `CompactHull.lean` supplies finite-dimensional compactness
+of convex hulls and a finite, positive Carathéodory representation.
+
+`ContactExistence.lean` constructs at most four affinely independent contacts with
+strictly positive balancing weights, retaining their membership in the original
+body and their actual enclosing radius. Consequently a unit-width body's radius
+satisfies `1/2 ≤ R` and `R^2 ≤ 3/8`. If `R^2 > 1/3`, four contacts are necessary,
+and the circumcenter lies strictly inside their tetrahedron. For `R ≥ 60849/100000`,
+`exists_contacts_with_deficit_budget` supplies these actual contacts with the
+two-sided budget and `A < 2/25`.
+
+`Translation.lean` proves that translation preserves width and Lebesgue volume
+and moves the minimum enclosing center as expected. `Normalization.lean` constructs
+a centered unit-width representative of every positive-width body, proves that
+zero is in its interior, and proves the exact cubic relation between their volumes.
+These steps no longer require an assumed contact configuration or circumsphere.
+
 ## Remaining proof obligations
 
-The main proof still needs existence of the minimum circumsphere and balanced contacts,
+The main proof still needs quantitative tetrahedral geometry,
 mixed-volume and curvature variation identities, clipped-body boundary formulas,
 the antipodal completion integral, the radial integration and geometric cap estimates,
 the completion-integral and clipped-hull certificate verifiers, and final smoothing

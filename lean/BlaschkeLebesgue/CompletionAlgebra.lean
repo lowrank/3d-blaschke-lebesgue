@@ -23,7 +23,7 @@ theorem psi_monotone : Monotone psi := by
   exact add_le_add (mul_le_mul_of_nonneg_left hab (by norm_num))
     (min_le_min_left _ (by linarith))
 
-/-- The polynomial minorant, equation (7.7). -/
+/-- The polynomial minorant (`eq:qpoly` in the manuscript). -/
 theorem q_le_psi (s : ℝ) : q s ≤ psi s := by
   unfold q psi
   rw [min_def]

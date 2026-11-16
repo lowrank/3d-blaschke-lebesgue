@@ -2,12 +2,17 @@ module
 
 public import BlaschkeLebesgue.Basic
 public import BlaschkeLebesgue.Certificates.RadialRows
+public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.CompletionAlgebra
+public import BlaschkeLebesgue.ContactExistence
 public import BlaschkeLebesgue.Contacts
+public import BlaschkeLebesgue.EnclosingBall
 public import BlaschkeLebesgue.InnerOuter
+public import BlaschkeLebesgue.Normalization
 public import BlaschkeLebesgue.Radial
 public import BlaschkeLebesgue.RadialAnalysis
 public import BlaschkeLebesgue.Target
+public import BlaschkeLebesgue.Translation
 
 /-!
 # The 0.4144 constant-width volume bound

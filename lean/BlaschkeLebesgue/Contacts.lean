@@ -6,8 +6,8 @@ public import BlaschkeLebesgue.Basic
 # Balanced contacts and edge deficits
 
 The configuration here consists of actual points on a sphere, nonnegative balancing
-weights, and pairwise distances at most one. Existence of such a configuration from
-a minimum enclosing ball is a separate obligation. The statements below prove the
+weights, and pairwise distances at most one. `ContactExistence.lean` constructs such
+configurations from actual minimum enclosing balls. The statements below prove the
 algebraic consequences in §3 without taking any deficit estimate as a hypothesis.
 -/
 
