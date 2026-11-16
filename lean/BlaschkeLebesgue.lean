@@ -222,6 +222,11 @@ public import BlaschkeLebesgue.VolumeVariation
 public import BlaschkeLebesgue.WeightedCompletion
 public import BlaschkeLebesgue.Certificates.ClippedHullExpressions
 public import BlaschkeLebesgue.Certificates.ClippedHullExample
+public import BlaschkeLebesgue.Certificates.ClippedHullGrid
+public import BlaschkeLebesgue.Certificates.ConsecutiveCover
+public import BlaschkeLebesgue.Certificates.ClippedHullDerivatives
+public import BlaschkeLebesgue.Certificates.ClippedHullSignSoundness
+public import BlaschkeLebesgue.Certificates.ClippedHullSigns
 
 /-!
 # The 0.4144 constant-width volume bound

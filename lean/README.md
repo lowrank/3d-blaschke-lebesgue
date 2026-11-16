@@ -1382,6 +1382,24 @@ and proves the interval and jet containment results for their outputs.
 This sample is not the full sign cover. Connecting all derivative directions,
 checking all 3,200 boxes and 512 secants, and final assembly remain pending.
 
+## Milestone 60: soundness of the complete hull sign checker
+
+`ClippedHullDerivatives.lean` proves that interval-jet derivatives concern the
+analytic edge slope and volume baseline. `ClippedHullSignSoundness.lean`
+proves that a successful box check implies all three required edge signs,
+and that a successful baseline check implies `H_0` has positive derivative.
+`ClippedHullGrid.lean` proves coverage of the full rectangle; `ClippedHullSigns.lean`
+assembles the global analytic signs conditional on all kernel checks passing.
+
+`ClippedHullCheckComputation.lean` defines the exact 32-by-100 grid and its
+32 baseline checks. Generated `ClippedHullKernel/Strip*.lean` files propose
+separate `decide +kernel` proofs for every cell. The dedicated clipped-hull
+workflow checks these in 32 jobs, with four concurrent runners, and preserves
+the resulting module artifacts. These generated declarations are outside the
+default target until the full kernel run passes. Their presence alone does
+not prove the full cover or signs. The secant certificate and final assembly
+remain pending.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
