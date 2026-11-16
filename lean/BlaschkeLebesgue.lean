@@ -20,7 +20,9 @@ public import BlaschkeLebesgue.HomogeneousDifferentiation
 public import BlaschkeLebesgue.InnerOuter
 public import BlaschkeLebesgue.JacobianCubic
 public import BlaschkeLebesgue.LipschitzJacobian
+public import BlaschkeLebesgue.LocalJacobian
 public import BlaschkeLebesgue.Minkowski
+public import BlaschkeLebesgue.MinkowskiInterpolation
 public import BlaschkeLebesgue.NormalDerivative
 public import BlaschkeLebesgue.NormalFrame
 public import BlaschkeLebesgue.Normalization
@@ -31,6 +33,7 @@ public import BlaschkeLebesgue.ParallelJacobian
 public import BlaschkeLebesgue.ParallelParametrization
 public import BlaschkeLebesgue.ParallelPolynomial
 public import BlaschkeLebesgue.ParallelVolume
+public import BlaschkeLebesgue.PolarAnnulus
 public import BlaschkeLebesgue.PolarHomogeneous
 public import BlaschkeLebesgue.PositivePropagation
 public import BlaschkeLebesgue.Radial
@@ -39,6 +42,13 @@ public import BlaschkeLebesgue.RadialFunction
 public import BlaschkeLebesgue.RadialGeometry
 public import BlaschkeLebesgue.RadialMaster
 public import BlaschkeLebesgue.RadialVolume
+public import BlaschkeLebesgue.ShellCoverage
+public import BlaschkeLebesgue.ShellDerivative
+public import BlaschkeLebesgue.ShellInjectivity
+public import BlaschkeLebesgue.ShellJacobian
+public import BlaschkeLebesgue.ShellLipschitz
+public import BlaschkeLebesgue.ShellParametrization
+public import BlaschkeLebesgue.ShellVolume
 public import BlaschkeLebesgue.SliceVolume
 public import BlaschkeLebesgue.SmallBallIntersections
 public import BlaschkeLebesgue.SpectralBounds
@@ -46,6 +56,7 @@ public import BlaschkeLebesgue.SphericalCaps
 public import BlaschkeLebesgue.SphericalDifferentiation
 public import BlaschkeLebesgue.SphericalMeasure
 public import BlaschkeLebesgue.SupportDifferentiation
+public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap
 public import BlaschkeLebesgue.SupportParametrization
 public import BlaschkeLebesgue.SupportVolumeFormula

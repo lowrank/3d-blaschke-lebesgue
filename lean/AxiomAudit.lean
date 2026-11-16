@@ -80,6 +80,16 @@ run_cmd do
       ``BlaschkeLebesgue.curvatureDet_complement_ae,
       ``BlaschkeLebesgue.parallelJacobian_eq_curvature_ae,
       ``BlaschkeLebesgue.parallelCoefficients_eq_curvatureIntegrals,
+      ``BlaschkeLebesgue.integral_abs_det_of_lipschitzOn_injOn,
+      ``BlaschkeLebesgue.exists_shellPoint_eq,
+      ``BlaschkeLebesgue.shellMap_image,
+      ``BlaschkeLebesgue.shellMap_injOn,
+      ``BlaschkeLebesgue.exists_lipschitzOn_shellMap,
+      ``BlaschkeLebesgue.hasFDerivAt_shellMap_polar,
+      ``BlaschkeLebesgue.det_fderiv_shellMap_polar,
+      ``BlaschkeLebesgue.shellJacobian_integral,
+      ``BlaschkeLebesgue.integral_annulus_polar,
+      ``BlaschkeLebesgue.shellVolume_integral,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

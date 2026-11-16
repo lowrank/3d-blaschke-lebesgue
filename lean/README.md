@@ -323,13 +323,43 @@ coefficients identifies the actual parallel-volume coefficients:
 `S_K = integral (det Q_K)` and `M_K = integral h_K`, and the mixed-volume
 variation identities, are still unproved. This milestone does not assume them.
 
+## Milestone 12: an actual shell-volume variation formula
+
+For nested summands `D ⊆ K` of the unit ball, `MinkowskiInterpolation.lean`
+constructs the intermediate bodies `(1-t)D + tK + (epsilon + t*delta)B`.
+`ShellInjectivity.lean` and `ShellCoverage.lean` prove that their supporting
+points, for `0 ≤ t ≤ 1`, parametrize exactly the region between
+`D + epsilon B` and `K + (epsilon + delta)B`, with unique parameters when
+`epsilon, delta > 0`. Coverage follows by maximizing a support-deficit ratio
+over the sphere, using the actual bodies and supporting planes.
+
+`ShellParametrization.lean` transfers this map to the compact Euclidean annulus
+`1 ≤ norm x ≤ 2`. `ShellLipschitz.lean` proves Lipschitz regularity on that
+annulus. `LocalJacobian.lean` supplies the corresponding change-of-variables
+theorem, including the null exceptional set and its null image.
+
+`ShellDerivative.lean` and `ShellJacobian.lean` prove the actual derivative
+and its determinant. `PolarAnnulus.lean` cancels the radial Jacobian factor.
+`ShellVolume.lean` consequently proves
+
+```text
+V(K + (epsilon + delta)B) - V(D + epsilon B)
+  = integral_sphere integral_0^1
+      (h_K - h_D + delta)
+      det_tangent((1-t)Q_D + t Q_K + (epsilon + t*delta)I) dt.
+```
+
+This formula requires no boundary smoothness or assumed mixed-volume identity.
+**Boundary:** removing the positive rounding parameters and extracting the
+volume and area variation identities remain to be done.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs quantitative tetrahedral geometry,
 the remaining mixed-volume and curvature variation identities, clipped-body
 boundary formulas, the antipodal completion integral, and the completion-integral
-and clipped-hull certificate verifiers. The regularity arguments needed for the
-remaining variation formulas and the final assembly also remain. None of these
+and clipped-hull certificate verifiers. The algebra and parameter limits needed
+to finish the variation formulas and the final assembly also remain. None of these
 is hidden behind a custom axiom or an assumed instance claiming the main theorem.
 The radial branch and the support-volume formula need no further smoothing.
 
