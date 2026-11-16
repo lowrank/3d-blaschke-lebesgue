@@ -45,13 +45,30 @@ lemmas, not the unproved main proposition.
 These are geometric statements about actual sets in real inner product spaces.
 Their hypotheses do not contain the volume conclusion.
 
+## Milestone 2: contacts, radial algebra, and normalization
+
+`Contacts.lean` proves the squared-radius bound `R^2 ≤ 3/8`, the exact centroid
+and weighted-deficit identities, and the two-sided deficit budget, including
+`A < 2/25` when `R ≥ 60849/100000`. Its input is a finite collection of actual
+points on a sphere with balancing weights and diameter at most one. Constructing
+these contacts from a minimum enclosing ball remains open in this formalization.
+
+`Radial.lean` proves the tangent majorant by an exact factorization, the soundness
+of the squared rational positive- and negative-cap tests, the rational unit-circle
+identity, and the low-radius numerical consequence of the scalar master inequality.
+The master inequality itself is not assumed as a global axiom or claimed as proved.
+
+`Target.lean` proves that dilation scales Lebesgue volume by the cube and that the
+unit-width target is equivalent to the full-width target, including preservation
+of nonempty interior. Both target propositions remain unproved.
+
 ## Remaining proof obligations
 
-The main proof still needs the minimum circumsphere and balanced contacts,
+The main proof still needs existence of the minimum circumsphere and balanced contacts,
 mixed-volume and curvature variation identities, clipped-body boundary formulas,
 the antipodal completion integral, the radial integration and cap estimates,
 sound Lean verifiers for all three finite certificate families, and final
-smoothing, assembly, and rescaling. None of these is hidden behind a custom axiom
+smoothing and assembly. None of these is hidden behind a custom axiom
 or an assumed instance claiming the main theorem.
 
 A fresh execution of the original Python/C++ verifier at 52/192-bit precision

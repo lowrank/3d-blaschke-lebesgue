@@ -1,6 +1,8 @@
 module
 
 public import BlaschkeLebesgue.Basic
+public import BlaschkeLebesgue.Contacts
+public import BlaschkeLebesgue.Radial
 public import BlaschkeLebesgue.Target
 
 /-!

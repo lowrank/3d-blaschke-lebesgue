@@ -19,6 +19,9 @@ run_cmd do
   for name in #[``BlaschkeLebesgue.HasConstantWidth.opposite_point,
       ``BlaschkeLebesgue.HasConstantWidth.ballTransform_eq,
       ``BlaschkeLebesgue.HasConstantWidth.radial_normal,
+      ``BlaschkeLebesgue.BalancedContacts.deficit_budget,
+      ``BlaschkeLebesgue.Radial.propagation_test_sound,
+      ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
       throwError "Missing required declaration {name}"
