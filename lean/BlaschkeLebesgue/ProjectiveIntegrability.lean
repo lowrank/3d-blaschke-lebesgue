@@ -51,15 +51,18 @@ namespace Completion
 @[expose] def uniformDensity (a b x y : ℝ) : ℝ :=
   phi (allocationNumerator a b x y) (determinantFactor a x y) (uniformW a b x y)
 
-theorem uniformW_pos {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hab : a + b ≤ 2 / 25) (x y : ℝ) :
+theorem uniformW_pos_of_obliquity {a b : ℝ} (hchi : |obliquity a b| < 1) (x y : ℝ) :
     0 < uniformW a b x y := by
-  have ho := obliquity_bounds ha hb hab
-  have h := averagedW_ge (x := x) (y := y) (t := obliquity a b)
-    (by rw [abs_of_nonneg ho.1]; linarith [ho.2])
+  have h := averagedW_ge (x := x) (y := y) hchi
   change _ ≤ uniformW a b x y at h
   nlinarith [sq_nonneg x, le_max_left (x ^ 2) (y ^ 2)]
 
-theorem continuous_uniformDensity {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hab : a + b ≤ 2 / 25) :
+theorem uniformW_pos {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hab : a + b ≤ 2 / 25) (x y : ℝ) :
+    0 < uniformW a b x y := by
+  have ho := obliquity_bounds ha hb hab
+  exact uniformW_pos_of_obliquity (by rw [abs_of_nonneg ho.1]; linarith [ho.2]) x y
+
+theorem continuous_uniformDensity_of_obliquity {a b : ℝ} (hchi : |obliquity a b| < 1) :
     Continuous (fun p : ℝ × ℝ ↦ uniformDensity a b p.1 p.2) := by
   have hN : Continuous (fun p : ℝ × ℝ ↦ allocationNumerator a b p.1 p.2) := by
     unfold allocationNumerator
@@ -76,12 +79,21 @@ theorem continuous_uniformDensity {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hab
     unfold uniformW averagedW
     fun_prop
   have hS0 : ∀ p : ℝ × ℝ, Real.sqrt (uniformW a b p.1 p.2) ≠ 0 := fun p ↦
-    (Real.sqrt_pos.2 (uniformW_pos ha hb hab p.1 p.2)).ne'
+    (Real.sqrt_pos.2 (uniformW_pos_of_obliquity hchi p.1 p.2)).ne'
   unfold uniformDensity phi q
   apply Continuous.div
   · fun_prop
   · exact hS.pow 3
   · exact fun p ↦ pow_ne_zero 3 (hS0 p)
+
+theorem continuous_uniformDensity {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hab : a + b ≤ 2 / 25) :
+    Continuous (fun p : ℝ × ℝ ↦ uniformDensity a b p.1 p.2) := by
+  have ho := obliquity_bounds ha hb hab
+  exact continuous_uniformDensity_of_obliquity (by rw [abs_of_nonneg ho.1]; linarith [ho.2])
+
+theorem uniformDensity_nonneg_of_obliquity {a b : ℝ} (ha : 0 ≤ a) (hchi : |obliquity a b| < 1)
+    (x y : ℝ) : 0 ≤ uniformDensity a b x y :=
+  phi_nonneg (determinantFactor_sqrt_lower ha x y (averagedW_ge hchi))
 
 theorem uniformDensity_nonneg {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b)
     (hab : a + b ≤ 2 / 25) (x y : ℝ) : 0 ≤ uniformDensity a b x y := by

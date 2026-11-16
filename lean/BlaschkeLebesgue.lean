@@ -23,6 +23,7 @@ public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra
 public import BlaschkeLebesgue.CompletionCellQuadrature
+public import BlaschkeLebesgue.CompletionParameterExtension
 public import BlaschkeLebesgue.CompletionFixedSquare
 public import BlaschkeLebesgue.CompletionObliquity
 public import BlaschkeLebesgue.CompletionPatchSum
@@ -134,6 +135,7 @@ public import BlaschkeLebesgue.TangentJacobian
 public import BlaschkeLebesgue.Target
 public import BlaschkeLebesgue.Translation
 public import BlaschkeLebesgue.TwoAxisProjection
+public import BlaschkeLebesgue.UniformGridIntegral
 public import BlaschkeLebesgue.VolumeVariation
 public import BlaschkeLebesgue.WeightedCompletion
 

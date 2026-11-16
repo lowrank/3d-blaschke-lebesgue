@@ -217,6 +217,14 @@ run_cmd do
       ``BlaschkeLebesgue.rectangle_midpoint_quadrature_lower,
       ``BlaschkeLebesgue.rectangle_midpoint_quadrature_posPart,
       ``BlaschkeLebesgue.Completion.unitSquare_cell_quadrature_lower,
+      ``BlaschkeLebesgue.Completion.F_eq_fixedSquareIntegral,
+      ``BlaschkeLebesgue.Completion.continuous_unitSquareDensity_of_obliquity,
+      ``BlaschkeLebesgue.Completion.fixedSquareIntegral_nonneg,
+      ``BlaschkeLebesgue.Completion.unitSquareDensity_eq_smooth_of_obliquity,
+      ``BlaschkeLebesgue.UniformGrid.integral_unitSquare_eq_sum,
+      ``BlaschkeLebesgue.UniformGrid.sum_retained_lower_le_unitSquare,
+      ``BlaschkeLebesgue.Completion.fixedSquareIntegral_ge_retained_grid_sum,
+      ``BlaschkeLebesgue.Completion.F_ge_retained_grid_sum,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

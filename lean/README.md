@@ -673,8 +673,30 @@ to the actual clamped completion density on a retained cell. The cell must
 lie in the unit square, both smooth factors must be nonnegative, and the
 first and second derivatives and their bounds are explicit hypotheses.
 These are obligations for the interval/jet checker, not assumed numerical
-facts. No finite grid sum or parameter-cover certificate has yet been
-verified in Lean.
+facts. Milestone 28 supplies finite grid aggregation; evaluating the
+certificate's cell bounds remains to be formalized.
+
+## Milestone 28: finite grid aggregation and the parameter extension
+
+`UniformGridIntegral.lean` proves exact decomposition of a continuous
+unit-square integral into a finite uniform grid, including the cell endpoint,
+midpoint, and area identities. Summing proved cell lower bounds gives a lower
+bound for the full integral. Unretained cells may be assigned zero because
+the actual completion density is nonnegative.
+
+`CompletionParameterExtension.lean` defines the fixed-square integral beyond
+the geometric parameter triangle and proves that it equals `F` on that
+triangle. Continuity, nonnegativity, and the smooth formula on retained cells
+are proved under the broader condition `abs(obliquity a b) < 1` (with `a >= 0`
+for nonnegativity). The quadrature theorem now works on this extended domain.
+This matters because 38 of the 584 accepted parameter boxes have centers
+outside `a+b <= 2/25`; the largest sum of box upper endpoints is `17/200`.
+Their center evaluations must refer to the extension, not rely on a geometric
+identity outside its proved domain.
+
+No interval/jet evaluations, parameter Lipschitz estimates, or accepted-leaf
+cover are assumed to be correct by these results. Those certificate
+obligations remain open.
 
 ## Remaining proof obligations
 
