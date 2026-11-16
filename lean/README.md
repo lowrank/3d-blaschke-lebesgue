@@ -596,14 +596,35 @@ antipodal patch in the same frame.
 `ProjectiveCompletionIntegral.lean` applies this measure identity to the actual
 missing width and antipodal curvature weight. Thus the chart integrand from
 milestone 21 now represents the actual spherical completion integral.
-Integrating the four-sign inequality over the positive-curvature regions and
-proving disjointness between the three different opposite-edge pairs remain
-to be done.
+Milestone 24 integrates this identity over the positive-curvature regions.
+
+## Milestone 24: the actual positive-curvature patch contributes at least F
+
+`ActiveProjectiveRegion.lean` discards contributions outside the region where
+the common curvature lower bound is strictly positive. This is necessary for
+the later disjointness argument: both circle support formulas hold on that
+region. The paired and four-sign inequalities survive the restriction because
+the scalar minorant vanishes at nonpositive common curvature.
+
+`ProjectiveIntegrability.lean` proves integrability of the actual chart density
+and its restriction, and continuity of the scalar density.
+`RectangleSignIntegration.lean` proves measure preservation under both
+coordinate reflections and integrates the four-sign inequality.
+`ActiveCompletionIntegral.lean` therefore bounds the actual spherical patch
+integral by the scalar rectangle integral, with all geometric and integrability
+hypotheses supplied by the constant-width body and its contacts.
+
+`RectangleQuadrantIntegral.lean` identifies the rectangle integral with the
+manuscript's `F(a,b) = 4 * integral_[0,T]^2 Phi`, including equality to the
+iterated interval integral. `AntipodalPatchIntegral.lean` proves that the union
+of the patch and its antipodal image contributes at least `2 * F(a,b)` to the
+actual missing-width/curvature integral. Disjointness between different
+opposite-edge pairs remains to be proved.
 
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the clipped-body boundary
-decomposition and volume formulas, integration and disjoint summation of the
+decomposition and volume formulas, disjoint summation of the
 completion patches, the completion-integral and clipped-hull certificate
 verifiers, and final assembly. None of these is hidden behind a custom axiom
 or an assumed instance claiming the main theorem.

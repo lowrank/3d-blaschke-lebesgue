@@ -190,6 +190,14 @@ run_cmd do
       ``BlaschkeLebesgue.ObliqueFrame.projectivePatch_disjoint_antipode,
       ``BlaschkeLebesgue.ObliqueFrame.integral_projectivePatch,
       ``BlaschkeLebesgue.ObliqueFrame.integral_projective_completion,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.active_projective_four_sign_lower,
+      ``BlaschkeLebesgue.integrableOn_projectiveCompletionIntegrand,
+      ``BlaschkeLebesgue.Completion.continuous_uniformDensity,
+      ``BlaschkeLebesgue.integral_rectangle_le_of_four_sign,
+      ``BlaschkeLebesgue.Completion.rectangleIntegral_eq_F,
+      ``BlaschkeLebesgue.Completion.F_eq_intervalIntegral,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.active_projective_completion_integral_lower_of_contacts,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.active_antipodal_completion_integral_lower,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

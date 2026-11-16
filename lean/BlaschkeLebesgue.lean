@@ -1,7 +1,10 @@
 module
 
+public import BlaschkeLebesgue.ActiveCompletionIntegral
+public import BlaschkeLebesgue.ActiveProjectiveRegion
 public import BlaschkeLebesgue.AntipodalCompletion
 public import BlaschkeLebesgue.AntipodalIntegration
+public import BlaschkeLebesgue.AntipodalPatchIntegral
 public import BlaschkeLebesgue.Basic
 public import BlaschkeLebesgue.BallCurvature
 public import BlaschkeLebesgue.BlaschkeIdentity
@@ -79,6 +82,7 @@ public import BlaschkeLebesgue.ProjectiveCone
 public import BlaschkeLebesgue.ProjectiveCoordinates
 public import BlaschkeLebesgue.ProjectiveCurvature
 public import BlaschkeLebesgue.ProjectiveFourSigns
+public import BlaschkeLebesgue.ProjectiveIntegrability
 public import BlaschkeLebesgue.ProjectiveJacobian
 public import BlaschkeLebesgue.ProjectivePairSupport
 public import BlaschkeLebesgue.ProjectivePairing
@@ -92,6 +96,8 @@ public import BlaschkeLebesgue.RadialProjectiveMap
 public import BlaschkeLebesgue.RadialVolume
 public import BlaschkeLebesgue.RadiusAllocation
 public import BlaschkeLebesgue.RectangleClipping
+public import BlaschkeLebesgue.RectangleQuadrantIntegral
+public import BlaschkeLebesgue.RectangleSignIntegration
 public import BlaschkeLebesgue.ShellCoverage
 public import BlaschkeLebesgue.ShellDerivative
 public import BlaschkeLebesgue.ShellInjectivity
