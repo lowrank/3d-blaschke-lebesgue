@@ -1042,6 +1042,26 @@ strict version preserves it almost everywhere. These results supply the
 boundary measure statements needed for the later face integrals; the global
 clipped-volume formulas remain open.
 
+## Milestone 44: actual face regions and cap inclusion-exclusion
+
+`ClippedFaceCaps.lean` defines a contact-face normal by requiring the actual
+point `y_i + n` to belong to the clipped body, and an enclosing-face normal
+by requiring `R n` to belong to it. It proves that these parametrizations
+give the actual support points and supports.
+
+The contact-face region is the enclosing cap minus three disjoint removed
+pieces. Its area and the integral of any integrable scalar function split
+accordingly. Each removed piece is the enclosing cap minus its intersection
+with another cap. On the enclosing sphere, no three excluded caps overlap;
+`FourSetInclusion.lean` proves the resulting exact inclusion-exclusion
+identity for both areas and integrals. In particular, its normal-region area
+is the full sphere area minus four explicit cap areas plus the six pairwise
+cap-intersection areas. All statements include zero deficits.
+
+These are identities for the actual measurable normal regions. Evaluating
+the cap-intersection areas and moments, and assembling the global curvature
+integrals into the claimed volume formulas, remain separate proof obligations.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

@@ -196,4 +196,28 @@ theorem sphereCap_ae_eq_openCap {u : Space} (hu : u ≠ 0) (c : ℝ) :
   change (c ≤ ⟪u, (v : Space)⟫_ℝ) = (c < ⟪u, (v : Space)⟫_ℝ)
   exact propext (lt_iff_le_and_ne.trans (and_iff_left hv.symm)).symm
 
+theorem sphereCap_normalize {u : Space} (hu : u ≠ 0) (c : ℝ) :
+    sphereCap u c = sphereCap (‖u‖⁻¹ • u) (c / ‖u‖) := by
+  ext v
+  simp only [sphereCap, mem_ofPred_eq, real_inner_smul_left, ← div_eq_inv_mul]
+  exact (div_le_div_iff_of_pos_right (norm_pos_iff.2 hu)).symm
+
+theorem openSphereCap_normalize {u : Space} (hu : u ≠ 0) (c : ℝ) :
+    openSphereCap u c = openSphereCap (‖u‖⁻¹ • u) (c / ‖u‖) := by
+  ext v
+  simp only [openSphereCap, mem_ofPred_eq, real_inner_smul_left, ← div_eq_inv_mul]
+  exact (div_lt_div_iff_of_pos_right (norm_pos_iff.2 hu)).symm
+
+theorem sphereMeasure_real_cap_normalized {u : Space} (hu : u ≠ 0) {c : ℝ}
+    (hc : c / ‖u‖ ∈ Icc (-1 : ℝ) 1) :
+    sphereMeasure.real (sphereCap u c) = 2 * Real.pi * (1 - c / ‖u‖) := by
+  rw [sphereCap_normalize hu c]
+  exact sphereMeasure_real_cap_of_mem_Icc (by simp [norm_smul, hu]) hc
+
+theorem sphereMeasure_real_openCap_normalized {u : Space} (hu : u ≠ 0) {c : ℝ}
+    (hc : c / ‖u‖ ∈ Icc (-1 : ℝ) 1) :
+    sphereMeasure.real (openSphereCap u c) = 2 * Real.pi * (1 - c / ‖u‖) := by
+  rw [openSphereCap_normalize hu c]
+  exact sphereMeasure_real_openCap_of_mem_Icc (by simp [norm_smul, hu]) hc
+
 end BlaschkeLebesgue

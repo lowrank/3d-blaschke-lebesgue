@@ -23,10 +23,12 @@ public import BlaschkeLebesgue.CircleSupport
 public import BlaschkeLebesgue.CircleSupportRegion
 public import BlaschkeLebesgue.ClippedBodies
 public import BlaschkeLebesgue.ClippedCapSeparation
+public import BlaschkeLebesgue.ClippedFaceCaps
 public import BlaschkeLebesgue.ClippedRelabeling
 public import BlaschkeLebesgue.ClippedVertexAngles
 public import BlaschkeLebesgue.ClippingCircle
 public import BlaschkeLebesgue.ClippingCircleCuts
+public import BlaschkeLebesgue.FourSetInclusion
 public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra
