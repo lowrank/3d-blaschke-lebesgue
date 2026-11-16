@@ -1,0 +1,84 @@
+name: Complete unconditional Lean theorem
+
+on:
+  push:
+    branches: [lean-4.35-formalization]
+    paths:
+      - '.github/workflows/final.yml'
+  workflow_dispatch:
+    inputs:
+      projective_run:
+        description: Successful complete projective certificate run
+        required: true
+        default: '43884585133'
+      sign_run:
+        description: Successful complete hull-sign run
+        required: true
+        default: '43923248067'
+      secant_run:
+        description: Successful complete hull-secant run
+        required: true
+        default: '43924066736'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  final:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      LEAN_NUM_THREADS: '2'
+      LAKE_CACHE_DIR: ${{ github.workspace }}/lean/.lake/artifact-cache
+      GH_TOKEN: ${{ github.token }}
+      PROJECTIVE_RUN: ${{ inputs.projective_run }}
+      SIGN_RUN: ${{ inputs.sign_run }}
+      SECANT_RUN: ${{ inputs.secant_run }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Require complete successful certificate runs
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          for name in ['PROJECTIVE_RUN', 'SIGN_RUN', 'SECANT_RUN']:
+              run = os.environ[name]
+              result = json.loads(subprocess.check_output(['gh','run','view',run,'--json','status,conclusion']))
+              if result != {'status':'completed','conclusion':'success'}:
+                  raise SystemExit(f'{name}: certificate run {run} has not succeeded: {result}')
+          PY
+      - uses: leanprover/lean-action@ba3fdfe5c4476c925da13bf11a005ddb47e47aee
+        with:
+          lake-package-directory: lean
+          auto-config: 'false'
+          build: 'true'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'true'
+          use-github-cache: 'true'
+      - name: Download checked modules
+        run: |
+          gh run download "$PROJECTIVE_RUN" -p 'projective-*' -D .final-artifacts/projective
+          gh run download "$SIGN_RUN" -p 'clipped-hull-strip-*' -D .final-artifacts/signs
+          gh run download "$SECANT_RUN" -p 'clipped-hull-secants-strip-*' -D .final-artifacts/secants
+      - name: Restore checked artifacts without replacing shared cache inodes
+        run: |
+          python3 lean/scripts/projective_ci.py unpack .final-artifacts/projective/*/shard-*.tar.gz
+          python3 lean/scripts/restore_hull_artifacts.py .final-artifacts/signs/* .final-artifacts/secants/*
+      - name: Check generated assembly sources
+        run: |
+          python3 lean/scripts/generate_clipped_hull_signs.py --check
+          python3 lean/scripts/generate_clipped_hull_secants.py --check
+          python3 lean/scripts/generate_hull_assembly.py --check
+      - name: Compile the unconditional theorem and audit all axioms
+        run: python3 lean/scripts/assemble_final.py
+      - name: Preserve the checked final library
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: unconditional-lean-library
+          path: lean/.lake/build
+          include-hidden-files: true
+          retention-days: 14

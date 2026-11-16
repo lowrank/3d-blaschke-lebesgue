@@ -1449,6 +1449,28 @@ axioms or geometric interfaces; they must be discharged by the pending kernel
 suites. The unconditional main theorem is still unproved until every suite
 passes and its verified declarations are assembled and audited.
 
+## Final certificate assembly workflow (pending full verification)
+
+`generate_hull_assembly.py` joins the already checked strip declarations with
+finite eliminators; it does not recompute their arithmetic. The first sign
+and secant assembly modules compile locally. `restore_hull_artifacts.py`
+restores the completed CI modules into Lake's shared artifact cache using
+atomic file replacement. A completed CI strip was restored and confirmed
+up to date with `lake --no-build build`.
+
+`BlaschkeLebesgue/Final.lean` supplies the proposed unconditional theorem
+`constantWidth_volume_gt` by applying the full reduction to the three suites.
+This file and the complete hull assembly modules are outside the default
+library imports while their kernel dependencies are incomplete. Their source
+must not be mistaken for a compiled theorem.
+
+The **Complete unconditional Lean theorem** workflow requires three successful
+certificate runs, restores their artifacts, refuses to recompute missing or
+stale kernel modules, compiles `BlaschkeLebesgue.Final`, and runs
+`FinalAxiomAudit.lean`. The audit checks every imported project declaration,
+the explicit geometric endpoint, and its transitive axioms. Completion is
+pending a successful execution of that workflow and local verification.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
