@@ -1159,6 +1159,35 @@ using the null singleton sets. Evaluating these one-dimensional integrals in
 closed form, and the edge curvature integrals, remains necessary for the
 separable volume formulas.
 
+## Milestone 49: exact closed-form lens area and first moment
+
+`LensScalar.lean` proves the two antiderivatives, and `LensUpperHeight.lean`
+identifies the upper crossing latitude and the limiting angles there. It also
+determines whether the latitude slices above that crossing are full or empty.
+`LensIntegrals.lean` applies the fundamental theorem of calculus, with the
+continuity, integrability, and endpoint values proved explicitly.
+
+For unit cap axes `u,v`, set `c=<u,v>`, `D=1-a^2-b^2-c^2+2abc`, and
+
+```text
+alpha = arccos((b-ac)/(sqrt(1-a^2) sqrt(1-c^2))),
+beta  = arccos((a-bc)/(sqrt(1-b^2) sqrt(1-c^2))),
+phi   = arccos((c-ab)/(sqrt(1-a^2) sqrt(1-b^2))).
+```
+
+`CapLensFormula.lean` evaluates the actual intersection of the caps
+`<u,n> >= a` and `<v,n> >= b`:
+
+```text
+area = 2 pi - 2 phi - 2 a alpha - 2 b beta,
+integral <u,n> d sigma = (1-a^2) alpha + (1-b^2) c beta - b sqrt(D).
+```
+
+The proved hypotheses are `a,b,c` in `(-1,1)`, `D>0`, and `b != c`; the
+last condition excludes an upper crossing at the pole. These formulas now
+require substitution into the actual clipped-face sums. The integrated edge
+curvature contributions to `M_C` and the final separable identities remain open.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
@@ -1203,8 +1232,9 @@ replacing build files.
 
 ## Remaining proof obligations
 
-The larger-radius completion branch still needs explicit cap-intersection
-areas and moments, the edge curvature integrals and separable volume formulas,
+The larger-radius completion branch still needs substitution of the exact
+cap-intersection formulas into the clipped-face sums, the edge curvature
+integrals and separable volume formulas,
 completed kernel verification of the full
 completion-integral certificate, the clipped-hull certificate verifier and its
 kernel checks, and final assembly. None of these is hidden behind a custom axiom

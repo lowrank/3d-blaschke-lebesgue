@@ -150,6 +150,10 @@ public import BlaschkeLebesgue.LongitudeSlice
 public import BlaschkeLebesgue.SphereCoordinates
 public import BlaschkeLebesgue.CapLensSlices
 public import BlaschkeLebesgue.CapLensCoordinates
+public import BlaschkeLebesgue.LensScalar
+public import BlaschkeLebesgue.LensUpperHeight
+public import BlaschkeLebesgue.LensIntegrals
+public import BlaschkeLebesgue.CapLensFormula
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap
