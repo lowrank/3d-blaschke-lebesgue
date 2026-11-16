@@ -1320,6 +1320,24 @@ sets, support maps, and Lebesgue volume, including all edge and vertex regions.
 Rewriting the scalar lens terms into the manuscript's `B_C,f_C,B_D,f_D` notation,
 the remaining certificate verification, and final theorem assembly are pending.
 
+## Milestone 56: the manuscript formulas for the actual volumes
+
+`ClippedScalarAngles.lean` identifies the lens angles and radicals with the
+manuscript's `U,V,phi,Psi,T_e`. `ManuscriptVolumeFormula.lean` proves that the
+actual clipped volumes are exactly `B_C + sum_edges f_C` and
+`B_D + sum_edges f_D`. The six additive offsets cancel against the respective
+baseline terms. It also proves the actual weighted-volume identity
+
+```text
+(47 V_D - V_C)/46 = H_0(R) + sum_edges [f(R,e) - f(R,0)],
+f = (47 f_D - f_C)/46.
+```
+
+These equalities now connect actual Lebesgue volumes to the precise scalar
+functions used by the remaining clipped-hull certificate. There is no assumed
+geometric volume or curvature formula in this connection. The derivative-sign
+and secant certificate still needs its formal verifier and kernel checks.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
@@ -1364,9 +1382,7 @@ replacing build files.
 
 ## Remaining proof obligations
 
-The larger-radius completion branch still needs the scalar identities matching
-the now-proved actual clipped-body and dual-body formulas to the manuscript's coefficients,
-completed kernel verification of the full
+The larger-radius completion branch still needs completed kernel verification of the full
 completion-integral certificate, the clipped-hull certificate verifier and its
 kernel checks, and final assembly. None of these is hidden behind a custom axiom
 or an assumed instance claiming the main theorem.

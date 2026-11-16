@@ -174,6 +174,8 @@ public import BlaschkeLebesgue.ClippedNormalRegions
 public import BlaschkeLebesgue.ClippedCurvatureDecomposition
 public import BlaschkeLebesgue.ClippedMeanCurvature
 public import BlaschkeLebesgue.ClippedDualVolume
+public import BlaschkeLebesgue.ClippedScalarAngles
+public import BlaschkeLebesgue.ManuscriptVolumeFormula
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap
