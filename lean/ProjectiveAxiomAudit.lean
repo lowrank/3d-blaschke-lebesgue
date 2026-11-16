@@ -5,6 +5,9 @@ import Lean.Util.CollectAxioms
 
 /-! Audit the complete projective suite after all kernel shards are assembled. -/
 
+set_option maxHeartbeats 0
+set_option maxRecDepth 100000
+
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv

@@ -1481,22 +1481,27 @@ The assembled `all_secant_checks` uses only `propext`, `Classical.choice`,
 and `Quot.sound`. The audit also typechecks the unconditional statement that
 every bucket has positive secant slope and bound strictly above `259/625`.
 
-The projective suite remains pending. The projective analytic
-modules import their predecessors, so partial assembly must wait until the
-complete kernel set is restored. The final assembly script checks every kernel
-module with `--no-build` before starting that chain.
+The projective suite remains pending. Its analytic box modules now import
+their own kernel module independently,
+and the aggregate suite imports all 584 modules explicitly. This permits safe
+incremental assembly of completed shards. The final assembly script still checks
+every kernel module with `--no-build` before compiling the unconditional theorem.
 
 ## Watching the remaining certificate jobs
 
 `scripts/watch_certificates.py --downloads /tmp/blaschke-hull-artifacts`
-collects newly completed artifacts from the pinned certificate runs. It stops
+collects newly completed artifacts from the pinned certificate runs and assembles
+newly restored projective boxes after a `--no-build` kernel preflight. It stops
 on a failed run, restore, build, or audit; it does not restart CI jobs or commit
 changes. Once all hull-sign jobs pass, it compiles the assembled sign suite and
 runs `HullSignAxiomAudit.lean`. Once all three runs succeed, it invokes the final
 assembly and local axiom audit. `--once` performs a single collection pass.
 
 A live single-pass test restored completed projective and hull artifacts,
-recognized the successful secant run, and rechecked the complete secant suite.
+assembled 280 available projective boxes independently after kernel preflight,
+and rechecked both complete hull suites and their axiom audits. The import-graph
+change preserves all kernel sources, certificate inputs, and proof bodies;
+the aggregate still includes every one of the 584 boxes.
 The final theorem remains pending the remaining kernel jobs and final audits.
 
 ## Complete hull-sign certificate: kernel-verified and audited

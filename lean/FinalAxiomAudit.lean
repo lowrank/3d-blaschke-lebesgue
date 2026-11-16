@@ -6,6 +6,9 @@ import Lean.Util.CollectAxioms
 
 /-! Audit the unconditional theorem and all imported project declarations. -/
 
+set_option maxHeartbeats 0
+set_option maxRecDepth 100000
+
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv

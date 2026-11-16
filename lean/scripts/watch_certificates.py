@@ -59,6 +59,18 @@ def collect(kind, run_id, destination, restored):
         restored[kind].add(name)
     if archives:
         projective_ci.unpack(archives)
+        plan = json.loads(projective_ci.PLAN.read_text())
+        indices = []
+        for archive in archives:
+            shard_id = archive.name.removeprefix('shard-').removesuffix('.tar.gz')
+            shard = next(item for item in plan if item['id'] == shard_id)
+            indices.extend(shard['boxes'])
+        indices = sorted(set(indices))
+        print(f'Assembling {len(indices)} restored projective boxes independently', flush=True)
+        kernels = [f'BlaschkeLebesgue.Certificates.Generated.ProjectiveKernel.Box{i:03d}' for i in indices]
+        modules = [f'BlaschkeLebesgue.Certificates.Generated.ProjectiveBoxes.Box{i:03d}' for i in indices]
+        run('lake', '--no-build', 'build', *kernels)
+        run('lake', 'build', *modules)
 
 
 def main():
