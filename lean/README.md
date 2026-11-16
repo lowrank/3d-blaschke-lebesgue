@@ -24,6 +24,7 @@ lake env lean AxiomAudit.lean
 python3 scripts/generate_radial.py --check
 python3 scripts/generate_projective_cover.py --check
 python3 scripts/generate_centered_first.py --check
+python3 scripts/generate_first_gradient.py --check
 ```
 
 Lean is pinned to **4.35.0**, and mathlib to its matching release
@@ -963,6 +964,30 @@ This is stronger than that center's reported lower bound and uses 2,304 cells
 instead of the original 36,864. Only this first report-center bound is certified
 here. The parameter-slope certificates and the other report centers still need
 kernel verification; the main volume theorem remains unproved.
+
+## Milestone 41: the complete first parameter-box certificate
+
+`Generated/FirstGradientKernel.lean` checks the parameter jets and all 128 rows
+of the first box's two 64-by-64 gradient grids using `decide +kernel`.
+`FirstGradient.lean` proves the exact sums and the resulting signed secant
+bounds for the actual fixed-square integral.
+
+`CenteredAnalyticBounds.lean` allows a separate precision and grid size for
+each certificate entry. It proves that checked entries whose boxes match the
+known cover imply the full completion affine bound. The required complete
+list of successful entries has not yet been constructed.
+
+`FirstProjectiveBox.lean` identifies its candidate with the first row of the
+original report, proves that its complete entry passes, and derives
+
+```text
+153/100000 - (601/100000)*a + (317/20000)*b < F(a,b)
+```
+
+for every `0 <= a <= 1/800` and `0 <= b <= 1/800`. The center, both secant
+enclosures, and final acceptance arithmetic are all proved. This closes
+**one of the 584 parameter boxes**; the remaining boxes and the larger-radius
+volume argument remain open.
 
 ## Remaining proof obligations
 

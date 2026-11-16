@@ -1,6 +1,6 @@
 module
 
-public import BlaschkeLebesgue.Certificates.CenteredFirst
+public import BlaschkeLebesgue.Certificates.FirstProjectiveBox
 
 public import BlaschkeLebesgue.ActiveCompletionIntegral
 public import BlaschkeLebesgue.ActiveProjectiveRegion

@@ -313,6 +313,16 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.CenteredProjective.First.point_verified,
       ``BlaschkeLebesgue.Certificates.CenteredProjective.First.integral_lower,
       ``BlaschkeLebesgue.Certificates.CenteredProjective.First.reported_center_bound,
+      ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.First.check_a_verified,
+      ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.First.check_b_verified,
+      ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.First.a_secantBounds,
+      ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.First.b_secantBounds,
+      ``BlaschkeLebesgue.Certificates.CenteredAnalyticBounds.check_sound,
+      ``BlaschkeLebesgue.Certificates.CenteredAnalyticBounds.completion_affine_lower_of_entries,
+      ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.First.candidate_matches,
+      ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.First.entry_verified,
+      ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.First.analytic_bounds,
+      ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.First.affine_lower,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

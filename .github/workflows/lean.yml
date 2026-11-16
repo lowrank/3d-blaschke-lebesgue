@@ -42,5 +42,6 @@ jobs:
           python3 lean/scripts/generate_radial.py --check
           python3 lean/scripts/generate_projective_cover.py --check
           python3 lean/scripts/generate_centered_first.py --check
+          python3 lean/scripts/generate_first_gradient.py --check
       - name: Check the pinned manuscript report provenance
         run: python3 verify_manuscript.py

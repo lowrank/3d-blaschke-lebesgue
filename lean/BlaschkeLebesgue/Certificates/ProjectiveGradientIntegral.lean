@@ -20,6 +20,13 @@ namespace BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral
 
 open FixedPoint ProjectiveExpressions
 
+theorem sumRange_congr {n : ℕ} {f g : ℕ → Option Interval} (h : ∀ i < n, f i = g i) :
+    sumRange n f = sumRange n g := by
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+    simp only [sumRange, ih (fun i hi ↦ h i (Nat.lt_succ_of_lt hi)), h n (Nat.lt_succ_self n)]
+
 theorem sumRange_bounds {p n : ℕ} {f : ℕ → Option Interval} {g : ℕ → ℝ} {I : Interval} {delta : ℝ}
     (h : sumRange n f = some I)
     (hb : ∀ i < n, ∀ J, f i = some J → value p J.lo * delta ≤ g i ∧ g i ≤ value p J.hi * delta) :
