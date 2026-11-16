@@ -25,6 +25,7 @@ python3 scripts/generate_radial.py --check
 python3 scripts/generate_projective_cover.py --check
 python3 scripts/generate_centered_first.py --check
 python3 scripts/generate_first_gradient.py --check
+python3 scripts/generate_projective_suite.py --check
 ```
 
 Lean is pinned to **4.35.0**, and mathlib to its matching release
@@ -989,11 +990,54 @@ enclosures, and final acceptance arithmetic are all proved. This closes
 **one of the 584 parameter boxes**; the remaining boxes and the larger-radius
 volume argument remain open.
 
+## Complete projective suite: kernel verification pending
+
+`scripts/generate_projective_suite.py` now emits the proposed proofs for all
+584 boxes, using 76,784 separate kernel row checks. The grid sizes vary by box:
+the proposals use 568,064 point cells and 3,243,136 gradient cells. Their exact
+rational acceptance margins are positive. These external calculations and
+generated proof texts do not establish the all-box theorem before compilation.
+`Generated/ProjectiveProposalChecks.lean`, included in the default build, checks
+the new candidates' exact box cover and rational acceptance arithmetic in Lean;
+it does not assume or certify their proposed center and gradient enclosures.
+
+`Generated/ProjectiveKernel/Box*.lean` recomputes every parameter interval,
+parameter jet, and row total with `decide +kernel`. The corresponding
+`Generated/ProjectiveBoxes/Box*.lean` files assemble the complete analytic
+certificates. `Generated/ProjectiveSuite.lean` connects their exact box list
+to the proved cover and states the resulting unconditional affine bound.
+This suite is not yet imported by the default library target while its full
+kernel verification is pending.
+
+The separate **Complete projective kernel certificate** workflow checks 64
+balanced shards, with one box at a time in each runner. Completed module
+artifacts are cached even if a later box fails. Only after all shards pass
+does the assembly job compile the analytic certificates and run
+`ProjectiveAxiomAudit.lean`. It refuses to recompute missing kernel shards in
+the assembly runner. Each arithmetic runner fetches only the small mathlib
+dependency cache it needs.
+
+To reproduce the proposed integers from this repository's root:
+
+```sh
+g++ -std=c++17 -O3 lean/scripts/propose_projective.cpp -o /tmp/propose-projective
+/tmp/propose-projective lean/data/projective_grids.txt > /tmp/projective-proposals.json
+cmp /tmp/projective-proposals.json lean/data/projective_proposals.json
+```
+
+To check the suite serially on a machine with limited memory, run
+`python3 lean/scripts/projective_ci.py build NN` for every shard `00` through
+`63`, then `python3 lean/scripts/projective_ci.py assemble`. This is a long
+kernel computation. Existing local mathlib artifacts continue to use the
+shared Lake cache; the transfer script also preserves cache hard links when
+replacing build files.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the clipped-body boundary
-decomposition and volume formulas, the completion-integral and clipped-hull certificate
-verifiers, and final assembly. None of these is hidden behind a custom axiom
+decomposition and volume formulas, completed kernel verification of the full
+completion-integral certificate, the clipped-hull certificate verifier and its
+kernel checks, and final assembly. None of these is hidden behind a custom axiom
 or an assumed instance claiming the main theorem.
 The radial branch and the support-volume formula need no further smoothing.
 

@@ -16,7 +16,9 @@ run_cmd do
         unless allowed.contains axiomName do
           throwError "{name} uses forbidden axiom {axiomName}"
       checked := checked + 1
-  for name in #[``BlaschkeLebesgue.HasConstantWidth.opposite_point,
+  for name in #[``BlaschkeLebesgue.Certificates.ProjectiveProposals.boxes_verified,
+      ``BlaschkeLebesgue.Certificates.ProjectiveProposals.arithmetic_verified,
+      ``BlaschkeLebesgue.HasConstantWidth.opposite_point,
       ``BlaschkeLebesgue.HasConstantWidth.ballTransform_eq,
       ``BlaschkeLebesgue.HasConstantWidth.radial_normal,
       ``BlaschkeLebesgue.BalancedContacts.deficit_budget,

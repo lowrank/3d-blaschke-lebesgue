@@ -1,6 +1,7 @@
 module
 
 public import BlaschkeLebesgue.Certificates.FirstProjectiveBox
+public import BlaschkeLebesgue.Certificates.Generated.ProjectiveProposalChecks
 
 public import BlaschkeLebesgue.ActiveCompletionIntegral
 public import BlaschkeLebesgue.ActiveProjectiveRegion
