@@ -13,6 +13,7 @@ public import BlaschkeLebesgue.Basic
 public import BlaschkeLebesgue.BallCurvature
 public import BlaschkeLebesgue.BlaschkeIdentity
 public import BlaschkeLebesgue.CapArea
+public import BlaschkeLebesgue.CapBoundaries
 public import BlaschkeLebesgue.CapIntegration
 public import BlaschkeLebesgue.Certificates.RadialRows
 public import BlaschkeLebesgue.Certificates.RadialVolume
@@ -25,6 +26,7 @@ public import BlaschkeLebesgue.ClippedCapSeparation
 public import BlaschkeLebesgue.ClippedRelabeling
 public import BlaschkeLebesgue.ClippedVertexAngles
 public import BlaschkeLebesgue.ClippingCircle
+public import BlaschkeLebesgue.ClippingCircleCuts
 public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra

@@ -1020,6 +1020,28 @@ cannot coexist with two other exclusions. This includes zero deficits.
 calculation. The global boundary decomposition, surface integrals, and
 separable volume identities remain to be proved.
 
+## Milestone 43: exact forbidden intervals and null cap boundaries
+
+`ClippingCircleCuts.lean` proves that the other contact ball removes exactly
+the interval of circle directions with angular distance less than
+
+```text
+Psi = arccos((1-2R^2) s / (4 R kappa m)),
+kappa = sqrt(1-1/(4R^2)),  m = sqrt(R^2-s^2/4).
+```
+
+The axis is constructed from the actual contact projection. The proof also
+establishes `0 < Psi < pi/2` throughout the deficit range, including zero
+edge deficits.
+
+`CapBoundaries.lean` extends the exact spherical cap area to strict caps and
+to every height in `[-1,1]`, including hemispheres and poles. It proves that
+every affine plane with nonzero normal intersects the unit sphere in a set
+of zero spherical measure. Consequently, replacing a closed cap by its
+strict version preserves it almost everywhere. These results supply the
+boundary measure statements needed for the later face integrals; the global
+clipped-volume formulas remain open.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
