@@ -99,8 +99,8 @@ tangent point and increases above it, and that a uniform margin survives limits.
 inequality, the two convexity polynomials, and the coupled affine-budget sum.
 
 **Boundary:** the arithmetic row theorems do not yet bound the volume of an arbitrary
-body. The geometric propagation, disjoint spherical caps, and integration of their
-contributions still need to be formalized. The completion-integral and clipped-hull
+body. Milestone 5 proves the negative-cap bounds and their disjointness. Positive-cap
+propagation and integration of the contributions remain open. The completion-integral and clipped-hull
 finite certificates have not yet been checked in Lean.
 
 ## Milestone 4: actual circumspheres, contacts, and normalization
@@ -126,11 +126,33 @@ a centered unit-width representative of every positive-width body, proves that
 zero is in its interior, and proves the exact cubic relation between their volumes.
 These steps no longer require an assumed contact configuration or circumsphere.
 
+## Milestone 5: geometric meaning of the negative-cap certificates
+
+`ContactDirections.lean` derives both scalar-product bounds on the normalized
+contact directions from the actual balancing weights and diameter constraint.
+The upper bound is the manuscript's `4 * eta^2 / (1 - eta) - 1`; it does not assume
+a regular tetrahedron or an angular-separation hypothesis.
+
+`RadialGeometry.lean` proves the negative-cap quadratic and radical bounds for
+every point of a unit-width body, without smoothness assumptions. It also proves
+cap disjointness directly from inner products and Cauchy–Schwarz.
+
+`Certificates/RadialGeometry.lean` connects those results to the rational grid,
+the checked separation threshold, and every index of the recursive negative
+candidate checker. The candidate's rational tangent deficit is a lower bound
+for the actual tangent deficit throughout its cap.
+
+`all_rows_negative_body_bound` applies all **14,814 stored negative candidates**
+to actual points of the centered body using its constructed enclosing contacts.
+`all_rows_negative_caps_disjoint` proves the four caps in each negative layer are
+disjoint. Both use the already kernel-checked row theorems, so their statements
+have no hypothesis assuming that the numerical checker succeeds.
+
 ## Remaining proof obligations
 
 The main proof still needs quantitative tetrahedral geometry,
 mixed-volume and curvature variation identities, clipped-body boundary formulas,
-the antipodal completion integral, the radial integration and geometric cap estimates,
+the antipodal completion integral, radial integration and positive-cap propagation,
 the completion-integral and clipped-hull certificate verifiers, and final smoothing
 and assembly. None of these is hidden behind a custom axiom
 or an assumed instance claiming the main theorem.

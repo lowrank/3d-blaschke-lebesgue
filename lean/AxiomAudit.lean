@@ -29,6 +29,9 @@ run_cmd do
       ``BlaschkeLebesgue.Radial.gap_monotoneOn,
       ``BlaschkeLebesgue.Completion.curvature_weight_lower,
       ``BlaschkeLebesgue.Certificates.RadialArithmetic.certified_radius_cover,
+      ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_negative_body_bound,
+      ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_negative_caps_disjoint,
+      ``BlaschkeLebesgue.Certificates.RadialArithmetic.negativeStep_gap_lower,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

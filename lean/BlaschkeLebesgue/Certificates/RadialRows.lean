@@ -1,6 +1,7 @@
 module
 
 public import BlaschkeLebesgue.Certificates.Generated.Row7
+public import BlaschkeLebesgue.Certificates.RadialGeometry
 public import BlaschkeLebesgue.Certificates.RadialSoundness
 
 /-!
@@ -46,6 +47,28 @@ theorem all_rows_real_margin (i : Fin 8) :
     (4144109 / 10000000 : ℝ) < Real.pi *
       (coefficient (rows i).parameters (rows i).positive (rows i).negative : ℝ) :=
   checkRow_real_margin (all_rows_verified i)
+
+/-- All 14,814 negative candidates bound actual body points in their respective
+contact caps. Their validity is discharged by the kernel-checked row theorems. -/
+theorem all_rows_negative_body_bound {K : ConvexBody Space} (hK : HasConstantWidth K 1)
+    (b : MinimumEnclosingBall K) (c : EnclosingContacts b 4) (row : Fin 8)
+    (hR : ((rows row).parameters.lo : ℝ) ≤ b.radius)
+    (j : Fin (rows row).negative.length) (i : Fin 4) {u : Space} {ρ : ℝ} (hρ : 0 ≤ ρ)
+    (hcap : u ∈ sphericalCap (-c.toBalancedContacts.direction i) (cosine (j + 1) : ℝ))
+    (hx : ρ • u ∈ b.centeredBody) :
+    ρ ≤ ((((rows row).negative[j] : ℚ) / candidateScale : ℚ) : ℝ) :=
+  checkRow_enclosing_negative_body_bound hK b c (all_rows_verified row) hR j i hρ hcap hx
+
+/-- The four negative caps in any layer of any stored row are disjoint for the
+actual enclosing contacts. -/
+theorem all_rows_negative_caps_disjoint {K : ConvexBody Space} {b : MinimumEnclosingBall K}
+    (c : EnclosingContacts b 4) (row : Fin 8)
+    (hR : ((rows row).parameters.lo : ℝ) ≤ b.radius)
+    (j : Fin (rows row).negative.length) (a d : Fin 4) (had : a ≠ d) :
+    Disjoint (sphericalCap (-c.toBalancedContacts.direction a) (cosine (j + 1) : ℝ))
+      (sphericalCap (-c.toBalancedContacts.direction d) (cosine (j + 1) : ℝ)) :=
+  checkRow_negative_caps_disjoint (all_rows_verified row) c.toBalancedContacts
+    (c.radius_eq ▸ hR) j a d had
 
 /-- The rational radius intervals cover the entire intermediate-radius branch. -/
 theorem radius_cover {r : ℝ} (hr : r ∈ Set.Icc (3 / 5) (60849 / 100000)) :
