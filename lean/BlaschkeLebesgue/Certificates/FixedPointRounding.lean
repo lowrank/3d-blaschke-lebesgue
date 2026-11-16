@@ -1,5 +1,6 @@
 module
 
+public import BlaschkeLebesgue.Certificates.FixedPointComputation
 public import Mathlib.Data.Rat.Floor
 public import Mathlib.Data.Int.Sqrt
 public import Mathlib.Analysis.SpecialFunctions.Sqrt
@@ -17,12 +18,7 @@ uses the proved natural-number integer square root, with no floating proposal.
 
 namespace BlaschkeLebesgue.Certificates.FixedPoint
 
-def scale (precision : ℕ) : ℕ := 2 ^ precision
-
 noncomputable def value (precision : ℕ) (z : ℤ) : ℝ := (z : ℝ) / (scale precision : ℝ)
-
-def floorDiv (a b : ℤ) : ℤ := if 0 ≤ b then a / b else (-a) / (-b)
-def ceilDiv (a b : ℤ) : ℤ := -floorDiv (-a) b
 
 theorem scale_pos (precision : ℕ) : 0 < scale precision := Nat.pow_pos (by decide)
 theorem scale_real_pos (precision : ℕ) : (0 : ℝ) < (scale precision : ℝ) := by exact_mod_cast scale_pos precision
@@ -66,9 +62,6 @@ theorem floorDiv_scale_value_le (precision : ℕ) (a : ℤ) :
 theorem value_le_ceilDiv_scale (precision : ℕ) (a : ℤ) :
     (a : ℝ) / (scale precision : ℝ) ^ 2 ≤ value precision (ceilDiv a (scale precision)) := by
   simpa only [Int.cast_natCast, div_div, pow_two] using value_le_ceilDiv precision a (scale precision)
-
-def sqrtFloor (a : ℤ) : ℤ := a.toNat.sqrt
-def sqrtCeil (a : ℤ) : ℤ := let r := sqrtFloor a; if r * r = a then r else r + 1
 
 theorem sqrtFloor_nonneg (a : ℤ) : 0 ≤ sqrtFloor a := Int.natCast_nonneg _
 theorem sqrtCeil_nonneg (a : ℤ) : 0 ≤ sqrtCeil a := by

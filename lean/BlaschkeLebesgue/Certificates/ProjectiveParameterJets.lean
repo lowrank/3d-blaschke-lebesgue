@@ -14,16 +14,10 @@ open FixedPoint
 def axisA (dir : Bool) (fixed z : ℝ) : ℝ := if dir then z else fixed
 def axisB (dir : Bool) (fixed z : ℝ) : ℝ := if dir then fixed else z
 
-def inputA (p : ℕ) (dir : Bool) (a : Interval) : Jet := if dir then Jet.var p a else Jet.const p a
-def inputB (p : ℕ) (dir : Bool) (b : Interval) : Jet := if dir then Jet.const p b else Jet.var p b
-
 noncomputable def realInputA (dir : Bool) (a : ℝ) : SecondOrder.Jet :=
   if dir then SecondOrder.Jet.var a else SecondOrder.Jet.const a
 noncomputable def realInputB (dir : Bool) (b : ℝ) : SecondOrder.Jet :=
   if dir then SecondOrder.Jet.const b else SecondOrder.Jet.var b
-
-def parameterJets (p : ℕ) (dir : Bool) (a b : Interval) : Option (Params Jet) :=
-  paramsJet p (inputA p dir a) (inputB p dir b)
 
 noncomputable def realParameterJets (dir : Bool) (a b : ℝ) : Params SecondOrder.Jet :=
   paramsRealJet (realInputA dir a) (realInputB dir b)

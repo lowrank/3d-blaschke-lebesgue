@@ -14,8 +14,6 @@ The containment and derivative theorems apply to every output index.
 
 namespace BlaschkeLebesgue.Certificates.FixedPoint
 
-abbrev Program := List Expr
-
 namespace Program
 
 noncomputable def real : Program → (ℕ → ℝ) → ℕ → ℝ
@@ -25,14 +23,6 @@ noncomputable def real : Program → (ℕ → ℝ) → ℕ → ℝ
 noncomputable def realJet : Program → (ℕ → SecondOrder.Jet) → ℕ → SecondOrder.Jet
   | [], env => env
   | e :: es, env => realJet es (pushEnv (e.realJet env) env)
-
-def interval (p : ℕ) : Program → (ℕ → Interval) → Option (ℕ → Interval)
-  | [], env => some env
-  | e :: es, env => (e.interval p env).bind fun v ↦ interval p es (pushEnv v env)
-
-def jet (p : ℕ) : Program → (ℕ → Jet) → Option (ℕ → Jet)
-  | [], env => some env
-  | e :: es, env => (e.jet p env).bind fun v ↦ jet p es (pushEnv v env)
 
 theorem realJet_v (es : Program) (env : ℕ → SecondOrder.Jet) (i : ℕ) :
     (realJet es env i).v = real es (fun j ↦ (env j).v) i := by

@@ -1,6 +1,7 @@
 module
 
 public import BlaschkeLebesgue.Certificates.ProjectivePointIntegral
+public import BlaschkeLebesgue.Certificates.ProjectivePointKernel
 
 /-!
 # A complete kernel-checked point-integral example
@@ -15,12 +16,6 @@ center checks at the certificate's finer grid size.
 namespace BlaschkeLebesgue.Certificates.ProjectivePointIntegral
 
 open FixedPoint
-
-set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
-theorem origin_coarse_grid_verified :
-    check 52 8 (Interval.integer 52 0) (Interval.integer 52 0) = some 2247975690989 := by
-  decide +kernel
 
 theorem origin_coarse_integral_lower : (49 / 100000 : ℝ) ≤ Completion.F 0 0 := by
   have h0 : (Interval.integer 52 0).Contains 52 (0 : ℝ) := by

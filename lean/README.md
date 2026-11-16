@@ -915,6 +915,26 @@ derivative or integral estimates. **The truth of `allComputations` has not
 yet been proved.** The full volume theorem also retains the separate
 clipped-body geometry and clipped-hull certificate obligations below.
 
+## Milestone 39: smaller kernel-check imports and checked root proposals
+
+`Certificates/FixedPointComputation.lean`, `ExpressionComputation.lean`, and
+`ProjectiveComputation.lean` now contain the executable definitions independently
+of their analytic proofs. The existing soundness theorems use these same
+definitions. `ProjectivePointKernel.lean` checks the 8-by-8 example with this
+smaller dependency set, and `ProjectivePointExample.lean` connects the checked
+integer result to the geometric integral.
+
+`CheckedSquareRoot.lean` proves that bounded Newton iteration followed by exact
+square inequalities returns the same answer as `Nat.sqrt`, with a fallback
+when the proposed answer fails the checks. This optimization preserves every
+interval endpoint, for every precision and integer input.
+
+The arithmetic-only import graph has 101 build jobs, compared with over 3,800
+for the previous analytic import path. On the development machine, the same
+kernel-checked 8-by-8 computation used about 2.0 GiB peak resident memory,
+down from about 4.9 GiB. This prepares larger checks; it does not establish
+`allComputations` or the main volume theorem.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the clipped-body boundary

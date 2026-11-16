@@ -1,6 +1,6 @@
 module
 
-public import BlaschkeLebesgue.Certificates.FixedPointRounding
+public import BlaschkeLebesgue.Certificates.CheckedSquareRoot
 
 /-!
 # Sound fixed-dyadic interval arithmetic
@@ -54,40 +54,9 @@ theorem mul_interval_bounds {a b c d x y : ℝ} (hx : a ≤ x ∧ x ≤ b) (hy :
   exact ⟨(le_min ((min_le_left _ _).trans ha.1) ((min_le_right _ _).trans hb.1)).trans hxy.1,
     hxy.2.trans (max_le (ha.2.trans (le_max_left _ _)) (hb.2.trans (le_max_right _ _)))⟩
 
-structure Interval where
-  lo : ℤ
-  hi : ℤ
-  deriving DecidableEq, Inhabited
-
 namespace Interval
 
 def Contains (I : Interval) (p : ℕ) (x : ℝ) : Prop := value p I.lo ≤ x ∧ x ≤ value p I.hi
-
-def integer (p : ℕ) (a : ℤ) : Interval := ⟨a * scale p, a * scale p⟩
-def rational (p : ℕ) (a b : ℤ) : Interval :=
-  ⟨floorDiv (a * scale p) b, ceilDiv (a * scale p) b⟩
-def span (I J : Interval) : Interval := ⟨I.lo, J.hi⟩
-def neg (I : Interval) : Interval := ⟨-I.hi, -I.lo⟩
-def add (I J : Interval) : Interval := ⟨I.lo + J.lo, I.hi + J.hi⟩
-def sub (I J : Interval) : Interval := add I (neg J)
-def mul (p : ℕ) (I J : Interval) : Interval :=
-  ⟨floorDiv (min (min (I.lo * J.lo) (I.lo * J.hi)) (min (I.hi * J.lo) (I.hi * J.hi))) (scale p),
-    ceilDiv (max (max (I.lo * J.lo) (I.lo * J.hi)) (max (I.hi * J.lo) (I.hi * J.hi))) (scale p)⟩
-def inv (p : ℕ) (I : Interval) : Interval :=
-  ⟨floorDiv ((scale p : ℤ) ^ 2) I.hi, ceilDiv ((scale p : ℤ) ^ 2) I.lo⟩
-def div (p : ℕ) (I J : Interval) : Interval := mul p I (inv p J)
-def sqrt (p : ℕ) (I : Interval) : Interval :=
-  ⟨sqrtFloor (I.lo * scale p), sqrtCeil (I.hi * scale p)⟩
-def sq (p : ℕ) (I : Interval) : Interval :=
-  if 0 ≤ I.lo then mul p I I
-  else if I.hi ≤ 0 then mul p (neg I) (neg I)
-  else ⟨0, ceilDiv (max (I.lo * I.lo) (I.hi * I.hi)) (scale p)⟩
-def pos (I : Interval) : Interval := ⟨max 0 I.lo, max 0 I.hi⟩
-def hullzero (I : Interval) : Interval := ⟨min 0 I.lo, max 0 I.hi⟩
-def absMax (I : Interval) : ℤ := max (-I.lo) I.hi
-def invCheck (I : Interval) : Bool := decide (0 < I.lo ∨ I.hi < 0)
-def sqrtCheck (I : Interval) : Bool := decide (0 ≤ I.lo)
-def positiveCheck (I : Interval) : Bool := decide (0 < I.lo)
 
 theorem contains_ordered {I : Interval} {p : ℕ} {x : ℝ} (hx : I.Contains p x) : I.lo ≤ I.hi := by
   have h := (div_le_div_iff_of_pos_right (scale_real_pos p)).1 (hx.1.trans hx.2)
@@ -175,6 +144,7 @@ theorem contains_div {I J : Interval} {p : ℕ} {x y : ℝ} (hx : I.Contains p x
 
 theorem contains_sqrt {I : Interval} {p : ℕ} {x : ℝ} (hx : I.Contains p x) (hI : sqrtCheck I = true) :
     (sqrt p I).Contains p (Real.sqrt x) := by
+  simp only [sqrt, checkedSqrtFloor_eq, checkedSqrtCeil_eq, Contains]
   simp only [sqrtCheck, decide_eq_true_eq] at hI
   have horder := contains_ordered hx
   exact ⟨(sqrtFloor_value_le_sqrt hI p).trans (Real.sqrt_le_sqrt hx.1),

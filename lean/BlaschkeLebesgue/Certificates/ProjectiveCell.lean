@@ -1,5 +1,6 @@
 module
 
+public import BlaschkeLebesgue.Certificates.ProjectiveComputation
 public import BlaschkeLebesgue.Certificates.ProjectiveSpatialJets
 public import BlaschkeLebesgue.CompletionCellQuadrature
 
@@ -19,26 +20,6 @@ open Set MeasureTheory
 namespace BlaschkeLebesgue.Certificates.ProjectiveCell
 
 open FixedPoint ProjectiveExpressions
-
-def correction (p : ℕ) (half : Interval) : Interval :=
-  Interval.div p (Interval.sq p half) (Interval.integer p 6)
-
-def correctedValue (p : ℕ) (half mid ds dt : Interval) : Interval :=
-  let M : Interval := ⟨ds.absMax + dt.absMax, ds.absMax + dt.absMax⟩
-  mid.sub (Interval.mul p (correction p half) M)
-
-def contribution (p : ℕ) (half area mid ds dt : Interval) : ℤ :=
-  let v := correctedValue p half mid ds dt
-  (Interval.mul p (Interval.pos ⟨v.lo, v.lo⟩) area).lo
-
-def retained (v : Values Jet) : Bool := v.G.v.positiveCheck && v.D.v.positiveCheck
-
-def lower (p : ℕ) (par : Params Interval) (U V Um Vm half area : Interval) : Option ℤ :=
-  (valuesJet p (par.map (Jet.const p)) (Jet.var p U) (Jet.const p V)).bind fun js ↦
-  if retained js then
-    (valuesJet p (par.map (Jet.const p)) (Jet.const p U) (Jet.var p V)).bind fun jt ↦
-      (valuesInterval p par Um Vm).map fun mid ↦ contribution p half area mid.V js.V.dd jt.V.dd
-  else some 0
 
 theorem correction_contains {p : ℕ} {half : Interval} {h : ℝ} (hh : half.Contains p h) :
     (correction p half).Contains p (h ^ 2 / 6) := by

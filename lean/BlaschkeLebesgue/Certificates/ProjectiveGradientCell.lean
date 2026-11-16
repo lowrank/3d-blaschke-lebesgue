@@ -1,5 +1,6 @@
 module
 
+public import BlaschkeLebesgue.Certificates.ProjectiveComputation
 public import BlaschkeLebesgue.Certificates.ProjectiveParameterJets
 public import BlaschkeLebesgue.CompletionParameterVariation
 
@@ -18,14 +19,6 @@ open Set
 namespace BlaschkeLebesgue.Certificates.ProjectiveGradientCell
 
 open FixedPoint ProjectiveExpressions
-
-def inactive (v : Values Jet) : Bool := decide (v.G.v.hi ≤ 0 ∨ v.D.v.hi ≤ 0)
-def active (v : Values Jet) : Bool := v.G.v.positiveCheck && v.D.v.positiveCheck
-
-def slope (p : ℕ) (par : Params Jet) (U V : Interval) : Option Interval :=
-  (valuesJet p par (Jet.const p U) (Jet.const p V)).map fun v ↦
-    if inactive v then Interval.integer p 0
-    else if active v then v.V.d else v.V.d.hullzero
 
 theorem slope_sound {p : ℕ} {dir : Bool} {A B U V I : Interval} {par : Params Jet}
     {fixed l r s t : ℝ} (hp : parameterJets p dir A B = some par) (hc : slope p par U V = some I)

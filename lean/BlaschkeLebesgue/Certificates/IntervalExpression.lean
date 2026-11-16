@@ -1,5 +1,6 @@
 module
 
+public import BlaschkeLebesgue.Certificates.ExpressionComputation
 public import BlaschkeLebesgue.Certificates.IntervalJet
 
 /-!
@@ -14,23 +15,6 @@ subexpressions. Failed domain checks return `none`.
 @[expose] public section
 
 namespace BlaschkeLebesgue.Certificates.FixedPoint
-
-def pushEnv {α : Type*} (x : α) (env : ℕ → α) : ℕ → α
-  | 0 => x
-  | n + 1 => env n
-
-inductive Expr where
-  | rational (q : ℚ)
-  | var (index : ℕ)
-  | neg (a : Expr)
-  | add (a b : Expr)
-  | sub (a b : Expr)
-  | mul (a b : Expr)
-  | sq (a : Expr)
-  | inv (a : Expr)
-  | sqrt (a : Expr)
-  | bind (value body : Expr)
-  deriving DecidableEq, Inhabited
 
 namespace Expr
 
@@ -57,30 +41,6 @@ noncomputable def realJet (e : Expr) (env : ℕ → SecondOrder.Jet) : SecondOrd
   | .inv a => (realJet a env).inv
   | .sqrt a => (realJet a env).sqrt
   | .bind a b => realJet b (pushEnv (realJet a env) env)
-
-def interval (p : ℕ) (e : Expr) (env : ℕ → Interval) : Option Interval := match e with
-  | .rational q => some (Interval.rational p q.num q.den)
-  | .var i => some (env i)
-  | .neg a => (interval p a env).map Interval.neg
-  | .add a b => (interval p a env).bind fun x ↦ (interval p b env).map (Interval.add x)
-  | .sub a b => (interval p a env).bind fun x ↦ (interval p b env).map (Interval.sub x)
-  | .mul a b => (interval p a env).bind fun x ↦ (interval p b env).map (Interval.mul p x)
-  | .sq a => (interval p a env).map (Interval.sq p)
-  | .inv a => (interval p a env).bind fun x ↦ if x.invCheck then some (Interval.inv p x) else none
-  | .sqrt a => (interval p a env).bind fun x ↦ if x.sqrtCheck then some (Interval.sqrt p x) else none
-  | .bind a b => (interval p a env).bind fun x ↦ interval p b (pushEnv x env)
-
-def jet (p : ℕ) (e : Expr) (env : ℕ → Jet) : Option Jet := match e with
-  | .rational q => some (Jet.const p (Interval.rational p q.num q.den))
-  | .var i => some (env i)
-  | .neg a => (jet p a env).map Jet.neg
-  | .add a b => (jet p a env).bind fun x ↦ (jet p b env).map (Jet.add x)
-  | .sub a b => (jet p a env).bind fun x ↦ (jet p b env).map (Jet.sub x)
-  | .mul a b => (jet p a env).bind fun x ↦ (jet p b env).map (Jet.mul p x)
-  | .sq a => (jet p a env).map (Jet.sq p)
-  | .inv a => (jet p a env).bind fun x ↦ if x.v.invCheck then some (Jet.inv p x) else none
-  | .sqrt a => (jet p a env).bind fun x ↦ if Jet.sqrtCheck p x then some (Jet.sqrt p x) else none
-  | .bind a b => (jet p a env).bind fun x ↦ jet p b (pushEnv x env)
 
 theorem realJet_v (e : Expr) (env : ℕ → SecondOrder.Jet) :
     (realJet e env).v = real e (fun i ↦ (env i).v) := by

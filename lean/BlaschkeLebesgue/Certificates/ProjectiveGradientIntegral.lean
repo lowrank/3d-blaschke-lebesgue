@@ -20,10 +20,6 @@ namespace BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral
 
 open FixedPoint ProjectiveExpressions
 
-def sumRange : ℕ → (ℕ → Option Interval) → Option Interval
-  | 0, _ => some ⟨0, 0⟩
-  | n + 1, f => (sumRange n f).bind fun s ↦ (f n).map (Interval.add s)
-
 theorem sumRange_bounds {p n : ℕ} {f : ℕ → Option Interval} {g : ℕ → ℝ} {I : Interval} {delta : ℝ}
     (h : sumRange n f = some I)
     (hb : ∀ i < n, ∀ J, f i = some J → value p J.lo * delta ≤ g i ∧ g i ≤ value p J.hi * delta) :
@@ -41,16 +37,6 @@ theorem sumRange_bounds {p n : ℕ} {f : ℕ → Option Interval} {g : ℕ → �
     have h2 := hb n (Nat.lt_succ_self n) v hv
     simp only [Interval.add, value_add, add_mul, Finset.sum_range_succ]
     exact ⟨add_le_add h1.1 h2.1, add_le_add h1.2 h2.2⟩
-
-def cell (p n : ℕ) (par : Params Jet) (i j : ℕ) : Option Interval :=
-  (ProjectiveGradientCell.slope p par (ProjectivePointIntegral.span p n i) (ProjectivePointIntegral.span p n j)).map
-    fun I ↦ Interval.mul p (ProjectivePointIntegral.area p n) I
-
-def grid (p n : ℕ) (par : Params Jet) : Option Interval :=
-  sumRange n fun i ↦ sumRange n fun j ↦ cell p n par i j
-
-def check (p n : ℕ) (dir : Bool) (A B : Interval) : Option Interval :=
-  (parameterJets p dir A B).bind fun par ↦ grid p n par
 
 theorem cell_sound {p n i j : ℕ} {dir : Bool} {A B I : Interval} {par : Params Jet}
     {fixed l r : ℝ} (hp : parameterJets p dir A B = some par) (hc : cell p n par i j = some I)

@@ -19,10 +19,6 @@ namespace BlaschkeLebesgue.Certificates.ProjectivePointIntegral
 
 open FixedPoint ProjectiveExpressions
 
-def sumRange : ℕ → (ℕ → Option ℤ) → Option ℤ
-  | 0, _ => some 0
-  | n + 1, f => (sumRange n f).bind fun s ↦ (f n).map fun v ↦ s + v
-
 theorem sumRange_lower {p n : ℕ} {f : ℕ → Option ℤ} {g : ℕ → ℝ} {z : ℤ}
     (h : sumRange n f = some z)
     (hb : ∀ i < n, ∀ v, f i = some v → value p v ≤ g i) :
@@ -37,12 +33,6 @@ theorem sumRange_lower {p n : ℕ} {f : ℕ → Option ℤ} {g : ℕ → ℝ} {z
     obtain ⟨s, hs, v, hv, rfl⟩ := h
     rw [value_add, Finset.sum_range_succ]
     exact add_le_add (ih hs (fun i hi ↦ hb i (Nat.lt_succ_of_lt hi))) (hb n (Nat.lt_succ_self n) v hv)
-
-def point (p n i : ℕ) : Interval := Interval.rational p (i : ℤ) (n : ℤ)
-def span (p n i : ℕ) : Interval := Interval.span (point p n i) (point p n (i + 1))
-def midpoint (p n i : ℕ) : Interval := Interval.rational p (2 * (i : ℤ) + 1) (2 * (n : ℤ))
-def halfWidth (p n : ℕ) : Interval := Interval.rational p 1 (2 * (n : ℤ))
-def area (p n : ℕ) : Interval := Interval.rational p 1 ((n : ℤ) * n)
 
 theorem point_contains (p n i : ℕ) : (point p n i).Contains p (UniformGrid.point n i) := by
   simpa only [point, UniformGrid.point, Int.cast_natCast] using Interval.contains_rational p (i : ℤ) (n : ℤ)
@@ -63,15 +53,6 @@ theorem area_contains (p n : ℕ) : (area p n).Contains p (4 * UniformGrid.halfW
   rw [← UniformGrid.area_eq_four_halfWidth_sq]
   simpa only [area, UniformGrid.area, Int.cast_mul, Int.cast_natCast, Int.cast_one, pow_two]
     using Interval.contains_rational p 1 ((n : ℤ) * n)
-
-def cell (p n : ℕ) (par : Params Interval) (i j : ℕ) : Option ℤ :=
-  ProjectiveCell.lower p par (span p n i) (span p n j) (midpoint p n i) (midpoint p n j)
-    (halfWidth p n) (area p n)
-
-def grid (p n : ℕ) (par : Params Interval) : Option ℤ := sumRange n fun i ↦ sumRange n fun j ↦ cell p n par i j
-
-def check (p n : ℕ) (a b : Interval) : Option ℤ :=
-  (paramsInterval p a b).bind fun par ↦ grid p n par
 
 theorem cell_sound {p n i j : ℕ} {par : Params Interval} {l : ℤ} {a b : ℝ}
     (h : cell p n par i j = some l) (hi : i < n) (hj : j < n)

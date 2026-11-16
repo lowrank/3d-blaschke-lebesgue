@@ -16,45 +16,10 @@ operation, and the domain checks justify every reciprocal and square root.
 
 namespace BlaschkeLebesgue.Certificates.FixedPoint
 
-structure Jet where
-  v : Interval
-  d : Interval
-  dd : Interval
-  deriving DecidableEq, Inhabited
-
 namespace Jet
 
 def Contains (a : Jet) (p : ℕ) (x : SecondOrder.Jet) : Prop :=
   a.v.Contains p x.v ∧ a.d.Contains p x.d ∧ a.dd.Contains p x.dd
-
-def const (p : ℕ) (v : Interval) : Jet := ⟨v, Interval.integer p 0, Interval.integer p 0⟩
-def var (p : ℕ) (v : Interval) : Jet := ⟨v, Interval.integer p 1, Interval.integer p 0⟩
-def neg (a : Jet) : Jet := ⟨a.v.neg, a.d.neg, a.dd.neg⟩
-def add (a b : Jet) : Jet := ⟨a.v.add b.v, a.d.add b.d, a.dd.add b.dd⟩
-def sub (a b : Jet) : Jet := add a b.neg
-def mul (p : ℕ) (a b : Jet) : Jet :=
-  ⟨Interval.mul p a.v b.v,
-    (Interval.mul p a.d b.v).add (Interval.mul p a.v b.d),
-    ((Interval.mul p a.dd b.v).add (Interval.mul p (Interval.mul p (Interval.integer p 2) a.d) b.d)).add
-      (Interval.mul p a.v b.dd)⟩
-def sq (p : ℕ) (a : Jet) : Jet :=
-  ⟨Interval.sq p a.v, Interval.mul p (Interval.mul p (Interval.integer p 2) a.v) a.d,
-    Interval.mul p (Interval.integer p 2) ((Interval.sq p a.d).add (Interval.mul p a.v a.dd))⟩
-def comp (p : ℕ) (a : Jet) (v d dd : Interval) : Jet :=
-  ⟨v, Interval.mul p d a.d, (Interval.mul p dd (Interval.sq p a.d)).add (Interval.mul p d a.dd)⟩
-def inv (p : ℕ) (a : Jet) : Jet :=
-  let v := Interval.inv p a.v
-  comp p a v (Interval.sq p v).neg (Interval.mul p (Interval.mul p (Interval.integer p 2) v) (Interval.sq p v))
-def div (p : ℕ) (a b : Jet) : Jet := mul p a (inv p b)
-def sqrtDenom1 (p : ℕ) (a : Jet) : Interval := Interval.mul p (Interval.integer p 2) (Interval.sqrt p a.v)
-def sqrtDenom2 (p : ℕ) (a : Jet) : Interval :=
-  let v := Interval.sqrt p a.v
-  Interval.mul p (Interval.mul p (Interval.integer p 4) (Interval.sq p v)) v
-def sqrt (p : ℕ) (a : Jet) : Jet :=
-  comp p a (Interval.sqrt p a.v) (Interval.div p (Interval.integer p 1) (sqrtDenom1 p a))
-    (Interval.div p (Interval.integer p (-1)) (sqrtDenom2 p a))
-def sqrtCheck (p : ℕ) (a : Jet) : Bool :=
-  a.v.positiveCheck && (sqrtDenom1 p a).invCheck && (sqrtDenom2 p a).invCheck
 
 theorem contains_const {I : Interval} {p : ℕ} {x : ℝ} (hx : I.Contains p x) :
     (const p I).Contains p (SecondOrder.Jet.const x) := by

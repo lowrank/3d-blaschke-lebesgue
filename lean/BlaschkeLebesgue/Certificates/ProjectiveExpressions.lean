@@ -18,16 +18,7 @@ namespace BlaschkeLebesgue.Certificates.ProjectiveExpressions
 
 open FixedPoint
 
-local instance exprAdd : Add Expr := ⟨Expr.add⟩
-local instance exprSub : Sub Expr := ⟨Expr.sub⟩
-local instance exprMul : Mul Expr := ⟨Expr.mul⟩
-local instance exprDiv : Div Expr := ⟨fun a b ↦ .mul a (.inv b)⟩
-local instance exprNat (n : ℕ) : OfNat Expr n := ⟨Expr.rational n⟩
-
-abbrev X := Expr.var
-abbrev C := Expr.rational
-abbrev sq := Expr.sq
-abbrev rt := Expr.sqrt
+attribute [local instance] exprAdd exprSub exprMul exprDiv exprNat
 
 @[simp] theorem real_add (a b : Expr) (env : ℕ → ℝ) :
     (a + b).real env = a.real env + b.real env := rfl
@@ -44,61 +35,6 @@ abbrev rt := Expr.sqrt
   change ((n : ℚ) : ℝ) = (n : ℝ)
   exact Rat.cast_natCast n
 
-@[ext] structure Params (α : Type*) where
-  ra : α
-  w : α
-  c : α
-  T : α
-  deriving DecidableEq, Inhabited
-
-@[ext] structure Values (α : Type*) where
-  G : α
-  D : α
-  V : α
-  deriving DecidableEq, Inhabited
-
-def Params.map {α β : Type*} (f : α → β) (v : Params α) : Params β :=
-  ⟨f v.ra, f v.w, f v.c, f v.T⟩
-
-def Values.map {α β : Type*} (f : α → β) (v : Values α) : Values β :=
-  ⟨f v.G, f v.D, f v.V⟩
-
-def parameterEnv {α : Type*} (a b : α) : ℕ → α := pushEnv a (fun _ ↦ b)
-
-def integrandEnv {α : Type*} (p : Params α) (s t : α) : ℕ → α :=
-  pushEnv p.ra (pushEnv p.w (pushEnv p.c (pushEnv p.T (pushEnv s (fun _ ↦ t)))))
-
-def paramsOut {α : Type*} (env : ℕ → α) : Params α := ⟨env 1, env 0, env 7, env 2⟩
-def valuesOut {α : Type*} (env : ℕ → α) : Values α := ⟨env 3, env 2, env 0⟩
-
-/-- Comments list the new intermediate; indices refer to the preceding state. -/
-def parameterProgram : Program := [
-  X 0 + X 1, -- A; state [A,a,b]
-  X 2 / (2 * (1 - X 1)), -- c; state [c,A,a,b]
-  X 3 / (4 * rt (1 - X 2) * rt (1 - sq (X 0)) * rt (C (1/8) - X 1 / 16)), -- eta
-  rt (4 / (3 * (2 - X 2))), -- cb; state [cb,eta,c,A,a,b]
-  rt (1 - sq (X 0)), -- sb; state [sb,cb,eta,c,A,a,b]
-  rt (1 - sq (X 2)), -- ee; state [ee,sb,cb,eta,c,A,a,b]
-  (X 1 * X 0 - X 2 * X 3) / (X 2 * X 0 + X 1 * X 3), -- T
-  rt (C (3/4) + X 7 / 4), -- ra; state [ra,T,ee,sb,cb,eta,c,A,a,b]
-  rt (C (1/2) + (X 8 - X 9) / 4) -- w
-]
-
-/-- Initial state: `[ra,w,c,T,s,t]`; final outputs are `G=3,D=2,V=0`. -/
-def integrandProgram : Program := [
-  X 3 * X 4, -- x
-  X 0 * X 6, -- y
-  sq (X 1), -- xx
-  sq (X 1), -- yy
-  1 + (X 1 + X 0) / (1 - sq (X 6)), -- W
-  rt (X 0), -- rw
-  rt (C (3/4)) * rt (1 + X 3) + X 6 * rt (1 + X 2) - X 7, -- N
-  X 0 / X 1 - 1, -- G
-  1 - X 8 * X 2 / rt (1 + X 4), -- D
-  C (47/32) * X 0 - 2 * sq (X 0), -- q(D)
-  8 * sq (X 13) * X 14 * X 2 * X 0 / (X 5 * X 4) -- V
-]
-
 noncomputable def realParams (a b : ℝ) : Params ℝ :=
   ⟨Completion.edgeRadius a, Completion.separationUpper a b,
     Completion.obliquity a b, Completion.rectangleRadius a b⟩
@@ -106,18 +42,6 @@ noncomputable def realParams (a b : ℝ) : Params ℝ :=
 noncomputable def realValues (a b s t : ℝ) : Values ℝ :=
   ⟨Completion.squareGap a b s t, Completion.squareDetLower a b s t,
     Completion.unitSquareSmoothDensity a b s t⟩
-
-def paramsInterval (p : ℕ) (a b : Interval) : Option (Params Interval) :=
-  (Program.interval p parameterProgram (parameterEnv a b)).map paramsOut
-
-def paramsJet (p : ℕ) (a b : Jet) : Option (Params Jet) :=
-  (Program.jet p parameterProgram (parameterEnv a b)).map paramsOut
-
-def valuesInterval (p : ℕ) (par : Params Interval) (s t : Interval) : Option (Values Interval) :=
-  (Program.interval p integrandProgram (integrandEnv par s t)).map valuesOut
-
-def valuesJet (p : ℕ) (par : Params Jet) (s t : Jet) : Option (Values Jet) :=
-  (Program.jet p integrandProgram (integrandEnv par s t)).map valuesOut
 
 theorem parameterProgram_real (a b : ℝ) :
     paramsOut (Program.real parameterProgram (parameterEnv a b)) = realParams a b := by

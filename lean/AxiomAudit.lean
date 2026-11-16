@@ -301,6 +301,9 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.ProjectiveAnalyticBounds.center_mem,
       ``BlaschkeLebesgue.Certificates.ProjectiveAnalyticBounds.check_sound,
       ``BlaschkeLebesgue.Certificates.ProjectiveAnalyticBounds.completion_affine_lower_of_computations,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.checkedNatSqrt_eq,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.checkedSqrtFloor_eq,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.checkedSqrtCeil_eq,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
