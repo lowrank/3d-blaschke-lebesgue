@@ -154,6 +154,9 @@ public import BlaschkeLebesgue.LensScalar
 public import BlaschkeLebesgue.LensUpperHeight
 public import BlaschkeLebesgue.LensIntegrals
 public import BlaschkeLebesgue.CapLensFormula
+public import BlaschkeLebesgue.ClippedLensParameters
+public import BlaschkeLebesgue.ClippedLensFaces
+public import BlaschkeLebesgue.ClippedVolumeLenses
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap

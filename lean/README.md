@@ -1188,6 +1188,34 @@ last condition excludes an upper crossing at the pole. These formulas now
 require substitution into the actual clipped-face sums. The integrated edge
 curvature contributions to `M_C` and the final separable identities remain open.
 
+## Milestone 50: explicit clipped volume and surface area
+
+`ClippedLensParameters.lean` verifies every hypothesis of the lens formulas
+from the original balanced-contact assumptions and `A <= 2/25`. In particular,
+it proves `37/100 <= R^2 <= 3/8`, every squared edge length is at least `23/25`,
+and both kinds of lens have positive Gram determinant. These estimates include
+zero edge deficits.
+
+`ClippedLensFaces.lean` normalizes the actual cap axes and evaluates each
+contact-face lens, its center-weighted first moment, and each pair of excluded
+enclosing-sphere caps. `ClippedVolumeLenses.lean` substitutes these evaluations
+into the geometric area and volume integrals. Write `B` for the base cap area,
+`J` for its center-weighted moment, `L(s)` and `N(s)` for a contact lens area
+and moment, and `P(s)` for an enclosing-sphere lens area. All are explicit
+inverse-trigonometric expressions proved equal to their actual integrals. With
+`T = 4 pi - 8 pi (2-1/(2R^2))`, the proved formulas are
+
+```text
+S_C = R^2 (T + sum P(s)) - 8 B + 2 sum L(s),
+V_C = (-8 B - 8 J + R^3 T)/3
+      + sum (2 L(s) + 2 N(s) + R^3 P(s))/3.
+```
+
+Each sum runs over the six unordered contact pairs. Thus the actual clipped
+volume now has an explicit separable formula. Rewriting its scalar terms in
+the manuscript's angle notation, proving the remaining edge contributions to
+`M_C`, and deriving the explicit dual-body formula are still pending.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
@@ -1232,9 +1260,9 @@ replacing build files.
 
 ## Remaining proof obligations
 
-The larger-radius completion branch still needs substitution of the exact
-cap-intersection formulas into the clipped-face sums, the edge curvature
-integrals and separable volume formulas,
+The larger-radius completion branch still needs the edge curvature integrals,
+the explicit dual-body volume formula and the scalar identities matching the
+manuscript's coefficients,
 completed kernel verification of the full
 completion-integral certificate, the clipped-hull certificate verifier and its
 kernel checks, and final assembly. None of these is hidden behind a custom axiom
