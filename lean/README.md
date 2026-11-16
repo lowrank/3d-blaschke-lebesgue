@@ -1486,6 +1486,19 @@ modules import their predecessors, so partial assembly must wait until the
 complete kernel set is restored. The final assembly script checks every kernel
 module with `--no-build` before starting that chain.
 
+## Watching the remaining certificate jobs
+
+`scripts/watch_certificates.py --downloads /tmp/blaschke-hull-artifacts`
+collects newly completed artifacts from the pinned certificate runs. It stops
+on a failed run, restore, build, or audit; it does not restart CI jobs or commit
+changes. Once all hull-sign jobs pass, it compiles the assembled sign suite and
+runs `HullSignAxiomAudit.lean`. Once all three runs succeed, it invokes the final
+assembly and local axiom audit. `--once` performs a single collection pass.
+
+A live single-pass test restored completed projective and hull artifacts,
+recognized the successful secant run, and rechecked the complete secant suite.
+The final theorem remains pending the remaining kernel jobs and final audits.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
