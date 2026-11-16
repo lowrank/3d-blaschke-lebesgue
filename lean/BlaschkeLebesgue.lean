@@ -220,6 +220,8 @@ public import BlaschkeLebesgue.UniformGridIntegral
 public import BlaschkeLebesgue.UniformGridBounds
 public import BlaschkeLebesgue.VolumeVariation
 public import BlaschkeLebesgue.WeightedCompletion
+public import BlaschkeLebesgue.Certificates.ClippedHullExpressions
+public import BlaschkeLebesgue.Certificates.ClippedHullExample
 
 /-!
 # The 0.4144 constant-width volume bound

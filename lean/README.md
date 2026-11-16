@@ -1370,6 +1370,18 @@ derivatives of the same scalar functions already connected to actual volumes.
 The remaining sign and secant computations still require their complete
 cover, checks, and assembly.
 
+## Milestone 59: checked programs for the clipped-hull formulas
+
+`Certificates/ClippedHullComputation.lean` encodes the shared scalar volume
+and derivative formulas as executable programs. `ClippedHullExpressions.lean`
+proves that their real interpretations equal the proved manuscript formulas
+and proves the interval and jet containment results for their outputs.
+`ClippedHullExample.lean` checks three representative signs at `R=61/100`,
+`x=99/100` (and the baseline at `x=1`) using `decide +kernel`.
+
+This sample is not the full sign cover. Connecting all derivative directions,
+checking all 3,200 boxes and 512 secants, and final assembly remain pending.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

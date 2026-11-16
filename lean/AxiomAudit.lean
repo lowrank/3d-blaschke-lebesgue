@@ -468,6 +468,13 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.First.analytic_bounds,
       ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.First.affine_lower,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.dxProgram_real,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.volumeProgram_real,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.dxInterval_sound,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.volumeInterval_sound,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.dxJet_sound,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.volumeJet_sound,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.sampleSigns_verified,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
       throwError "Missing required declaration {name}"
