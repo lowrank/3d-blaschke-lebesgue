@@ -205,6 +205,13 @@ run_cmd do
       ``BlaschkeLebesgue.BalancedContacts.Opposite.pairPatches_pairwise_disjoint,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.completion_integral_ge_sum,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.clipped_volume_ge_completion_sum,
+      ``BlaschkeLebesgue.intervalIntegral_square_eq_two_triangle,
+      ``BlaschkeLebesgue.intervalIntegral_triangle_unitSquare,
+      ``BlaschkeLebesgue.Completion.F_eq_unitSquare,
+      ``BlaschkeLebesgue.Completion.integrableOn_unitSquareDensity,
+      ``BlaschkeLebesgue.Completion.unitSquareDensity_eq_clamped,
+      ``BlaschkeLebesgue.Completion.unitSquareDensity_eq_smooth,
+      ``BlaschkeLebesgue.Completion.unitSquareDensity_eq_zero_of_inactive,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

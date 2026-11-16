@@ -642,6 +642,22 @@ bodies constructed from the original constant-width body and its contacts.
 All frames, integrability, circle support, curvature, and disjointness facts
 used in this estimate have been proved.
 
+## Milestone 26: the completion certificate's exact fixed-square integral
+
+`SymmetricSquareIntegral.lean` splits a continuous symmetric square integral
+into two triangles, proves that the diagonal has zero measure, and derives
+the exact substitution `x = T*s`, `y = T*s*t` with Jacobian `T^2*s`.
+
+`CompletionFixedSquare.lean` applies this to the actual scalar `F(a,b)`.
+It identifies `F` with the unit-square integral of the certificate's density,
+proves continuity, integrability, and nonnegativity, and removes the
+`min(x^2,y^2)`/`max(x^2,y^2)` switch on the ordered triangle. The density equals
+the explicit smooth expression when both gap and determinant factors are
+nonnegative, and vanishes whenever either factor is nonpositive.
+The fixed-square formula is proved; the interval arithmetic, quadrature
+error bounds, parameter cover, and finite certificate evaluation are still
+to be formalized.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the clipped-body boundary

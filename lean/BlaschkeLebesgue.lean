@@ -22,6 +22,7 @@ public import BlaschkeLebesgue.ClippedRelabeling
 public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra
+public import BlaschkeLebesgue.CompletionFixedSquare
 public import BlaschkeLebesgue.CompletionObliquity
 public import BlaschkeLebesgue.CompletionPatchSum
 public import BlaschkeLebesgue.CompletionPhi
@@ -123,6 +124,7 @@ public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap
 public import BlaschkeLebesgue.SupportParametrization
 public import BlaschkeLebesgue.SupportVolumeFormula
+public import BlaschkeLebesgue.SymmetricSquareIntegral
 public import BlaschkeLebesgue.TangentDeterminant
 public import BlaschkeLebesgue.TangentCofactor
 public import BlaschkeLebesgue.TangentJacobian
