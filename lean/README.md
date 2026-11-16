@@ -737,8 +737,30 @@ completion density along parameter curves, including coordinate segments.
 differences of the full integrals. Thus verified derivative enclosures can
 control parameter variation without exchanging differentiation and integration.
 The analytic rules are proved; constructing and evaluating the interval/jet
-enclosures, the final box acceptance check, and the numerical lower bound
-remain open.
+enclosures and the unconditional numerical lower bound remain open. Milestone
+31 verifies the final box acceptance arithmetic.
+
+## Milestone 31: exact box acceptance arithmetic and conditional assembly
+
+`ParameterBoxEstimate.lean` turns signed coordinate secant bounds into a bound
+on the affine residual's variation over a parameter box. A proved center
+integral lower bound exceeding the affine center value plus this variation
+implies the desired strict affine bound throughout the box.
+
+`Certificates/ProjectiveAcceptance.lean` implements the exact rational final
+acceptance test and proves its soundness. The generated module checks all
+584 candidates using `decide +kernel`: derivative intervals are ordered,
+each recomputed margin is positive and at least its recorded lower margin,
+and the candidate boxes exactly match the already verified cover.
+
+`completion_affine_lower_of_analytic_bounds` assembles these checks into the
+affine lower bound for the geometric `F`, using its fixed-square extension
+for centers outside the triangle. Its analytic premise remains **unproved**:
+for every candidate, the stated center-integral lower bound and both signed
+coordinate-secant enclosures must be constructed by the interval/jet checker
+and the proved quadrature/variation rules. The report values are candidate
+data, not assumed theorems. This is a conditional assembly result, not yet a
+verified completion-integral certificate or a proof of the volume target.
 
 ## Remaining proof obligations
 

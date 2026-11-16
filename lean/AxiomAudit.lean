@@ -238,6 +238,12 @@ run_cmd do
       ``BlaschkeLebesgue.Completion.unitSquareDensity_curve_bounds_hullzero,
       ``BlaschkeLebesgue.Completion.unitSquareDensity_curve_bounds_of_positive,
       ``BlaschkeLebesgue.Completion.fixedSquareIntegral_sub_bounds,
+      ``BlaschkeLebesgue.SecantBounds.abs_affine_sub_le,
+      ``BlaschkeLebesgue.affine_lt_of_box_center_margin,
+      ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.Candidate.check_sound,
+      ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.Generated.arithmetic_verified,
+      ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.Generated.boxes_match,
+      ``BlaschkeLebesgue.Certificates.ProjectiveAcceptance.Generated.completion_affine_lower_of_analytic_bounds,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

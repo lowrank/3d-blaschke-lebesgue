@@ -79,6 +79,7 @@ public import BlaschkeLebesgue.ParallelJacobian
 public import BlaschkeLebesgue.ParallelParametrization
 public import BlaschkeLebesgue.ParallelPolynomial
 public import BlaschkeLebesgue.ParallelVolume
+public import BlaschkeLebesgue.ParameterBoxEstimate
 public import BlaschkeLebesgue.PolarAnnulus
 public import BlaschkeLebesgue.PolarHomogeneous
 public import BlaschkeLebesgue.PositivePropagation
@@ -139,6 +140,7 @@ public import BlaschkeLebesgue.Target
 public import BlaschkeLebesgue.Translation
 public import BlaschkeLebesgue.TwoAxisProjection
 public import BlaschkeLebesgue.Certificates.Generated.ProjectiveCover
+public import BlaschkeLebesgue.Certificates.Generated.ProjectiveAcceptance
 public import BlaschkeLebesgue.UniformGridIntegral
 public import BlaschkeLebesgue.UniformGridBounds
 public import BlaschkeLebesgue.VolumeVariation
