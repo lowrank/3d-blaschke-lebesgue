@@ -183,6 +183,13 @@ run_cmd do
       ``BlaschkeLebesgue.ObliqueFrame.integral_image_radialProjectiveMap,
       ``BlaschkeLebesgue.ObliqueFrame.radialProjectiveMap_image_cylinder,
       ``BlaschkeLebesgue.ObliqueFrame.integral_projectiveAnnulus,
+      ``BlaschkeLebesgue.ObliqueFrame.exists_volume_coordinates,
+      ``BlaschkeLebesgue.ObliqueFrame.integral_frame_product,
+      ``BlaschkeLebesgue.ObliqueFrame.radialProjectiveMap_image_cone,
+      ``BlaschkeLebesgue.ObliqueFrame.integral_projectiveCone,
+      ``BlaschkeLebesgue.ObliqueFrame.projectivePatch_disjoint_antipode,
+      ``BlaschkeLebesgue.ObliqueFrame.integral_projectivePatch,
+      ``BlaschkeLebesgue.ObliqueFrame.integral_projective_completion,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

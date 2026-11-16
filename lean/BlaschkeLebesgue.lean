@@ -38,6 +38,7 @@ public import BlaschkeLebesgue.CurvatureIntegrals
 public import BlaschkeLebesgue.CurvatureOperator
 public import BlaschkeLebesgue.CurvatureReflection
 public import BlaschkeLebesgue.CurvatureWeight
+public import BlaschkeLebesgue.FrameProductCoordinates
 public import BlaschkeLebesgue.EnclosingBall
 public import BlaschkeLebesgue.HomogeneousDifferentiation
 public import BlaschkeLebesgue.InnerOuter
@@ -72,13 +73,16 @@ public import BlaschkeLebesgue.ProjectiveAllocation
 public import BlaschkeLebesgue.ProjectiveAnnulus
 public import BlaschkeLebesgue.ProjectiveChart
 public import BlaschkeLebesgue.ProjectiveClipping
+public import BlaschkeLebesgue.ProjectiveCompletionIntegral
 public import BlaschkeLebesgue.ProjectiveCompletionLower
+public import BlaschkeLebesgue.ProjectiveCone
 public import BlaschkeLebesgue.ProjectiveCoordinates
 public import BlaschkeLebesgue.ProjectiveCurvature
 public import BlaschkeLebesgue.ProjectiveFourSigns
 public import BlaschkeLebesgue.ProjectiveJacobian
 public import BlaschkeLebesgue.ProjectivePairSupport
 public import BlaschkeLebesgue.ProjectivePairing
+public import BlaschkeLebesgue.ProjectiveSphereIntegral
 public import BlaschkeLebesgue.Radial
 public import BlaschkeLebesgue.RadialAnalysis
 public import BlaschkeLebesgue.RadialFunction

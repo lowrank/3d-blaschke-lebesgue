@@ -579,12 +579,34 @@ specializes the integral formula to those patches. Separating the radial
 factor by Fubini and comparing with polar integration is still needed for
 the final spherical chart integral identity.
 
+## Milestone 23: the actual spherical area and completion integral formulas
+
+`FrameProductCoordinates.lean` constructs measure-preserving product coordinates
+in the actual orthonormal frame and proves the radial/planar factorization of
+integrals. `ProjectiveCone.lean` identifies the image of the positive radial
+cylinder with its actual cone and computes its integral using the Jacobian.
+
+`ProjectiveSphereIntegral.lean` compares this cone integral with the previously
+proved polar formula. The common radial factor `1/3` cancels, giving the
+spherical chart formula with density `1 / (sqrt(1-chi^2) * sqrt(W)^3)` for
+arbitrary functions on the unit sphere. The patch is proved to be the chart
+image, measurable for measurable parameter sets, and disjoint from every
+antipodal patch in the same frame.
+
+`ProjectiveCompletionIntegral.lean` applies this measure identity to the actual
+missing width and antipodal curvature weight. Thus the chart integrand from
+milestone 21 now represents the actual spherical completion integral.
+Integrating the four-sign inequality over the positive-curvature regions and
+proving disjointness between the three different opposite-edge pairs remain
+to be done.
+
 ## Remaining proof obligations
 
-The larger-radius completion branch still needs the remaining tetrahedral incidence geometry,
-clipped-body boundary formulas, the explicit antipodal completion integral,
-the completion-integral and clipped-hull certificate verifiers, and final assembly. None of these
-is hidden behind a custom axiom or an assumed instance claiming the main theorem.
+The larger-radius completion branch still needs the clipped-body boundary
+decomposition and volume formulas, integration and disjoint summation of the
+completion patches, the completion-integral and clipped-hull certificate
+verifiers, and final assembly. None of these is hidden behind a custom axiom
+or an assumed instance claiming the main theorem.
 The radial branch and the support-volume formula need no further smoothing.
 
 A fresh execution of the original Python/C++ verifier at 52/192-bit precision
