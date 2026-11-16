@@ -778,9 +778,25 @@ has a real containment theorem. Reciprocal and root rules require explicit
 domain checks; squaring across zero has exact lower endpoint zero. Unbounded
 integers avoid the C++ implementation's machine overflow issue.
 
-These are sound executable primitives. The second-order jet propagation,
-certificate expression evaluation, and actual finite grid computations still
-need to be implemented and connected to the analytic bounds.
+These are sound executable primitives. Milestone 33 supplies the second-order
+jet propagation. Certificate expression evaluation and actual finite grid
+computations still need to be connected to the analytic bounds.
+
+## Milestone 33: real and interval second-order jets
+
+`SecondOrderJet.lean` proves the actual first and second derivative rules for
+constant and variable jets, sums, products, composition, quotients, squares,
+and square roots. A jet tracks one derivative direction; the two pure
+derivatives needed by quadrature can be treated independently. No mixed
+derivative is needed.
+
+`Certificates/IntervalJet.lean` implements the same formulas with fixed-dyadic
+intervals and proves containment of all three real components. Reciprocal
+checks exclude zero. Square-root jet checks require a positive input enclosure
+and exclude zero from both derivative denominators. Thus the interval output
+can bound the actual derivatives once the certificate expressions and their
+input boxes are supplied. The full expression evaluator and finite grid
+checks remain open.
 
 ## Remaining proof obligations
 

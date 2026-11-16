@@ -254,6 +254,14 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.FixedPoint.Interval.contains_sqrt,
       ``BlaschkeLebesgue.Certificates.FixedPoint.Interval.contains_sq,
       ``BlaschkeLebesgue.Certificates.FixedPoint.Interval.abs_le_absMax,
+      ``BlaschkeLebesgue.SecondOrder.Jet.ValidAt.mul,
+      ``BlaschkeLebesgue.SecondOrder.Jet.ValidAt.comp,
+      ``BlaschkeLebesgue.SecondOrder.Jet.ValidAt.inv,
+      ``BlaschkeLebesgue.SecondOrder.Jet.ValidAt.sqrt,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Jet.contains_mul,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Jet.contains_sq,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Jet.contains_inv,
+      ``BlaschkeLebesgue.Certificates.FixedPoint.Jet.contains_sqrt,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
