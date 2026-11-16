@@ -13,8 +13,13 @@ public import BlaschkeLebesgue.ClippedBodies
 public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra
+public import BlaschkeLebesgue.CompletionRegion
+public import BlaschkeLebesgue.ContactCircle
+public import BlaschkeLebesgue.ContactCircleBounds
 public import BlaschkeLebesgue.ContactDirections
 public import BlaschkeLebesgue.ContactExistence
+public import BlaschkeLebesgue.ContactNormal
+public import BlaschkeLebesgue.ContactRelabeling
 public import BlaschkeLebesgue.Contacts
 public import BlaschkeLebesgue.CurvatureDensity
 public import BlaschkeLebesgue.CurvatureIntegrals
@@ -34,6 +39,9 @@ public import BlaschkeLebesgue.MixedTangentDeterminant
 public import BlaschkeLebesgue.NormalDerivative
 public import BlaschkeLebesgue.NormalFrame
 public import BlaschkeLebesgue.Normalization
+public import BlaschkeLebesgue.OppositeEdgeBounds
+public import BlaschkeLebesgue.OppositeEdges
+public import BlaschkeLebesgue.OppositePartitions
 public import BlaschkeLebesgue.ParallelContinuity
 public import BlaschkeLebesgue.ParallelCurvature
 public import BlaschkeLebesgue.ParallelInverse
@@ -76,6 +84,7 @@ public import BlaschkeLebesgue.TangentCofactor
 public import BlaschkeLebesgue.TangentJacobian
 public import BlaschkeLebesgue.Target
 public import BlaschkeLebesgue.Translation
+public import BlaschkeLebesgue.TwoAxisProjection
 public import BlaschkeLebesgue.VolumeVariation
 public import BlaschkeLebesgue.WeightedCompletion
 

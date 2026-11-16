@@ -422,9 +422,32 @@ any supplied subset of its points. No curvature field, volume identity, or
 completion inequality is assumed. The explicit geometric and numerical lower
 bounds for the right-hand side remain separate obligations.
 
+## Milestone 16: opposite-edge geometry and contact-circle clipping
+
+`ContactRelabeling.lean`, `OppositeEdges.lean`, and `OppositeEdgeBounds.lean`
+derive the exact midpoint-separation identity and the normalized scalar-product
+bounds from the six actual contact deficits. `OppositePartitions.lean` applies
+them to all three pairings and proves `sum a_j = A` and `sum b_j = 2 A`.
+`CompletionRegion.lean` proves the bounds on the exact radical expressions:
+`c <= 1/25`, `eta < 1/16`, and `1/2 < T <= 1/sqrt(2) < 3/4`.
+
+`TwoAxisProjection.lean` constructs the common normal by inverting the two-axis
+Gram matrix and proves its residual is nonzero. `ContactNormal.lean` projects
+the actual contact balance onto it to put the two midpoints strictly on opposite
+sides of the origin. This does not assume an orientation or that the midpoint
+separation is itself perpendicular to the two edges.
+
+`ContactCircleBounds.lean` proves the circle's nondegeneracy and its clipping
+cosine bound by a factored polynomial inequality. `ContactCircle.lean` proves
+both directions of the parametrization of the intersection of the two actual
+unit spheres, and identifies clipping by the enclosing ball with the claimed
+arc inequality. These results do not yet prove membership in the other two
+unit balls, the complete clipped-boundary incidence, or the common-normal
+rectangle's validity as a support region.
+
 ## Remaining proof obligations
 
-The larger-radius completion branch still needs quantitative tetrahedral geometry,
+The larger-radius completion branch still needs the remaining tetrahedral incidence geometry,
 clipped-body boundary formulas, the explicit antipodal completion integral,
 the completion-integral and clipped-hull certificate verifiers, and final assembly. None of these
 is hidden behind a custom axiom or an assumed instance claiming the main theorem.

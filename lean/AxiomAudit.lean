@@ -114,6 +114,18 @@ run_cmd do
       ``BlaschkeLebesgue.integral_missingWidth_weight,
       ``BlaschkeLebesgue.weighted_completion_bound,
       ``BlaschkeLebesgue.HasConstantWidth.clipped_weighted_completion,
+      ``BlaschkeLebesgue.BalancedContacts.totalDeficit_relabel,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.separation_norm_sq,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.axes_inner_abs,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.separation_inner_firstAxis_abs,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.separation_inner_secondAxis_abs,
+      ``BlaschkeLebesgue.Completion.rectangleRadius_bounds,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.sum_pairEdgeBudget,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.sum_pairCrossBudget,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.oriented_common_normal,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.clippingCos_le_arcCos,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.unit_spheres_circle_parametrization,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.circlePoint_mem_radius_ball_iff,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
