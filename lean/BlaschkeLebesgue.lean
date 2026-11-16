@@ -13,11 +13,15 @@ public import BlaschkeLebesgue.CompletionAlgebra
 public import BlaschkeLebesgue.ContactDirections
 public import BlaschkeLebesgue.ContactExistence
 public import BlaschkeLebesgue.Contacts
+public import BlaschkeLebesgue.CurvatureDensity
+public import BlaschkeLebesgue.CurvatureOperator
 public import BlaschkeLebesgue.EnclosingBall
+public import BlaschkeLebesgue.HomogeneousDifferentiation
 public import BlaschkeLebesgue.InnerOuter
 public import BlaschkeLebesgue.JacobianCubic
 public import BlaschkeLebesgue.LipschitzJacobian
 public import BlaschkeLebesgue.Minkowski
+public import BlaschkeLebesgue.NormalDerivative
 public import BlaschkeLebesgue.Normalization
 public import BlaschkeLebesgue.ParallelContinuity
 public import BlaschkeLebesgue.ParallelInverse
@@ -25,6 +29,7 @@ public import BlaschkeLebesgue.ParallelJacobian
 public import BlaschkeLebesgue.ParallelParametrization
 public import BlaschkeLebesgue.ParallelPolynomial
 public import BlaschkeLebesgue.ParallelVolume
+public import BlaschkeLebesgue.PolarHomogeneous
 public import BlaschkeLebesgue.PositivePropagation
 public import BlaschkeLebesgue.Radial
 public import BlaschkeLebesgue.RadialAnalysis
@@ -34,10 +39,15 @@ public import BlaschkeLebesgue.RadialMaster
 public import BlaschkeLebesgue.RadialVolume
 public import BlaschkeLebesgue.SliceVolume
 public import BlaschkeLebesgue.SmallBallIntersections
+public import BlaschkeLebesgue.SpectralBounds
 public import BlaschkeLebesgue.SphericalCaps
+public import BlaschkeLebesgue.SphericalDifferentiation
 public import BlaschkeLebesgue.SphericalMeasure
+public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportMap
 public import BlaschkeLebesgue.SupportParametrization
+public import BlaschkeLebesgue.SupportVolumeFormula
+public import BlaschkeLebesgue.TangentJacobian
 public import BlaschkeLebesgue.Target
 public import BlaschkeLebesgue.Translation
 

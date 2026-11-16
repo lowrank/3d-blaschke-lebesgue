@@ -65,6 +65,17 @@ run_cmd do
       ``BlaschkeLebesgue.complementary_volume_coefficients,
       ``BlaschkeLebesgue.clippedBodies_complement,
       ``BlaschkeLebesgue.HasConstantWidth.clippedBodies_volume_coefficients,
+      ``BlaschkeLebesgue.hasFDerivAt_support,
+      ``BlaschkeLebesgue.normalSupport_derivative_symmetric,
+      ``BlaschkeLebesgue.normalSupport_sphere_ae_differentiable,
+      ``BlaschkeLebesgue.sphereCurvature_le_tangentProjection,
+      ``BlaschkeLebesgue.sphereCurvature_complement_ae,
+      ``BlaschkeLebesgue.curvatureDet_bounds,
+      ``BlaschkeLebesgue.curvatureTrace_sub_one_le_det,
+      ``BlaschkeLebesgue.integrable_curvatureDet,
+      ``BlaschkeLebesgue.homogeneousSupport_det_eq_curvature_ae,
+      ``BlaschkeLebesgue.integral_closedBall_homogeneous_zero,
+      ``BlaschkeLebesgue.integral_support_curvatureDet,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

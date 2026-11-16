@@ -270,14 +270,48 @@ Nonemptiness follows from the original body and its contact-set inclusion.
 These results establish the manuscript's complementary-body step; the weighted
 completion inequality and explicit clipped-boundary integrals remain open.
 
+## Milestone 10: nonsmooth curvature and the actual support-volume formula
+
+`SupportDifferentiation.lean` proves that the derivative of the actual support
+function is its supporting point. The normalized support map is differentiable
+almost everywhere, and its derivative is symmetric wherever it exists.
+`NormalDerivative.lean` proves that this derivative kills the normal direction,
+maps into the tangent plane, and is positive semidefinite with upper bound the
+tangent projection. These statements require no smoothness assumption.
+
+`SphericalDifferentiation.lean` transfers almost-everywhere differentiability
+from ambient Lebesgue volume to spherical area: homogeneity makes the exceptional
+set a union of rays, and the defining cone formula for spherical measure proves
+it has area zero. `CurvatureOperator.lean` defines the actual measurable derivative
+`Q_K` and proves `Q_L = I_tangent - Q_K` almost everywhere when `K + L = B`.
+
+`SpectralBounds.lean` and `CurvatureDensity.lean` prove measurability, integrability,
+and the bounds `0 ≤ det Q_K ≤ 1`, `0 ≤ tr Q_K ≤ 2`, and
+`tr Q_K - 1 ≤ det Q_K`. The tangent determinant is calculated as the ambient
+determinant after adding the normal projection, avoiding a choice of moving frame.
+
+`TangentJacobian.lean` proves that the Jacobian of the actual homogeneous support
+parametrization is `h_K * det Q_K` almost everywhere. Its proof separates the
+normal support height with a rank-one determinant identity.
+`HomogeneousDifferentiation.lean` and `PolarHomogeneous.lean` prove the derivative's
+degree-zero homogeneity and the corresponding polar integral formula.
+`SupportVolumeFormula.lean` combines these with the established Jacobian volume
+formula to prove `3 * bodyVolume K = integral (h_K * det Q_K)` for actual summands
+of the unit ball containing the origin in their interior.
+
+**Boundary:** this proves the support-volume formula and the curvature bounds
+used in the completion branch. The mixed-volume variation identities and the
+weighted completion inequality are still unproved.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs quantitative tetrahedral geometry,
 the remaining mixed-volume and curvature variation identities, clipped-body
 boundary formulas, the antipodal completion integral, and the completion-integral
-and clipped-hull certificate verifiers. Its regularity arguments and the final
-assembly also remain. None of these is hidden behind a custom axiom or an assumed
-instance claiming the main theorem. The radial branch needs no further smoothing.
+and clipped-hull certificate verifiers. The regularity arguments needed for the
+remaining variation formulas and the final assembly also remain. None of these
+is hidden behind a custom axiom or an assumed instance claiming the main theorem.
+The radial branch and the support-volume formula need no further smoothing.
 
 A fresh execution of the original Python/C++ verifier at 52/192-bit precision
 passed on 2026-11-15: 584 integral rectangles, 3,200 derivative boxes, 512 hull
