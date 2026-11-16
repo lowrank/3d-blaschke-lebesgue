@@ -9,6 +9,10 @@ public import BlaschkeLebesgue.CapArea
 public import BlaschkeLebesgue.CapIntegration
 public import BlaschkeLebesgue.Certificates.RadialRows
 public import BlaschkeLebesgue.Certificates.RadialVolume
+public import BlaschkeLebesgue.CircleDerivative
+public import BlaschkeLebesgue.CircleNormalCone
+public import BlaschkeLebesgue.CircleSupport
+public import BlaschkeLebesgue.CircleSupportRegion
 public import BlaschkeLebesgue.ClippedBodies
 public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.ComplementaryBodies
@@ -24,6 +28,7 @@ public import BlaschkeLebesgue.Contacts
 public import BlaschkeLebesgue.CurvatureDensity
 public import BlaschkeLebesgue.CurvatureIntegrals
 public import BlaschkeLebesgue.CurvatureOperator
+public import BlaschkeLebesgue.CurvatureReflection
 public import BlaschkeLebesgue.CurvatureWeight
 public import BlaschkeLebesgue.EnclosingBall
 public import BlaschkeLebesgue.HomogeneousDifferentiation

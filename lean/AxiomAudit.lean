@@ -126,6 +126,15 @@ run_cmd do
       ``BlaschkeLebesgue.BalancedContacts.Opposite.clippingCos_le_arcCos,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.unit_spheres_circle_parametrization,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.circlePoint_mem_radius_ball_iff,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.circle_normal_cone,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.circle_normal_cone_of_positive_complement,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.support_circle_formula,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.clippedOuter_support_circle_formula,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.hasFDerivAt_circleCandidate,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.clipped_circle_curvature,
+      ``BlaschkeLebesgue.curvatureDet_reflectBody_at,
+      ``BlaschkeLebesgue.curvatureDet_complement_at,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.clipped_circle_complement_det,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

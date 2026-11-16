@@ -445,6 +445,30 @@ arc inequality. These results do not yet prove membership in the other two
 unit balls, the complete clipped-boundary incidence, or the common-normal
 rectangle's validity as a support region.
 
+## Milestone 17: circle support and actual clipped-body curvature
+
+`CircleNormalCone.lean` proves that the proposed normal is a nonnegative
+combination of the two sphere normals on the exact two-ball normal cone.
+`CircleSupport.lean` uses this to prove the support formula whenever the
+candidate passes the remaining ball constraints. A positive complementary
+radius implies the strict normal-cone condition, with the required nonzero
+projection hypothesis explicitly retained.
+
+`CircleDerivative.lean` differentiates the circle candidate and computes its
+curvature trace and tangent determinant. `CircleSupportRegion.lean` proves
+that strict membership in the enclosing ball and the other two unit balls
+gives a neighborhood where the actual clipped-body support map equals this
+candidate. Consequently its actual curvature trace is
+`r / sqrt(1 - <k,n>^2)`, and its actual curvature determinant is zero.
+
+`CurvatureReflection.lean` proves pointwise reflection and complement identities
+at differentiability points. On those same explicit regions it gives the forced
+inner body's actual determinant at the opposite normal:
+`det Q_D(-n) = 1 - r / sqrt(1 - <k,n>^2)`.
+These statements do not assume curvature formulas or differentiability of the
+clipped body. The remaining incidence and angle arguments must still establish
+that the proposed integration rectangles satisfy the explicit ball constraints.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the remaining tetrahedral incidence geometry,
