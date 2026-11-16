@@ -144,6 +144,18 @@ run_cmd do
       ``BlaschkeLebesgue.BalancedContacts.Opposite.circlePoint_mem_clippedOuter_iff,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.clipped_circle_curvature_of_inside_radius,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.clipped_circle_complement_det_of_inside_radius,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.exists_obliqueFrame,
+      ``BlaschkeLebesgue.ObliqueFrame.transverse_inner,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.normalized_midpoint_transverse_bounds,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.firstMidpoint_normal_alignment,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.secondMidpoint_normal_alignment,
+      ``BlaschkeLebesgue.Completion.rectangle_projection_margin,
+      ``BlaschkeLebesgue.ObliqueFrame.planeVector_norm_sq,
+      ``BlaschkeLebesgue.ObliqueFrame.projectiveNormal_first_projection,
+      ``BlaschkeLebesgue.ObliqueFrame.projectiveNormal_second_projection,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_circleCandidate_inside_radius,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_opposite_circleCandidate_inside_radius,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_circleCandidate_mem_clippedOuter,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

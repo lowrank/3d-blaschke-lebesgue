@@ -25,6 +25,7 @@ public import BlaschkeLebesgue.ContactCircle
 public import BlaschkeLebesgue.ContactCircleBounds
 public import BlaschkeLebesgue.ContactDirections
 public import BlaschkeLebesgue.ContactExistence
+public import BlaschkeLebesgue.ContactFrameBounds
 public import BlaschkeLebesgue.ContactNormal
 public import BlaschkeLebesgue.ContactRelabeling
 public import BlaschkeLebesgue.Contacts
@@ -47,8 +48,10 @@ public import BlaschkeLebesgue.MixedTangentDeterminant
 public import BlaschkeLebesgue.NormalDerivative
 public import BlaschkeLebesgue.NormalFrame
 public import BlaschkeLebesgue.Normalization
+public import BlaschkeLebesgue.ObliqueFrame
 public import BlaschkeLebesgue.OppositeEdgeBounds
 public import BlaschkeLebesgue.OppositeEdges
+public import BlaschkeLebesgue.OppositePairSwap
 public import BlaschkeLebesgue.OppositePartitions
 public import BlaschkeLebesgue.ParallelContinuity
 public import BlaschkeLebesgue.ParallelCurvature
@@ -61,12 +64,15 @@ public import BlaschkeLebesgue.PolarAnnulus
 public import BlaschkeLebesgue.PolarHomogeneous
 public import BlaschkeLebesgue.PositivePropagation
 public import BlaschkeLebesgue.PositiveTrace
+public import BlaschkeLebesgue.ProjectiveClipping
+public import BlaschkeLebesgue.ProjectiveCoordinates
 public import BlaschkeLebesgue.Radial
 public import BlaschkeLebesgue.RadialAnalysis
 public import BlaschkeLebesgue.RadialFunction
 public import BlaschkeLebesgue.RadialGeometry
 public import BlaschkeLebesgue.RadialMaster
 public import BlaschkeLebesgue.RadialVolume
+public import BlaschkeLebesgue.RectangleClipping
 public import BlaschkeLebesgue.ShellCoverage
 public import BlaschkeLebesgue.ShellDerivative
 public import BlaschkeLebesgue.ShellInjectivity

@@ -492,6 +492,28 @@ curvature theorems from milestone 17 now require only the normal-cone condition
 and strict radius clipping; the other-ball constraints are proved consequences.
 The full surface decomposition and boundary-volume integration still remain.
 
+## Milestone 19: common-normal coordinates and rectangle clipping
+
+`ObliqueFrame.lean` constructs the two transverse unit vectors from the actual
+edge axes and proves their Gram matrix and coordinate decompositions.
+`ContactFrameBounds.lean` derives the normalized midpoint error bound `eta`
+and the corresponding normal-alignment bounds. The orientation is supplied
+by the contact balance already proved in milestone 16.
+
+`RectangleClipping.lean` proves the exact angular margin of `T(a,b)` algebraically.
+`ProjectiveCoordinates.lean` constructs the projective normal and proves
+`W = 1 + |m|^2`, the two circle-plane projections, and their exact lengths.
+`OppositePairSwap.lean` exchanges the opposite edges while preserving the
+deficit budgets and the clipped body.
+
+`ProjectiveClipping.lean` combines these results to prove that the first
+circle candidate is strictly radius-clipped whenever `|x| < T`, and the
+opposite second candidate whenever `|y| < T`. The previously proved arc
+incidence gives membership in all four unit balls. The normal-cone condition
+is still required for these candidates to be support points; it is distinct
+from radius clipping. The projective area Jacobian and the explicit joint
+integral estimate remain to be proved.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the remaining tetrahedral incidence geometry,
