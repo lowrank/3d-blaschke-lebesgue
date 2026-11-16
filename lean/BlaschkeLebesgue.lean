@@ -159,6 +159,9 @@ public import BlaschkeLebesgue.ClippedLensFaces
 public import BlaschkeLebesgue.ClippedVolumeLenses
 public import BlaschkeLebesgue.ThreeActiveCurvature
 public import BlaschkeLebesgue.LongitudeWedgeIntegral
+public import BlaschkeLebesgue.ActiveSupportLocalization
+public import BlaschkeLebesgue.TwoBallSupport
+public import BlaschkeLebesgue.ClippedActiveSupport
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap

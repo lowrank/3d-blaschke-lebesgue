@@ -1239,6 +1239,24 @@ normal wedge. These are spherical integral identities. Identifying all actual
 edge normal regions with the wedges and assembling their curvature integrals
 into `M_C` are still separate outstanding obligations.
 
+## Milestone 52: necessary normal cones at actual edges
+
+`ActiveSupportLocalization.lean` proves that inactive ball constraints can be
+deleted when finding a support maximum: they hold locally, and a local maximum
+of a linear functional on a convex set is global. With exactly one possible
+active constraint, the actual support point is the explicit spherical face
+point.
+
+`TwoBallSupport.lean` proves the necessary axial bounds for a support point on
+both boundaries of a two-ball intersection. `ClippedActiveSupport.lean` applies
+them to the actual clipped body. When the other constraints are strict, the
+unit--unit edge has normal height in `[-s/2,s/2]`, and the unit--enclosing-sphere
+edge has normal height in `[-1/(2R),1-1/(2R^2)]`. In both cases the actual support
+point is proved equal to its explicit circle candidate. These necessity results
+complement the earlier sufficient unit--unit normal-cone theorem. The remaining
+enclosing-sphere edge curvature, boundary bookkeeping, and integral assembly
+are not yet complete.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

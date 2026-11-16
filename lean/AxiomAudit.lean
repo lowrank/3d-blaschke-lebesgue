@@ -17,6 +17,13 @@ run_cmd do
           throwError "{name} uses forbidden axiom {axiomName}"
       checked := checked + 1
   for name in #[``BlaschkeLebesgue.Certificates.ProjectiveProposals.boxes_verified,
+      ``BlaschkeLebesgue.isMaxOn_active_ball_intersection,
+      ``BlaschkeLebesgue.two_ball_support_axis_bounds,
+      ``BlaschkeLebesgue.BalancedContacts.normalSupport_clipped_eq_face_of_one_active,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.active_unit_pair_normal_bounds,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.normalSupport_eq_circleCandidate_of_two_active,
+      ``BlaschkeLebesgue.BalancedContacts.active_radius_pair_normal_bounds,
+      ``BlaschkeLebesgue.BalancedContacts.normalSupport_eq_clippingCircleCandidate_of_two_active,
       ``BlaschkeLebesgue.Certificates.ProjectiveProposals.arithmetic_verified,
       ``BlaschkeLebesgue.BalancedContacts.clippingCirclePoint_mem_spheres,
       ``BlaschkeLebesgue.BalancedContacts.clipping_spheres_parametrization,
