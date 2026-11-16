@@ -59,6 +59,13 @@ theorem sphereIsometry_preimage_cap (e : Space ≃ₗᵢ[ℝ] Space) (u : Space)
   ext v
   simp only [mem_preimage, sphereCap, mem_ofPred_eq, sphereIsometry_val, e.inner_map_map]
 
+theorem sphereIsometry_measurePreserving_restrict_cap (e : Space ≃ₗᵢ[ℝ] Space)
+    (u : Space) (c : ℝ) :
+    MeasurePreserving (sphereIsometry e) (sphereMeasure.restrict (sphereCap u c))
+      (sphereMeasure.restrict (sphereCap (e u) c)) := by
+  have h := (sphereIsometry_measurePreserving e).restrict_preimage (measurableSet_sphereCap (e u) c)
+  rwa [sphereIsometry_preimage_cap] at h
+
 theorem integral_sphereIsometry (e : Space ≃ₗᵢ[ℝ] Space) (f : UnitSphere → ℝ) :
     (∫ u : UnitSphere, f (sphereIsometry e u) ∂sphereMeasure) =
       ∫ u : UnitSphere, f u ∂sphereMeasure :=

@@ -220,4 +220,20 @@ theorem sphereMeasure_real_openCap_normalized {u : Space} (hu : u ≠ 0) {c : �
   rw [openSphereCap_normalize hu c]
   exact sphereMeasure_real_openCap_of_mem_Icc (by simp [norm_smul, hu]) hc
 
+theorem sphereCap_eq_univ_of_le_neg_one {u : Space} (hu : ‖u‖ = 1) {c : ℝ}
+    (hc : c ≤ -1) : sphereCap u c = univ := by
+  apply eq_univ_of_forall
+  intro v
+  have h := (abs_le.1 (abs_real_inner_le_norm u (v : Space))).1
+  rw [hu, v.norm_eq_one, mul_one] at h
+  exact hc.trans h
+
+theorem sphereCap_eq_empty_of_one_lt {u : Space} (hu : ‖u‖ = 1) {c : ℝ}
+    (hc : 1 < c) : sphereCap u c = ∅ := by
+  apply eq_empty_iff_forall_notMem.2
+  intro v hv
+  have h := (abs_le.1 (abs_real_inner_le_norm u (v : Space))).2
+  rw [hu, v.norm_eq_one, mul_one] at h
+  exact (not_le_of_gt hc) (hv.trans h)
+
 end BlaschkeLebesgue

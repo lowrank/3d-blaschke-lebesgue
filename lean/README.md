@@ -1115,6 +1115,26 @@ the enclosing cap of a contact face has center-weighted first moment
 cap-intersection moments. Those intersection moments and areas, and the
 remaining edge curvature integrals, still require explicit evaluation.
 
+## Milestone 47: exact joint height-longitude measure
+
+`LongitudeRotation.lean` constructs rotations about the coordinate pole and
+proves their action on the longitude defined by the transverse complex
+argument. The two poles form a null set. `LongitudeMeasure.lean` proves that
+the longitude pushforward of every cap is the circle's Haar measure, scaled
+by `1-c`. Its normalization follows from the already proved cap area.
+
+It then proves the full joint distribution:
+
+```text
+sigma.map (n -> (<e0,n>, longitude n))
+  = (Lebesgue restricted to [-1,1]) product (circle Lebesgue measure).
+```
+
+Thus a cap sector of angular width `2r` has area `2r(1-c)`, including
+hemispheres, poles, and full angular width. This supplies actual spherical
+coordinates for the remaining cap-intersection integrals; their explicit
+inverse-trigonometric evaluation and the edge curvature integrals remain open.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

@@ -144,6 +144,8 @@ public import BlaschkeLebesgue.SphericalDifferentiation
 public import BlaschkeLebesgue.SphericalMeasure
 public import BlaschkeLebesgue.SphereHeightIntegral
 public import BlaschkeLebesgue.SphereIsometry
+public import BlaschkeLebesgue.LongitudeRotation
+public import BlaschkeLebesgue.LongitudeMeasure
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap
