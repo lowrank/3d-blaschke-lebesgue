@@ -145,6 +145,9 @@ public import BlaschkeLebesgue.Certificates.FixedPointRounding
 public import BlaschkeLebesgue.Certificates.FixedInterval
 public import BlaschkeLebesgue.Certificates.IntervalJet
 public import BlaschkeLebesgue.Certificates.IntervalExpression
+public import BlaschkeLebesgue.Certificates.IntervalProgram
+public import BlaschkeLebesgue.Certificates.ProjectiveExpressions
+public import BlaschkeLebesgue.Certificates.ProjectiveJets
 public import BlaschkeLebesgue.SecondOrderJet
 public import BlaschkeLebesgue.UniformGridIntegral
 public import BlaschkeLebesgue.UniformGridBounds

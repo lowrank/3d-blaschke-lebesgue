@@ -812,9 +812,33 @@ first derivative component is the derivative of the ordinary real expression,
 and its second derivative component is the derivative of the first. This includes bindings whose
 stored intermediate values depend on the differentiation parameter.
 
-The evaluator and its soundness are complete. Encoding the particular
-certificate formulas, evaluating the finite grids, and deriving the candidate
-analytic bounds remain to be done; no report column is assumed correct.
+The evaluator and its soundness are complete. Milestone 35 encodes the
+particular certificate formulas. Evaluating the finite grids and deriving
+the candidate analytic bounds remain to be done; no report column is assumed
+correct.
+
+## Milestone 35: the actual certificate formulas and their derivatives
+
+`Certificates/IntervalProgram.lean` evaluates shared intermediate expressions
+and returns several outputs from the same environment. Its containment and
+derivative theorems apply to every output. Parameter expressions can therefore
+be evaluated once per box and reused on the quadrature cells.
+
+`Certificates/ProjectiveExpressions.lean` encodes the radical parameter
+formulas and the integrand formulas from the C++ verifier. Lean proves that
+their real interpretations are exactly the existing geometric parameters,
+`squareGap`, `squareDetLower`, and `unitSquareSmoothDensity`. These identities
+hold without assuming a numerical report or a successful interval evaluation.
+Successful interval evaluations enclose these actual functions.
+
+`Certificates/ProjectiveJets.lean` proves that successful evaluations also
+give actual first and second derivatives of the smooth density, with interval
+enclosures. Constant and identity input jets select spatial or parameter
+directions. The shared-parameter case needed for point quadrature is included.
+
+The finite grid sums and their connection to the quadrature and cutoff
+variation theorems remain open. The 584 candidates' analytic bounds are still
+unproved; this milestone does not certify their numerical columns.
 
 ## Remaining proof obligations
 
