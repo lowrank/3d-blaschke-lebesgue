@@ -250,6 +250,26 @@ including nonsmooth bodies, with no unproved geometric interfaces.
 **Boundary:** the unrestricted main theorem is still unproved. The remaining
 radius range is `60849/100000 < R ≤ sqrt(3/8)`.
 
+## Milestone 9: actual clipped complements and their volume identities
+
+`SmallBallIntersections.lean` proves that an intersection of balls of radius at
+most one lies in every unit ball tangent to a supporting plane. It uses an
+explicit quadratic perturbation of a chord, followed by a limit at its endpoint.
+The proof applies without a smoothness assumption or a normal-cone formula.
+
+`ComplementaryBodies.lean` bundles the actual ball transform and proves
+`C + (-D) = B` when `D = B(C)` and `C` is such an intersection. The determinant
+polynomial then gives the complementary identities
+`V_D = 4*pi/3 - M_C + S_C - V_C`, `S_D = 4*pi - 2*M_C + S_C`, and
+`M_C + M_D = 4*pi`, where `S` and `M` are the proved parallel-volume coefficients.
+
+`ClippedBodies.lean` constructs `C = RB ∩ B(Y)` and `D = B(C)` as actual compact
+convex bodies. It proves their complementarity, interior, volume sandwich around
+the original constant-width body, and all three coefficient identities.
+Nonemptiness follows from the original body and its contact-set inclusion.
+These results establish the manuscript's complementary-body step; the weighted
+completion inequality and explicit clipped-boundary integrals remain open.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs quantitative tetrahedral geometry,

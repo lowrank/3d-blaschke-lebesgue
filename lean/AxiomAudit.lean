@@ -59,6 +59,12 @@ run_cmd do
       ``BlaschkeLebesgue.HasConstantWidth.radial_master,
       ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_volume_lower,
       ``BlaschkeLebesgue.MinimumEnclosingBall.volume_gt_of_radius_le_radial_cutoff,
+      ``BlaschkeLebesgue.smallBall_chord_perturbation,
+      ``BlaschkeLebesgue.smallBallIntersection_opposite_mem,
+      ``BlaschkeLebesgue.smallBallIntersection_add_complement,
+      ``BlaschkeLebesgue.complementary_volume_coefficients,
+      ``BlaschkeLebesgue.clippedBodies_complement,
+      ``BlaschkeLebesgue.HasConstantWidth.clippedBodies_volume_coefficients,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

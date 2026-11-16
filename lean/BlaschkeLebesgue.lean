@@ -6,7 +6,9 @@ public import BlaschkeLebesgue.CapArea
 public import BlaschkeLebesgue.CapIntegration
 public import BlaschkeLebesgue.Certificates.RadialRows
 public import BlaschkeLebesgue.Certificates.RadialVolume
+public import BlaschkeLebesgue.ClippedBodies
 public import BlaschkeLebesgue.CompactHull
+public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra
 public import BlaschkeLebesgue.ContactDirections
 public import BlaschkeLebesgue.ContactExistence
@@ -31,6 +33,7 @@ public import BlaschkeLebesgue.RadialGeometry
 public import BlaschkeLebesgue.RadialMaster
 public import BlaschkeLebesgue.RadialVolume
 public import BlaschkeLebesgue.SliceVolume
+public import BlaschkeLebesgue.SmallBallIntersections
 public import BlaschkeLebesgue.SphericalCaps
 public import BlaschkeLebesgue.SphericalMeasure
 public import BlaschkeLebesgue.SupportMap
