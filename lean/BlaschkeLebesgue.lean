@@ -164,6 +164,12 @@ public import BlaschkeLebesgue.TwoBallSupport
 public import BlaschkeLebesgue.ClippedActiveSupport
 public import BlaschkeLebesgue.ClippingCircleSupport
 public import BlaschkeLebesgue.ClippingCircleDerivative
+public import BlaschkeLebesgue.OrthogonalWedge
+public import BlaschkeLebesgue.EquatorMeasure
+public import BlaschkeLebesgue.ClippedPairRelabeling
+public import BlaschkeLebesgue.ClippingCircleArcMeasure
+public import BlaschkeLebesgue.UnitEdgeCurvatureIntegral
+public import BlaschkeLebesgue.RadiusEdgeCurvatureIntegral
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap

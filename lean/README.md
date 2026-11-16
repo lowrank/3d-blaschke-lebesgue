@@ -1270,6 +1270,30 @@ strict edge region and differentiates it. The actual curvature trace is
 `kappa = sqrt(1-1/(4R^2))`. Thus both kinds of edge now have proved local curvature
 formulas. Their global measure decomposition and integrated sum remain pending.
 
+## Milestone 54: exact curvature integrals for both edge types
+
+The actual closed edge normal regions are now identified with rotated spherical
+wedges. `OrthogonalWedge.lean` and `EquatorMeasure.lean` prove the coordinate
+change, equatorial arc lengths, and nullity of the angular boundary sets.
+`UnitEdgeCurvatureIntegral.lean` integrates the actual curvature trace over a
+unit--unit edge region and obtains `2 r phi arcsin(s/2)`, with
+`phi = 2 arccos(clippingCos)`.
+
+`ClippedPairRelabeling.lean` transfers the pair geometry to every contact pair.
+`ClippingCircleArcMeasure.lean` proves that the three open arcs removed from
+each enclosing-sphere circle are disjoint and that its surviving angular length
+is `2 pi - 2 sum_j Psi_ij`, with zero diagonal angles.
+`RadiusEdgeCurvatureIntegral.lean` integrates the actual trace over this region:
+
+```text
+integral_edge trace(curvature) = kappa (2 pi - 2 sum_j Psi_ij) arccos(1/(2R)).
+```
+
+The boundary sets have been proved null for both edge types. What remains for
+the mean-curvature coefficient is a global decomposition into the five face
+regions and ten edge regions, with zero contribution from their complement,
+followed by summation. The full volume-bound theorem is still not proved.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
