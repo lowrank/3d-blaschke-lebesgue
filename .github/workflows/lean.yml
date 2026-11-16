@@ -38,6 +38,8 @@ jobs:
         working-directory: lean
         run: lake env lean AxiomAudit.lean
       - name: Verify generated candidates match the manuscript inputs
-        run: python3 lean/scripts/generate_radial.py --check
+        run: |
+          python3 lean/scripts/generate_radial.py --check
+          python3 lean/scripts/generate_projective_cover.py --check
       - name: Check the pinned manuscript report provenance
         run: python3 verify_manuscript.py

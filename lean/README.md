@@ -22,6 +22,7 @@ lake exe cache get
 lake build
 lake env lean AxiomAudit.lean
 python3 scripts/generate_radial.py --check
+python3 scripts/generate_projective_cover.py --check
 ```
 
 Lean is pinned to **4.35.0**, and mathlib to its matching release
@@ -694,9 +695,27 @@ outside `a+b <= 2/25`; the largest sum of box upper endpoints is `17/200`.
 Their center evaluations must refer to the extension, not rely on a geometric
 identity outside its proved domain.
 
-No interval/jet evaluations, parameter Lipschitz estimates, or accepted-leaf
-cover are assumed to be correct by these results. Those certificate
-obligations remain open.
+No interval/jet evaluations or parameter Lipschitz estimates are assumed to
+be correct by these results. Milestone 29 checks the accepted-leaf cover.
+
+## Milestone 29: a kernel-checked cover by all 584 parameter boxes
+
+`Certificates/ParameterCover.lean` implements a rational bisection checker and
+proves its soundness for the closed triangle `a >= 0`, `b >= 0`, `a+b <= 2/25`.
+A leaf must match a supplied box exactly or have its lower corner strictly
+outside the triangle. Thus the check also covers the triangle boundary.
+
+`Certificates/Generated/ProjectiveCover.lean` checks the subdivision for the
+584 boxes in the 52-bit report using `decide +kernel`. It also checks that every
+box lies in `a >= 0`, `b >= 0`, `a+b <= 17/200`, which is inside the parameter
+extension's obliquity domain. Both statements are theorems about real points,
+not just comparisons of recorded areas or leaf counts.
+
+The generator emits literal rational boxes and a candidate tree. Lean checks
+every lookup, bisection, and discarded leaf. CI checks deterministic generation
+against the source report and its hash. This result certifies coverage and
+domain bounds only: the report's integral and derivative columns are not used
+as proof inputs and remain to be verified.
 
 ## Remaining proof obligations
 

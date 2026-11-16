@@ -135,6 +135,7 @@ public import BlaschkeLebesgue.TangentJacobian
 public import BlaschkeLebesgue.Target
 public import BlaschkeLebesgue.Translation
 public import BlaschkeLebesgue.TwoAxisProjection
+public import BlaschkeLebesgue.Certificates.Generated.ProjectiveCover
 public import BlaschkeLebesgue.UniformGridIntegral
 public import BlaschkeLebesgue.VolumeVariation
 public import BlaschkeLebesgue.WeightedCompletion

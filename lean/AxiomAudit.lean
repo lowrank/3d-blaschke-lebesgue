@@ -225,6 +225,11 @@ run_cmd do
       ``BlaschkeLebesgue.UniformGrid.sum_retained_lower_le_unitSquare,
       ``BlaschkeLebesgue.Completion.fixedSquareIntegral_ge_retained_grid_sum,
       ``BlaschkeLebesgue.Completion.F_ge_retained_grid_sum,
+      ``BlaschkeLebesgue.Certificates.ParameterCover.check_sound,
+      ``BlaschkeLebesgue.Certificates.ParameterCover.Generated.cover_verified,
+      ``BlaschkeLebesgue.Certificates.ParameterCover.Generated.domain_verified,
+      ``BlaschkeLebesgue.Certificates.ParameterCover.Generated.covers,
+      ``BlaschkeLebesgue.Certificates.ParameterCover.Generated.domain,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
