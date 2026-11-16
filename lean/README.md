@@ -1417,6 +1417,22 @@ remain outside the default target pending compilation. The analytic step
 from derivative signs and concavity to the six-edge secant lower bound, the
 complete kernel runs, and final geometric theorem assembly remain pending.
 
+## Milestone 62: analytic six-edge secant lower bound
+
+`ScalarSecant.lean` proves the scalar concavity and derivative-order principles.
+`ClippedHullSecantAnalytic.lean` applies the sign checks to prove concavity in
+squared edge length, monotonicity of the baseline, and decrease of edge
+increments with increasing radius. `ClippedHullSixEdges.lean` sums the resulting
+secant bounds over the six actual contact edges and uses the proved manuscript
+volume identity. It bounds the actual weighted clipped volumes below by the
+bucket baseline plus secant slope times a lower bound for the total deficit.
+
+The analytic statements currently take the complete sign-check computations
+as explicit premises. Their discharge by the kernel suites, specialization of
+the bucket budgets, and final combination with the completion bound are pending.
+The first complete 100-cell sign strip and first 16 secant buckets passed local
+kernel checking; the remaining strips are being checked in CI.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

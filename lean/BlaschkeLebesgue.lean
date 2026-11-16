@@ -228,6 +228,7 @@ public import BlaschkeLebesgue.Certificates.ClippedHullDerivatives
 public import BlaschkeLebesgue.Certificates.ClippedHullSignSoundness
 public import BlaschkeLebesgue.Certificates.ClippedHullSigns
 public import BlaschkeLebesgue.Certificates.ClippedHullSecantSoundness
+public import BlaschkeLebesgue.Certificates.ClippedHullSixEdges
 
 /-!
 # The 0.4144 constant-width volume bound

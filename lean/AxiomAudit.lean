@@ -489,6 +489,12 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.ClippedHull.secantBound_manuscript,
       ``BlaschkeLebesgue.Certificates.ClippedHull.secant_parameter_checks,
       ``BlaschkeLebesgue.Certificates.ClippedHull.secant_sqrt_checks,
+      ``BlaschkeLebesgue.concave_secant_increment,
+      ``BlaschkeLebesgue.derivative_order_increment,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.combinedEdge_increment_secant,
+      ``BlaschkeLebesgue.Certificates.ClippedHull.combinedBaseline_mono,
+      ``BlaschkeLebesgue.BalancedContacts.clipped_volume_combination_ge_secant,
+      ``BlaschkeLebesgue.BalancedContacts.clipped_volume_combination_ge_bucket,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
       throwError "Missing required declaration {name}"
