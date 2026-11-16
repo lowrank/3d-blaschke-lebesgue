@@ -69,11 +69,14 @@ public import BlaschkeLebesgue.PolarHomogeneous
 public import BlaschkeLebesgue.PositivePropagation
 public import BlaschkeLebesgue.PositiveTrace
 public import BlaschkeLebesgue.ProjectiveAllocation
+public import BlaschkeLebesgue.ProjectiveAnnulus
+public import BlaschkeLebesgue.ProjectiveChart
 public import BlaschkeLebesgue.ProjectiveClipping
 public import BlaschkeLebesgue.ProjectiveCompletionLower
 public import BlaschkeLebesgue.ProjectiveCoordinates
 public import BlaschkeLebesgue.ProjectiveCurvature
 public import BlaschkeLebesgue.ProjectiveFourSigns
+public import BlaschkeLebesgue.ProjectiveJacobian
 public import BlaschkeLebesgue.ProjectivePairSupport
 public import BlaschkeLebesgue.ProjectivePairing
 public import BlaschkeLebesgue.Radial
@@ -81,6 +84,7 @@ public import BlaschkeLebesgue.RadialAnalysis
 public import BlaschkeLebesgue.RadialFunction
 public import BlaschkeLebesgue.RadialGeometry
 public import BlaschkeLebesgue.RadialMaster
+public import BlaschkeLebesgue.RadialProjectiveMap
 public import BlaschkeLebesgue.RadialVolume
 public import BlaschkeLebesgue.RadiusAllocation
 public import BlaschkeLebesgue.RectangleClipping

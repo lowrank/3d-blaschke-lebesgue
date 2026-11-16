@@ -560,6 +560,25 @@ times the uniform integrand. Identifying that area factor with spherical
 measure and then integrating and summing the patches remain separate proof
 obligations.
 
+## Milestone 22: projective chart, radial Jacobian, and actual change of variables
+
+`ProjectiveChart.lean` constructs the inverse projective coordinates and a
+homeomorphism from the plane onto the open hemisphere. `RadialProjectiveMap.lean`
+extends this chart along positive rays, proves differentiability, and proves
+injectivity on the whole positive parameter half-space.
+
+`ProjectiveJacobian.lean` computes the derivative's determinant in the proved
+orthonormal frame. It is exactly `r^2 / (sqrt(1-chi^2) * sqrt(W)^3)`; the
+rank-one normalization terms cancel in the determinant. The ordinary Lebesgue
+change-of-variables formula is proved for every measurable subset of the
+positive parameter half-space.
+
+`ProjectiveAnnulus.lean` identifies parameter cylinders with the actual
+annulus patches cut out by the hemisphere and projective coordinates, then
+specializes the integral formula to those patches. Separating the radial
+factor by Fubini and comparing with polar integration is still needed for
+the final spherical chart integral identity.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the remaining tetrahedral incidence geometry,

@@ -175,6 +175,14 @@ run_cmd do
       ``BlaschkeLebesgue.Completion.phi_convexOn,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_phi_sign_average_lower,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_completion_four_sign_lower,
+      ``BlaschkeLebesgue.ObliqueFrame.projectiveHomeomorph,
+      ``BlaschkeLebesgue.ObliqueFrame.projectiveNormal_range,
+      ``BlaschkeLebesgue.ObliqueFrame.hasFDerivAt_radialProjectiveMap,
+      ``BlaschkeLebesgue.ObliqueFrame.radialProjectiveMap_injOn,
+      ``BlaschkeLebesgue.ObliqueFrame.det_radialProjectiveDeriv,
+      ``BlaschkeLebesgue.ObliqueFrame.integral_image_radialProjectiveMap,
+      ``BlaschkeLebesgue.ObliqueFrame.radialProjectiveMap_image_cylinder,
+      ``BlaschkeLebesgue.ObliqueFrame.integral_projectiveAnnulus,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
