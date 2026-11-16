@@ -303,6 +303,26 @@ of the unit ball containing the origin in their interior.
 used in the completion branch. The mixed-volume variation identities and the
 weighted completion inequality are still unproved.
 
+## Milestone 11: tangent determinant and parallel-volume coefficient integrals
+
+`NormalFrame.lean` extends each unit normal to an orthonormal basis and proves
+the matrix representation of the normal projection. `TangentDeterminant.lean`
+uses these coordinates to prove
+`det_tangent(s Q + t I) = s^2 det Q + s*t tr Q + t^2`.
+It also proves the complementary determinant identity
+`det Q_L = 1 - tr Q_K + det Q_K` almost everywhere when `K + L = B`.
+
+`ParallelCurvature.lean` proves, on one common full-measure subset of the sphere
+and for every real `t`, that the parallel Jacobian is
+`(h_K + t) * (det Q_K + t tr Q_K + t^2)`. Integrating and comparing polynomial
+coefficients identifies the actual parallel-volume coefficients:
+`3 S_K = integral (det Q_K + h_K tr Q_K)` and
+`3 M_K = integral (tr Q_K + h_K)`.
+
+**Boundary:** the integration identities that simplify these expressions to
+`S_K = integral (det Q_K)` and `M_K = integral h_K`, and the mixed-volume
+variation identities, are still unproved. This milestone does not assume them.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs quantitative tetrahedral geometry,

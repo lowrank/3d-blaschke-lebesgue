@@ -76,6 +76,10 @@ run_cmd do
       ``BlaschkeLebesgue.homogeneousSupport_det_eq_curvature_ae,
       ``BlaschkeLebesgue.integral_closedBall_homogeneous_zero,
       ``BlaschkeLebesgue.integral_support_curvatureDet,
+      ``BlaschkeLebesgue.det_tangent_smul_shift,
+      ``BlaschkeLebesgue.curvatureDet_complement_ae,
+      ``BlaschkeLebesgue.parallelJacobian_eq_curvature_ae,
+      ``BlaschkeLebesgue.parallelCoefficients_eq_curvatureIntegrals,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

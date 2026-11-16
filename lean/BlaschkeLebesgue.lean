@@ -22,8 +22,10 @@ public import BlaschkeLebesgue.JacobianCubic
 public import BlaschkeLebesgue.LipschitzJacobian
 public import BlaschkeLebesgue.Minkowski
 public import BlaschkeLebesgue.NormalDerivative
+public import BlaschkeLebesgue.NormalFrame
 public import BlaschkeLebesgue.Normalization
 public import BlaschkeLebesgue.ParallelContinuity
+public import BlaschkeLebesgue.ParallelCurvature
 public import BlaschkeLebesgue.ParallelInverse
 public import BlaschkeLebesgue.ParallelJacobian
 public import BlaschkeLebesgue.ParallelParametrization
@@ -47,6 +49,7 @@ public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportMap
 public import BlaschkeLebesgue.SupportParametrization
 public import BlaschkeLebesgue.SupportVolumeFormula
+public import BlaschkeLebesgue.TangentDeterminant
 public import BlaschkeLebesgue.TangentJacobian
 public import BlaschkeLebesgue.Target
 public import BlaschkeLebesgue.Translation
