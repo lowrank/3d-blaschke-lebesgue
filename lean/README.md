@@ -1257,6 +1257,19 @@ complement the earlier sufficient unit--unit normal-cone theorem. The remaining
 enclosing-sphere edge curvature, boundary bookkeeping, and integral assembly
 are not yet complete.
 
+## Milestone 53: support and curvature on enclosing-sphere edges
+
+`ClippingCircleSupport.lean` proves the sufficient normal cone for each
+unit--enclosing-sphere circle. Every normal in the exact height interval is a
+nonnegative combination of the two actual ball normals. If the circle candidate
+satisfies the remaining ball constraints, it is the actual support point.
+
+`ClippingCircleDerivative.lean` proves local equality with this candidate on the
+strict edge region and differentiates it. The actual curvature trace is
+`kappa/sqrt(1-z^2)`, where `z` is the normal height along the contact axis and
+`kappa = sqrt(1-1/(4R^2))`. Thus both kinds of edge now have proved local curvature
+formulas. Their global measure decomposition and integrated sum remain pending.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

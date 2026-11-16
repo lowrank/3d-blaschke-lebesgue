@@ -162,6 +162,8 @@ public import BlaschkeLebesgue.LongitudeWedgeIntegral
 public import BlaschkeLebesgue.ActiveSupportLocalization
 public import BlaschkeLebesgue.TwoBallSupport
 public import BlaschkeLebesgue.ClippedActiveSupport
+public import BlaschkeLebesgue.ClippingCircleSupport
+public import BlaschkeLebesgue.ClippingCircleDerivative
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap
