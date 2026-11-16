@@ -104,6 +104,16 @@ run_cmd do
       ``BlaschkeLebesgue.integral_curvatureTrace,
       ``BlaschkeLebesgue.integral_support_curvatureTrace,
       ``BlaschkeLebesgue.parallelLinear_eq_integral_curvatureDet,
+      ``BlaschkeLebesgue.positiveContraction_sub_det_id,
+      ``BlaschkeLebesgue.trace_comp_nonneg,
+      ``BlaschkeLebesgue.tangentCofactor_isPositive,
+      ``BlaschkeLebesgue.mixedCurvature_lower,
+      ``BlaschkeLebesgue.curvature_weight_lower_actual,
+      ``BlaschkeLebesgue.completion_integral_lower,
+      ``BlaschkeLebesgue.sphereAntipode_measurePreserving,
+      ``BlaschkeLebesgue.integral_missingWidth_weight,
+      ``BlaschkeLebesgue.weighted_completion_bound,
+      ``BlaschkeLebesgue.HasConstantWidth.clipped_weighted_completion,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

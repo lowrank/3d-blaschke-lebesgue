@@ -392,10 +392,40 @@ coefficient formula proves `S_K = integral det Q_K`. These identities hold for
 actual summands of the unit ball with zero in their interior, including the
 nonsmooth bodies in the completion argument.
 
+## Milestone 15: the weighted antipodal completion bound
+
+`PositiveTrace.lean` and `TangentCofactor.lean` prove the operator positivity
+facts needed to compare mixed curvature. `MixedCurvatureBound.lean` identifies
+the mixed determinant with a cofactor trace and proves
+`2 D2(Q_D,Q_K) ≥ det(Q_D) tr(Q_K)`. This controls every relative orientation
+of the two actual curvature operators.
+
+`CurvatureWeight.lean` connects the scalar contraction estimate to these actual
+operators and integrates the resulting inequality using the proved variation
+identities. `AntipodalIntegration.lean` proves that spherical measure is invariant
+under negation, directly from its cone definition. `AntipodalCompletion.lean`
+pairs the support gaps with the even weight given by the smaller opposite
+curvature determinant.
+
+`WeightedCompletion.lean` combines these facts with the Blaschke identity and
+the complementary-body coefficient identities to prove the manuscript's bound:
+
+```text
+V_K ≥ (47 V_D - V_C)/46 + (4/23) integral g(u) psi(d_*(u)),
+g(u) = 1 - h_D(u) - h_D(-u),
+d_*(u) = min(det Q_D(u), det Q_D(-u)).
+```
+
+The theorem `HasConstantWidth.clipped_weighted_completion` applies this to the
+actual clipped bodies constructed from the original constant-width body and
+any supplied subset of its points. No curvature field, volume identity, or
+completion inequality is assumed. The explicit geometric and numerical lower
+bounds for the right-hand side remain separate obligations.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs quantitative tetrahedral geometry,
-the weighted completion inequality, clipped-body boundary formulas, the antipodal completion integral,
+clipped-body boundary formulas, the explicit antipodal completion integral,
 the completion-integral and clipped-hull certificate verifiers, and final assembly. None of these
 is hidden behind a custom axiom or an assumed instance claiming the main theorem.
 The radial branch and the support-volume formula need no further smoothing.

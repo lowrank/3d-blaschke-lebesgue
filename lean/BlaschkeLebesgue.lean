@@ -1,5 +1,7 @@
 module
 
+public import BlaschkeLebesgue.AntipodalCompletion
+public import BlaschkeLebesgue.AntipodalIntegration
 public import BlaschkeLebesgue.Basic
 public import BlaschkeLebesgue.BallCurvature
 public import BlaschkeLebesgue.BlaschkeIdentity
@@ -17,6 +19,7 @@ public import BlaschkeLebesgue.Contacts
 public import BlaschkeLebesgue.CurvatureDensity
 public import BlaschkeLebesgue.CurvatureIntegrals
 public import BlaschkeLebesgue.CurvatureOperator
+public import BlaschkeLebesgue.CurvatureWeight
 public import BlaschkeLebesgue.EnclosingBall
 public import BlaschkeLebesgue.HomogeneousDifferentiation
 public import BlaschkeLebesgue.InnerOuter
@@ -26,6 +29,7 @@ public import BlaschkeLebesgue.LocalJacobian
 public import BlaschkeLebesgue.Minkowski
 public import BlaschkeLebesgue.MinkowskiInterpolation
 public import BlaschkeLebesgue.MixedCurvature
+public import BlaschkeLebesgue.MixedCurvatureBound
 public import BlaschkeLebesgue.MixedTangentDeterminant
 public import BlaschkeLebesgue.NormalDerivative
 public import BlaschkeLebesgue.NormalFrame
@@ -40,6 +44,7 @@ public import BlaschkeLebesgue.ParallelVolume
 public import BlaschkeLebesgue.PolarAnnulus
 public import BlaschkeLebesgue.PolarHomogeneous
 public import BlaschkeLebesgue.PositivePropagation
+public import BlaschkeLebesgue.PositiveTrace
 public import BlaschkeLebesgue.Radial
 public import BlaschkeLebesgue.RadialAnalysis
 public import BlaschkeLebesgue.RadialFunction
@@ -67,10 +72,12 @@ public import BlaschkeLebesgue.SupportMap
 public import BlaschkeLebesgue.SupportParametrization
 public import BlaschkeLebesgue.SupportVolumeFormula
 public import BlaschkeLebesgue.TangentDeterminant
+public import BlaschkeLebesgue.TangentCofactor
 public import BlaschkeLebesgue.TangentJacobian
 public import BlaschkeLebesgue.Target
 public import BlaschkeLebesgue.Translation
 public import BlaschkeLebesgue.VolumeVariation
+public import BlaschkeLebesgue.WeightedCompletion
 
 /-!
 # The 0.4144 constant-width volume bound
