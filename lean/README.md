@@ -514,6 +514,30 @@ is still required for these candidates to be support points; it is distinct
 from radius clipping. The projective area Jacobian and the explicit joint
 integral estimate remain to be proved.
 
+## Milestone 20: actual paired completion integrand and coupled radii
+
+`ProjectiveCurvature.lean` and `ProjectivePairSupport.lean` prove the exact
+support-gap formula and both opposite curvature determinants on the positive
+curvature region. Positivity supplies the strict normal-cone condition; the
+rectangle clipping and arc incidence supply every ball constraint. These are
+formulas for the actual clipped bodies.
+
+`RadiusAllocation.lean` proves the coupled radius allocation inequality
+directly by squaring nonnegative radicals. `ProjectiveAllocation.lean`
+identifies these radii with the actual edge circles, bounds the longitudinal
+separation, and constructs a common determinant lower bound below `1/5`.
+
+`ProjectivePairing.lean` proves that the coordinate sign pair `(x,y)` and
+`(-x,-y)` cancels the transverse midpoint error exactly. It also bounds the
+actual smaller antipodal curvature determinant, including the zero-clamped
+region. `ProjectiveCompletionLower.lean` combines these facts with nonnegative
+missing width and the polynomial minorant `q` to prove the paired pointwise
+lower bound for the actual completion integrand. Its contact corollary derives
+the inner-body containment from the original constant-width body.
+
+The projective area change of variables, obliquity averaging, integration,
+and summation over disjoint patches remain unproved at this milestone.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the remaining tetrahedral incidence geometry,

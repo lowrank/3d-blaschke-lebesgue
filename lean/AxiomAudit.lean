@@ -156,6 +156,17 @@ run_cmd do
       ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_circleCandidate_inside_radius,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_opposite_circleCandidate_inside_radius,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_circleCandidate_mem_clippedOuter,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_normalCone_of_positive,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_clipped_support,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_clipped_complement_det,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_clipped_opposite_support,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_clipped_opposite_complement_det,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_missingWidth,
+      ``BlaschkeLebesgue.Completion.radius_allocation_lower,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projectiveDetLower_lt_one_fifth,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_missingWidth_pair,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_antipodalCurvatureMin_lower,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.projective_completion_pair_lower_of_contacts,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
