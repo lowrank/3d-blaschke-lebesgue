@@ -212,6 +212,11 @@ run_cmd do
       ``BlaschkeLebesgue.Completion.unitSquareDensity_eq_clamped,
       ``BlaschkeLebesgue.Completion.unitSquareDensity_eq_smooth,
       ``BlaschkeLebesgue.Completion.unitSquareDensity_eq_zero_of_inactive,
+      ``BlaschkeLebesgue.quadratic_tangent_lower,
+      ``BlaschkeLebesgue.midpoint_quadrature_lower,
+      ``BlaschkeLebesgue.rectangle_midpoint_quadrature_lower,
+      ``BlaschkeLebesgue.rectangle_midpoint_quadrature_posPart,
+      ``BlaschkeLebesgue.Completion.unitSquare_cell_quadrature_lower,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

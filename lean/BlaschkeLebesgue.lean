@@ -22,6 +22,7 @@ public import BlaschkeLebesgue.ClippedRelabeling
 public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra
+public import BlaschkeLebesgue.CompletionCellQuadrature
 public import BlaschkeLebesgue.CompletionFixedSquare
 public import BlaschkeLebesgue.CompletionObliquity
 public import BlaschkeLebesgue.CompletionPatchSum
@@ -54,6 +55,7 @@ public import BlaschkeLebesgue.JacobianCubic
 public import BlaschkeLebesgue.LipschitzJacobian
 public import BlaschkeLebesgue.LocalJacobian
 public import BlaschkeLebesgue.Minkowski
+public import BlaschkeLebesgue.MidpointQuadrature
 public import BlaschkeLebesgue.MinkowskiInterpolation
 public import BlaschkeLebesgue.MixedCurvature
 public import BlaschkeLebesgue.MixedCurvatureBound
@@ -102,6 +104,7 @@ public import BlaschkeLebesgue.RadialVolume
 public import BlaschkeLebesgue.RadiusAllocation
 public import BlaschkeLebesgue.RectangleClipping
 public import BlaschkeLebesgue.RectangleQuadrantIntegral
+public import BlaschkeLebesgue.RectangleQuadrature
 public import BlaschkeLebesgue.RectangleSignIntegration
 public import BlaschkeLebesgue.ShellCoverage
 public import BlaschkeLebesgue.ShellDerivative

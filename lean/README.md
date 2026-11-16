@@ -654,9 +654,27 @@ proves continuity, integrability, and nonnegativity, and removes the
 `min(x^2,y^2)`/`max(x^2,y^2)` switch on the ordered triangle. The density equals
 the explicit smooth expression when both gap and determinant factors are
 nonnegative, and vanishes whenever either factor is nonpositive.
-The fixed-square formula is proved; the interval arithmetic, quadrature
-error bounds, parameter cover, and finite certificate evaluation are still
-to be formalized.
+Milestone 27 proves the quadrature error bounds. The interval arithmetic,
+parameter cover, and finite certificate evaluation remain to be formalized.
+
+## Milestone 27: the retained-cell midpoint quadrature rule is sound
+
+`MidpointQuadrature.lean` proves a quadratic tangent lower bound from an
+explicit second-derivative lower bound and integrates it exactly. On an
+interval of half-width `h`, the resulting midpoint correction is `M*h^2/6`.
+
+`RectangleQuadrature.lean` applies this twice to prove the rectangular rule
+with correction `Mx*h^2/6 + My*k^2/6`, using only pure second derivatives.
+It also proves that a nonnegative cell integrand permits clamping the
+computed lower value to zero.
+
+`CompletionCellQuadrature.lean` transfers this bound from the smooth formula
+to the actual clamped completion density on a retained cell. The cell must
+lie in the unit square, both smooth factors must be nonnegative, and the
+first and second derivatives and their bounds are explicit hypotheses.
+These are obligations for the interval/jet checker, not assumed numerical
+facts. No finite grid sum or parameter-cover certificate has yet been
+verified in Lean.
 
 ## Remaining proof obligations
 
