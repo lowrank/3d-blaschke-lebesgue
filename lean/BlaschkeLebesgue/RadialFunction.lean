@@ -47,6 +47,17 @@ theorem smul_mem_iff_le_radialFunction {K : ConvexBody E}
   rw [radialFunction, ← one_div]
   exact (le_div_iff₀ (body_gauge_pos h0 hu)).symm
 
+/-- Interior membership along a ray is the strict radial interval. -/
+theorem smul_mem_interior_iff_lt_radialFunction {K : ConvexBody E}
+    (h0 : (0 : E) ∈ interior (K : Set E)) {u : E} (hu : u ≠ 0)
+    {r : ℝ} (hr : 0 ≤ r) :
+    r • u ∈ interior (K : Set E) ↔ r < radialFunction K u := by
+  have hmem := gauge_lt_one_iff_mem_interior K.convex
+    (mem_interior_iff_mem_nhds.1 h0) (x := r • u)
+  rw [gauge_smul_of_nonneg hr, smul_eq_mul] at hmem
+  rw [← hmem, radialFunction, ← one_div]
+  exact (lt_div_iff₀ (body_gauge_pos h0 hu)).symm
+
 theorem radialFunction_smul_mem {K : ConvexBody E}
     (h0 : (0 : E) ∈ interior (K : Set E)) {u : E} (hu : u ≠ 0) :
     radialFunction K u • u ∈ K :=

@@ -100,7 +100,9 @@ inequality, the two convexity polynomials, and the coupled affine-budget sum.
 
 **Boundary:** the arithmetic row theorems do not yet bound the volume of an arbitrary
 body. Milestones 5 and 6 prove both cap bounds, their disjointness, and the
-pointwise tangent-deficit estimates. Integration of the contributions remains open.
+pointwise tangent-deficit estimates. Milestone 7 integrates these contributions
+against the actual spherical measure. The surface-area comparison and Blaschke
+identity needed to turn the resulting integral into a volume bound remain open.
 The completion-integral and clipped-hull
 finite certificates have not yet been checked in Lean.
 
@@ -175,13 +177,45 @@ the checked rows now give actual pointwise tangent-deficit bounds on both cap
 families. The four positive caps in each layer are pairwise disjoint, as are the
 four negative caps, and every positive cap is disjoint from every negative cap. These are
 geometric consequences of the kernel-checked arithmetic and the constructed
-contacts; the spherical integration and volume conclusion are still unproved.
+contacts. Milestone 7 supplies the spherical integration; the volume conclusion
+is still unproved.
+
+## Milestone 7: actual radial volume and cap integrals
+
+`RadialVolume.lean` defines spherical measure from ordinary Lebesgue measure using
+mathlib's polar-coordinate construction and proves its total mass is `4 * pi`.
+The radial subgraph of the body's interior has the same Lebesgue measure as the
+body, since a convex boundary has measure zero. This gives the actual identity
+`integral (rho^3) = 3 * bodyVolume K`, without a smoothness hypothesis.
+
+`SphericalMeasure.lean`, `SliceVolume.lean`, and `CapArea.lean` prove the exact cap
+area `2 * pi * (1 - c)` for `0 < c ≤ 1`. A cap's measure is three times the volume
+of its truncated solid cone. Orthogonal maps preserve that volume. Separating
+one coordinate and integrating the planar disk slices computes the cone's volume;
+the disk areas and polynomial integrals are kernel-checked theorems.
+
+`CapIntegration.lean` proves the annulus area formula, finite integration of
+pointwise bounds on disjoint pieces, integrability of the radial deficit and flux,
+and the integrated tangent identity with actual body volume.
+
+`Certificates/CapIntegrals.lean` applies these results simultaneously to the four
+positive and four negative contact families. This accounts for **82,600 annulus
+contributions** across the eight rows. Their complete exact sum and the checker's
+downward-rounded sum both bound the actual spherical tangent-deficit integral.
+`all_rows_gap_integral_lower` applies the stored, kernel-checked rows to an arbitrary
+unit-width body in the corresponding radius interval and constructs the four
+contacts itself. It assumes neither a numerical verification result nor an
+unproved cap-area or integration formula.
+
+**Boundary:** these integral bounds still need the geometric surface-area
+comparison and Blaschke's mixed-volume identity to imply the radial branch's
+volume bound. The near-Jung completion branch also remains incomplete.
 
 ## Remaining proof obligations
 
 The main proof still needs quantitative tetrahedral geometry,
 mixed-volume and curvature variation identities, clipped-body boundary formulas,
-the antipodal completion integral, the radial volume and area identities and cap integration,
+the antipodal completion integral, the radial surface-area inequality,
 the completion-integral and clipped-hull certificate verifiers, and final smoothing
 and assembly. None of these is hidden behind a custom axiom
 or an assumed instance claiming the main theorem.

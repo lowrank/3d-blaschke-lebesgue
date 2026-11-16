@@ -1,6 +1,8 @@
 module
 
 public import BlaschkeLebesgue.Basic
+public import BlaschkeLebesgue.CapArea
+public import BlaschkeLebesgue.CapIntegration
 public import BlaschkeLebesgue.Certificates.RadialRows
 public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.CompletionAlgebra
@@ -15,7 +17,10 @@ public import BlaschkeLebesgue.Radial
 public import BlaschkeLebesgue.RadialAnalysis
 public import BlaschkeLebesgue.RadialFunction
 public import BlaschkeLebesgue.RadialGeometry
+public import BlaschkeLebesgue.RadialVolume
+public import BlaschkeLebesgue.SliceVolume
 public import BlaschkeLebesgue.SphericalCaps
+public import BlaschkeLebesgue.SphericalMeasure
 public import BlaschkeLebesgue.Target
 public import BlaschkeLebesgue.Translation
 

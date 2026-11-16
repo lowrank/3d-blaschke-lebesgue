@@ -8,7 +8,7 @@ public import BlaschkeLebesgue.Radial
 
 The checked coefficient has a strict real pi margin. The individual squared tests
 imply the corresponding real square-root inequalities. Passing these finite tests
-is still distinct from the geometric cap-integration theorem.
+is distinct from their geometric meaning, supplied by `CapIntegrals.lean`.
 -/
 
 @[expose] public section

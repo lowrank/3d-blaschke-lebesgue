@@ -1,6 +1,7 @@
 module
 
 public import BlaschkeLebesgue.Certificates.Generated.Row7
+public import BlaschkeLebesgue.Certificates.CapIntegrals
 public import BlaschkeLebesgue.Certificates.PositiveCaps
 public import BlaschkeLebesgue.Certificates.RadialGeometry
 public import BlaschkeLebesgue.Certificates.RadialSoundness
@@ -10,7 +11,8 @@ public import BlaschkeLebesgue.Certificates.RadialSoundness
 
 The generated row imports are chained to serialize the expensive kernel reductions
 on machines with limited memory. The endpoint cover, real-valued margins, and cap
-geometry are proved below. Spherical integration and the volume theorem remain open.
+geometry are proved below, including the actual spherical deficit integrals.
+The surface-area argument and the volume theorem remain open.
 -/
 
 @[expose] public section
@@ -48,6 +50,27 @@ theorem all_rows_real_margin (i : Fin 8) :
     (4144109 / 10000000 : ℝ) < Real.pi *
       (coefficient (rows i).parameters (rows i).positive (rows i).negative : ℝ) :=
   checkRow_real_margin (all_rows_verified i)
+
+/-- Every stored row bounds the actual deficit integral of a centered unit-width
+body in its radius interval. The four contacts are constructed from the body. -/
+theorem all_rows_gap_integral_lower {K : ConvexBody Space} (hK : HasConstantWidth K 1)
+    (b : MinimumEnclosingBall K) (row : Fin 8)
+    (hRlo : ((rows row).parameters.lo : ℝ) ≤ b.radius)
+    (hRhi : b.radius ≤ ((rows row).parameters.hi : ℝ)) :
+    8 * Real.pi *
+      (((((roundedSum (rows row).parameters 1 (rows row).positive +
+        roundedSum (rows row).parameters 1 (rows row).negative : ℤ) : ℚ) /
+          roundingScale : ℚ) : ℝ)) ≤
+      ∫ u : UnitSphere, Radial.gap (parameterM (rows row).parameters)
+        (rows row).parameters.tangentPoint (radialFunction b.centeredBody u) ∂sphereMeasure := by
+  have hrow := all_rows_verified row
+  simp only [checkRow, Bool.and_eq_true, decide_eq_true_eq] at hrow
+  have hlo : (3 / 5 : ℚ) ≤ (rows row).parameters.lo := by tauto
+  have hlo' := (Rat.cast_le (K := ℝ)).2 hlo
+  norm_num only [Rat.cast_div, Rat.cast_ofNat] at hlo'
+  have hR : (1 / 3 : ℝ) < b.radius ^ 2 := by nlinarith only [hRlo, hlo']
+  obtain ⟨c⟩ := b.exists_four_contacts hK hR
+  exact checkRow_rounded_gap_integral_lower hK b c (all_rows_verified row) hRlo hRhi
 
 /-- All 14,814 negative candidates bound actual body points in their respective
 contact caps. Their validity is discharged by the kernel-checked row theorems. -/

@@ -39,6 +39,12 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_positive_gap_lower,
       ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_negative_gap_lower,
       ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_opposite_caps_disjoint,
+      ``BlaschkeLebesgue.integral_radialFunction_cube,
+      ``BlaschkeLebesgue.sphereMeasure_cap,
+      ``BlaschkeLebesgue.volume_diskSolid,
+      ``BlaschkeLebesgue.integral_radial_gap_eq,
+      ``BlaschkeLebesgue.Certificates.RadialArithmetic.checkRow_gap_integral_lower,
+      ``BlaschkeLebesgue.Certificates.RadialArithmetic.all_rows_gap_integral_lower,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
