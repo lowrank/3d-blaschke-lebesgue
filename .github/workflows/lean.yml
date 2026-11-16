@@ -1,0 +1,48 @@
+name: Lean 4.35 verification
+
+on:
+  push:
+    branches: [main, lean-4.35-formalization]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lean-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      LEAN_NUM_THREADS: "2"
+      LAKE_CACHE_DIR: ${{ github.workspace }}/lean/.lake/artifact-cache
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - name: Build with Lean 4.35.0 and the pinned mathlib cache
+        uses: leanprover/lean-action@ba3fdfe5c4476c925da13bf11a005ddb47e47aee # v1
+        with:
+          lake-package-directory: lean
+          auto-config: "false"
+          build: "true"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "true"
+          use-github-cache: "true"
+      - name: Check every project declaration for nonstandard axioms
+        working-directory: lean
+        run: lake env lean AxiomAudit.lean
+      - name: Verify generated candidates match the manuscript inputs
+        run: |
+          python3 lean/scripts/generate_radial.py --check
+          python3 lean/scripts/generate_projective_cover.py --check
+          python3 lean/scripts/generate_centered_first.py --check
+          python3 lean/scripts/generate_first_gradient.py --check
+          python3 lean/scripts/generate_projective_suite.py --check
+      - name: Check the pinned manuscript report provenance
+        run: python3 verify_manuscript.py

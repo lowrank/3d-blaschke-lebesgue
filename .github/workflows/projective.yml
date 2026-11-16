@@ -1,0 +1,129 @@
+name: Complete projective kernel certificate
+
+on:
+  push:
+    branches: [lean-4.35-formalization]
+    paths:
+      - 'lean/**'
+      - '.github/workflows/projective.yml'
+  pull_request:
+    paths:
+      - 'lean/**'
+      - '.github/workflows/projective.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: projective-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  LEAN_NUM_THREADS: '2'
+  LAKE_CACHE_DIR: ${{ github.workspace }}/lean/.lake/artifact-cache
+  MATHLIB_NO_CACHE_ON_UPDATE: '1'
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - run: python3 lean/scripts/generate_projective_suite.py --check
+      - id: plan
+        run: |
+          python3 - <<'PY'
+          import os, subprocess
+          matrix = subprocess.check_output(['python3','lean/scripts/projective_ci.py','matrix'],text=True).strip()
+          with open(os.environ['GITHUB_OUTPUT'],'a') as output:
+              output.write('matrix='+matrix+'\n')
+          PY
+
+  kernel:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Set up Lean 4.35 without downloading the full analysis cache
+        uses: leanprover/lean-action@ba3fdfe5c4476c925da13bf11a005ddb47e47aee
+        with:
+          lake-package-directory: lean
+          auto-config: 'false'
+          build: 'false'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'false'
+          use-github-cache: 'false'
+      - name: Get the small arithmetic dependency cache
+        working-directory: lean
+        run: lake exe cache get Mathlib.Data.Rat.Init Mathlib.Data.Int.Notation
+      - uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25
+        id: cache
+        with:
+          path: .projective-ci/shard-${{ matrix.shard }}.tar.gz
+          key: projective-${{ runner.os }}-${{ hashFiles('lean/lean-toolchain') }}-${{ matrix.shard }}-${{ github.sha }}-${{ github.run_attempt }}
+          restore-keys: projective-${{ runner.os }}-${{ hashFiles('lean/lean-toolchain') }}-${{ matrix.shard }}-
+      - name: Restore previously checked modules
+        run: |
+          if [ -f '.projective-ci/shard-${{ matrix.shard }}.tar.gz' ]; then
+            python3 lean/scripts/projective_ci.py unpack '.projective-ci/shard-${{ matrix.shard }}.tar.gz'
+          fi
+      - name: Check each box in the shard with Lean's kernel
+        run: python3 lean/scripts/projective_ci.py build '${{ matrix.shard }}'
+      - name: Pack completed modules, including partial progress
+        if: always()
+        run: python3 lean/scripts/projective_ci.py pack '${{ matrix.shard }}' '.projective-ci/shard-${{ matrix.shard }}.tar.gz'
+      - uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25
+        if: always() && steps.cache.outputs.cache-hit != 'true'
+        with:
+          path: .projective-ci/shard-${{ matrix.shard }}.tar.gz
+          key: projective-${{ runner.os }}-${{ hashFiles('lean/lean-toolchain') }}-${{ matrix.shard }}-${{ github.sha }}-${{ github.run_attempt }}
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: projective-${{ matrix.shard }}
+          path: .projective-ci/shard-${{ matrix.shard }}.tar.gz
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+
+  assemble:
+    needs: kernel
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Restore the analytic library and its shared mathlib cache
+        uses: leanprover/lean-action@ba3fdfe5c4476c925da13bf11a005ddb47e47aee
+        with:
+          lake-package-directory: lean
+          auto-config: 'false'
+          build: 'true'
+          build-args: BlaschkeLebesgue.Certificates.CenteredAnalyticBounds
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'true'
+          use-github-cache: 'true'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: projective-*
+          path: .projective-ci
+          merge-multiple: true
+      - name: Assemble the actual affine theorem and audit its axioms
+        run: |
+          python3 lean/scripts/projective_ci.py unpack .projective-ci/shard-*.tar.gz
+          python3 lean/scripts/projective_ci.py assemble
+      - name: Recheck all generated inputs
+        run: python3 lean/scripts/generate_projective_suite.py --check

@@ -1,5 +1,17 @@
 # A self-contained proof of the 0.4144 constant-width volume bound
 
+## Lean 4.35 formalization
+
+The `lean-4.35-formalization` branch adds a Lean 4.35.0 project in [`lean/`](lean/).
+The full unconditional theorem `BlaschkeLebesgue.constantWidth_volume_gt`
+compiled locally and
+[passed the complete-theorem CI check](https://github.com/lowrank/3d-blaschke-lebesgue/actions/runs/43975908193)
+on 2026-11-16. Its axiom audit checked 96,894 project
+declarations and permits only `propext`, `Classical.choice`, and `Quot.sound`.
+See the [verification record](lean/README.md) for the exact statement,
+successful certificate runs and reproduction commands. There are no remaining
+proof obligations or certificate assumptions in the final theorem.
+
 ## Main manuscript
 
 `volume_bound_04144.pdf` and `volume_bound_04144.tex` give the detailed
@@ -57,8 +69,8 @@ The smallest resulting global bound is the exact fraction recorded under
 rational number 4144109/10000000, which exceeds 259/625.
 
 The two runs use the same implementation at different precisions. They are
-not two independently developed mathematical proofs, and the result has not
-been formally verified in a proof assistant or independently peer-reviewed.
+not two independently developed mathematical proofs. The separate Lean proof
+is described above; independent peer review is not claimed.
 The analytic implications connecting the finite certificates to the theorem
 are proved in the manuscript; successful software execution alone does not
 replace those implications.
