@@ -1354,6 +1354,22 @@ for pi, arcsine and its derivatives at `1/2`, and arccosine at `-1/2`, using
 `decide +kernel`. This arithmetic is ready for the clipped-hull formulas;
 the derivative identities, full sign cover, and secant checks remain pending.
 
+## Milestone 58: exact cancellation-resistant edge derivatives
+
+`ClippedScalarDomain.lean` proves the scalar domains throughout the hull
+rectangle and a general derivative formula for an arccosine quotient.
+`ClippedAngleDerivatives.lean` derives the manuscript's exact derivatives of
+`U,V,Psi,phi,T_e,F` with respect to `x = 1-e`, including each positive radical
+and denominator. `ClippedDifferentialFormula.lean` identifies the resulting
+coordinates with the manuscript's original edge terms.
+
+`ClippedVolumeDerivatives.lean` proves the two cancellation-resistant formulas
+for `d/dx f_C(R,1-x)` and `d/dx f_D(R,1-x)`, and their weighted combination.
+Thus the expressions to be tested by the interval certificate are proved
+derivatives of the same scalar functions already connected to actual volumes.
+The remaining sign and secant computations still require their complete
+cover, checks, and assembly.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
