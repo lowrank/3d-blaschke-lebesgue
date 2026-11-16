@@ -1481,7 +1481,7 @@ The assembled `all_secant_checks` uses only `propext`, `Classical.choice`,
 and `Quot.sound`. The audit also typechecks the unconditional statement that
 every bucket has positive secant slope and bound strictly above `259/625`.
 
-The hull-sign and projective suites remain pending. The projective analytic
+The projective suite remains pending. The projective analytic
 modules import their predecessors, so partial assembly must wait until the
 complete kernel set is restored. The final assembly script checks every kernel
 module with `--no-build` before starting that chain.
@@ -1498,6 +1498,20 @@ assembly and local axiom audit. `--once` performs a single collection pass.
 A live single-pass test restored completed projective and hull artifacts,
 recognized the successful secant run, and rechecked the complete secant suite.
 The final theorem remains pending the remaining kernel jobs and final audits.
+
+## Complete hull-sign certificate: kernel-verified and audited
+
+All 32 jobs of sign run `43923248067` passed. The restored kernel modules were
+confirmed up to date without recomputation. `Generated/HullSignSuite.lean`
+compiled, and `HullSignAxiomAudit.lean` passed for 5,859 imported project
+declarations. Both `all_edge_checks` and `all_baseline_checks` use only
+`propext`, `Classical.choice`, and `Quot.sound`. The audit also typechecks the
+unconditional negative edge-slope and positive baseline-derivative statements
+on the entire required rectangle.
+
+Both hull certificates are therefore verified. The projective kernel suite,
+its analytic assembly, and the final unconditional theorem audit remain pending.
+The background collector continues monitoring the existing projective run.
 
 ## Complete projective suite: kernel verification pending
 
