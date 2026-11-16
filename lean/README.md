@@ -23,6 +23,7 @@ lake build
 lake env lean AxiomAudit.lean
 python3 scripts/generate_radial.py --check
 python3 scripts/generate_projective_cover.py --check
+python3 scripts/generate_centered_first.py --check
 ```
 
 Lean is pinned to **4.35.0**, and mathlib to its matching release
@@ -934,6 +935,34 @@ for the previous analytic import path. On the development machine, the same
 kernel-checked 8-by-8 computation used about 2.0 GiB peak resident memory,
 down from about 4.9 GiB. This prepares larger checks; it does not establish
 `allComputations` or the main volume theorem.
+
+## Milestone 40: centered retention and the first report-center bound
+
+`RectangleVariation.lean` proves the coordinate mean-value bound used to
+enclose a function throughout a cell from its midpoint and two derivative
+bounds. `Certificates/ProjectiveSpatialVariation.lean` supplies those
+derivatives for the actual gap and determinant functions, and
+`CenteredRetention.lean` proves the resulting activation checks sound.
+
+`CenteredComputation.lean` and `CenteredPointIntegral.lean` implement and
+justify the improved point quadrature. A cell may pass either its original
+interval test or the centered test. Its integral contribution still uses the
+proved second-derivative correction and outward-rounded arithmetic.
+
+`Generated/CenteredFirstKernel.lean` checks all 48 rows at the first report
+center, `a=b=1/1600`, using `decide +kernel`. The JSON row totals are proposals;
+each theorem recomputes the full row, and the parameter intervals are checked
+separately. `CenteredFirst.lean` proves their sum and derives the unconditional
+bound
+
+```text
+7008754898294 / 4503599627370496 <= F(1/1600, 1/1600).
+```
+
+This is stronger than that center's reported lower bound and uses 2,304 cells
+instead of the original 36,864. Only this first report-center bound is certified
+here. The parameter-slope certificates and the other report centers still need
+kernel verification; the main volume theorem remains unproved.
 
 ## Remaining proof obligations
 

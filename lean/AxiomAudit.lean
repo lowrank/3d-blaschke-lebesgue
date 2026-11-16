@@ -304,6 +304,15 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.FixedPoint.checkedNatSqrt_eq,
       ``BlaschkeLebesgue.Certificates.FixedPoint.checkedSqrtFloor_eq,
       ``BlaschkeLebesgue.Certificates.FixedPoint.checkedSqrtCeil_eq,
+      ``BlaschkeLebesgue.rectangle_center_lower,
+      ``BlaschkeLebesgue.Certificates.ProjectiveExpressions.spatialJetS_activation_derivatives,
+      ``BlaschkeLebesgue.Certificates.ProjectiveExpressions.spatialJetT_activation_derivatives,
+      ``BlaschkeLebesgue.Certificates.CenteredProjective.retained_sound,
+      ``BlaschkeLebesgue.Certificates.CenteredProjective.lower_sound,
+      ``BlaschkeLebesgue.Certificates.CenteredProjective.check_sound,
+      ``BlaschkeLebesgue.Certificates.CenteredProjective.First.point_verified,
+      ``BlaschkeLebesgue.Certificates.CenteredProjective.First.integral_lower,
+      ``BlaschkeLebesgue.Certificates.CenteredProjective.First.reported_center_bound,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

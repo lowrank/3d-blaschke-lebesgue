@@ -1,5 +1,7 @@
 module
 
+public import BlaschkeLebesgue.Certificates.CenteredFirst
+
 public import BlaschkeLebesgue.ActiveCompletionIntegral
 public import BlaschkeLebesgue.ActiveProjectiveRegion
 public import BlaschkeLebesgue.ActiveSupportLabels

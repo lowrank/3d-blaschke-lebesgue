@@ -19,6 +19,13 @@ namespace BlaschkeLebesgue.Certificates.ProjectivePointIntegral
 
 open FixedPoint ProjectiveExpressions
 
+theorem sumRange_congr {n : ℕ} {f g : ℕ → Option ℤ} (h : ∀ i < n, f i = g i) :
+    sumRange n f = sumRange n g := by
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+    simp only [sumRange, ih (fun i hi ↦ h i (Nat.lt_succ_of_lt hi)), h n (Nat.lt_succ_self n)]
+
 theorem sumRange_lower {p n : ℕ} {f : ℕ → Option ℤ} {g : ℕ → ℝ} {z : ℤ}
     (h : sumRange n f = some z)
     (hb : ∀ i < n, ∀ v, f i = some v → value p v ≤ g i) :
