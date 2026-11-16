@@ -1515,8 +1515,9 @@ an existing checked build, the audit can also be run from `lean/` with:
 lake env lean FinalAxiomAudit.lean
 ```
 
-The **Complete unconditional Lean theorem** workflow requires three successful
-certificate runs, downloads their checked modules, restores them into Lake's
+The **Complete unconditional Lean theorem** workflow requires all 64 projective
+kernel shards and both complete hull runs to have succeeded. It downloads their
+checked modules, restores them into Lake's
 shared artifact cache using atomic replacement, compiles the complete theorem,
 and runs the same full axiom audit. Final CI validation remains pending; the
 local unconditional proof and audit have passed.
@@ -1558,8 +1559,9 @@ replacing build files.
 ## Remaining validation
 
 The full unconditional theorem and its local axiom audit have passed. The
-remaining gate is successful complete-theorem CI validation. The original
-projective run's assembly job is also still being monitored. No mathematical
+remaining gate is successful complete-theorem CI validation. That workflow
+recompiles the entire projective analytic suite, so it need not wait for the
+older standalone projective assembly job. No mathematical
 proof obligation or finite certificate premise remains in the compiled endpoint.
 
 A fresh execution of the original Python/C++ verifier at 52/192-bit precision

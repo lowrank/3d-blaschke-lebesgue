@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       projective_run:
-        description: Successful complete projective certificate run
+        description: Projective certificate run with all 64 kernel shards successful
         required: true
         default: '43884585133'
       sign_run:
@@ -40,11 +40,21 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
         with:
           persist-credentials: false
-      - name: Require complete successful certificate runs
+      - name: Require all kernel certificates to have passed
         run: |
           python3 - <<'PY'
           import json, os, subprocess
-          for name in ['PROJECTIVE_RUN', 'SIGN_RUN', 'SECANT_RUN']:
+          projective = json.loads(subprocess.check_output([
+              'gh','run','view',os.environ['PROJECTIVE_RUN'],'--json','jobs']))
+          kernels = [job for job in projective['jobs'] if job['name'].startswith('kernel (')]
+          expected = {f'kernel ({i:02d})' for i in range(64)}
+          if len(kernels) != 64 or {job['name'] for job in kernels} != expected:
+              raise SystemExit('Projective run must contain exactly the 64 expected kernel shards')
+          if any(job['status'] != 'completed' or job['conclusion'] != 'success' for job in kernels):
+              raise SystemExit('Every projective kernel shard must have succeeded')
+          # This job recompiles the entire analytic suite and audits the final
+          # theorem, so it need not wait for the older standalone assembly job.
+          for name in ['SIGN_RUN', 'SECANT_RUN']:
               run = os.environ[name]
               result = json.loads(subprocess.check_output(['gh','run','view',run,'--json','status,conclusion']))
               if result != {'status':'completed','conclusion':'success'}:
@@ -70,6 +80,7 @@ jobs:
           python3 lean/scripts/restore_hull_artifacts.py .final-artifacts/signs/* .final-artifacts/secants/*
       - name: Check generated assembly sources
         run: |
+          python3 lean/scripts/generate_projective_suite.py --check
           python3 lean/scripts/generate_clipped_hull_signs.py --check
           python3 lean/scripts/generate_clipped_hull_secants.py --check
           python3 lean/scripts/generate_hull_assembly.py --check
