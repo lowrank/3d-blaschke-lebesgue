@@ -1471,6 +1471,21 @@ stale kernel modules, compiles `BlaschkeLebesgue.Final`, and runs
 the explicit geometric endpoint, and its transitive axioms. Completion is
 pending a successful execution of that workflow and local verification.
 
+## Complete secant certificate: kernel-verified and audited
+
+All 32 jobs of secant run `43924066736` passed. The 512 checked bucket
+comparisons were restored locally; Lake confirmed all kernel modules up to
+date without recomputation. `Generated/HullSecantSuite.lean` compiled and
+`HullSecantAxiomAudit.lean` passed for 3,121 imported project declarations.
+The assembled `all_secant_checks` uses only `propext`, `Classical.choice`,
+and `Quot.sound`. The audit also typechecks the unconditional statement that
+every bucket has positive secant slope and bound strictly above `259/625`.
+
+The hull-sign and projective suites remain pending. The projective analytic
+modules import their predecessors, so partial assembly must wait until the
+complete kernel set is restored. The final assembly script checks every kernel
+module with `--no-build` before starting that chain.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

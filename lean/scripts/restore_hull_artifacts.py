@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Restore downloaded hull build artifacts without truncating shared cache files."""
 import argparse
+import functools
 import json
 import os
 import re
@@ -37,13 +38,18 @@ def output_names(obj):
             yield from output_names(item)
 
 
-def restore(source):
+@functools.cache
+def artifact_cache():
     cache = os.environ.get('LAKE_CACHE_DIR')
     if not cache:
         cache = subprocess.check_output(['lake', 'env', 'printenv', 'LAKE_CACHE_DIR'], cwd=ROOT, text=True).strip()
     if not cache:
         raise RuntimeError('Lake artifact cache is required')
-    cache = Path(cache) / 'artifacts'
+    return Path(cache) / 'artifacts'
+
+
+def restore(source):
+    cache = artifact_cache()
     count = 0
     for kind in ['ClippedHullKernel', 'ClippedHullSecantKernel']:
         folder = source / 'lib/lean/BlaschkeLebesgue/Certificates/Generated' / kind
