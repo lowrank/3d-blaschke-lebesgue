@@ -1,0 +1,11 @@
+module
+
+public import BlaschkeLebesgue.Basic
+public import BlaschkeLebesgue.Target
+
+/-!
+# The 0.4144 constant-width volume bound
+
+Formalization work for `volume_bound_04144.tex` at upstream revision
+`8e57642c283f232ae9a782ad86408bfb7182dfb0`.
+-/

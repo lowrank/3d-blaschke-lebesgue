@@ -1,5 +1,11 @@
 # A self-contained proof of the 0.4144 constant-width volume bound
 
+## Lean formalization in progress
+
+The `lean-4.35-formalization` branch adds a Lean 4.35.0 project in [`lean/`](lean/).
+See its [proof-status record](lean/README.md) for compiled lemmas and remaining
+obligations. The full volume theorem is not yet formally verified.
+
 ## Main manuscript
 
 `volume_bound_04144.pdf` and `volume_bound_04144.tex` give the detailed
