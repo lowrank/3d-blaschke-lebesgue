@@ -24,6 +24,8 @@ public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra
 public import BlaschkeLebesgue.CompletionCellQuadrature
 public import BlaschkeLebesgue.CompletionParameterExtension
+public import BlaschkeLebesgue.CompletionParameterRegularity
+public import BlaschkeLebesgue.CompletionParameterVariation
 public import BlaschkeLebesgue.CompletionFixedSquare
 public import BlaschkeLebesgue.CompletionObliquity
 public import BlaschkeLebesgue.CompletionPatchSum
@@ -47,6 +49,7 @@ public import BlaschkeLebesgue.CurvatureIntegrals
 public import BlaschkeLebesgue.CurvatureOperator
 public import BlaschkeLebesgue.CurvatureReflection
 public import BlaschkeLebesgue.CurvatureWeight
+public import BlaschkeLebesgue.CutoffMeanValue
 public import BlaschkeLebesgue.DisjointCompletionPatches
 public import BlaschkeLebesgue.FrameProductCoordinates
 public import BlaschkeLebesgue.EnclosingBall
@@ -137,6 +140,7 @@ public import BlaschkeLebesgue.Translation
 public import BlaschkeLebesgue.TwoAxisProjection
 public import BlaschkeLebesgue.Certificates.Generated.ProjectiveCover
 public import BlaschkeLebesgue.UniformGridIntegral
+public import BlaschkeLebesgue.UniformGridBounds
 public import BlaschkeLebesgue.VolumeVariation
 public import BlaschkeLebesgue.WeightedCompletion
 

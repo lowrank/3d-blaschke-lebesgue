@@ -85,4 +85,14 @@ theorem unitSquareDensity_eq_smooth_of_obliquity {a b s t : ℝ} (hchi : |obliqu
   rw [unitSquareDensity_eq_clamped_of_obliquity hchi ht, max_eq_left hG, max_eq_left hD]
   rfl
 
+theorem unitSquareDensity_eq_zero_of_inactive_of_obliquity {a b s t : ℝ}
+    (hchi : |obliquity a b| < 1) (ht : t ∈ Icc 0 1)
+    (h : squareGap a b s t ≤ 0 ∨ squareDetLower a b s t ≤ 0) : unitSquareDensity a b s t = 0 := by
+  rw [unitSquareDensity_eq_clamped_of_obliquity hchi ht]
+  rcases h with h | h
+  · rw [max_eq_right h]
+    ring
+  · rw [max_eq_right h, q]
+    ring
+
 end BlaschkeLebesgue.Completion

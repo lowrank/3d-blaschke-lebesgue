@@ -717,6 +717,29 @@ against the source report and its hash. This result certifies coverage and
 domain bounds only: the report's integral and derivative columns are not used
 as proof inputs and remain to be verified.
 
+## Milestone 30: parameter variation through the positive-part cutoffs
+
+`CutoffMeanValue.lean` proves signed secant bounds for a continuous function
+whose derivative is known only where the function is nonzero. The derivative
+interval must include zero. The proof uses the first and last zero on a compact
+interval and the mean value theorem on the remaining pieces; it does not
+require finitely many zeros or differentiability at a cutoff. This proves the
+verifier's `hullzero` rule. Strictly active cells retain their sharper original
+signed derivative interval.
+
+`CompletionParameterRegularity.lean` proves continuity of the actual certificate
+expressions in the parameters on `a,b >= 0`, `a+b <= 1/10`, by proving their
+denominators are positive. This region contains all 584 parameter boxes.
+`CompletionParameterVariation.lean` applies the cutoff rules to the actual
+completion density along parameter curves, including coordinate segments.
+
+`UniformGridBounds.lean` integrates signed cell bounds and proves bounds on
+differences of the full integrals. Thus verified derivative enclosures can
+control parameter variation without exchanging differentiation and integration.
+The analytic rules are proved; constructing and evaluating the interval/jet
+enclosures, the final box acceptance check, and the numerical lower bound
+remain open.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the clipped-body boundary

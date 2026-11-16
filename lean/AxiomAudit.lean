@@ -230,6 +230,14 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.ParameterCover.Generated.domain_verified,
       ``BlaschkeLebesgue.Certificates.ParameterCover.Generated.covers,
       ``BlaschkeLebesgue.Certificates.ParameterCover.Generated.domain,
+      ``BlaschkeLebesgue.image_sub_bounds_of_hasDerivAt_off_zero,
+      ``BlaschkeLebesgue.image_sub_bounds_of_cutoff_hullzero,
+      ``BlaschkeLebesgue.UniformGrid.integral_sub_bounds,
+      ``BlaschkeLebesgue.Completion.continuousAt_rectangleRadius_parameters,
+      ``BlaschkeLebesgue.Completion.continuousAt_unitSquareDensity_parameters,
+      ``BlaschkeLebesgue.Completion.unitSquareDensity_curve_bounds_hullzero,
+      ``BlaschkeLebesgue.Completion.unitSquareDensity_curve_bounds_of_positive,
+      ``BlaschkeLebesgue.Completion.fixedSquareIntegral_sub_bounds,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do
