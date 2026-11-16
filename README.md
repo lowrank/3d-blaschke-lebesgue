@@ -4,10 +4,13 @@
 
 The `lean-4.35-formalization` branch adds a Lean 4.35.0 project in [`lean/`](lean/).
 The full unconditional theorem `BlaschkeLebesgue.constantWidth_volume_gt`
-compiled locally on 2026-11-16. Its axiom audit checked 96,894 project
+compiled locally and
+[passed the complete-theorem CI check](https://github.com/lowrank/3d-blaschke-lebesgue/actions/runs/43975908193)
+on 2026-11-16. Its axiom audit checked 96,894 project
 declarations and permits only `propext`, `Classical.choice`, and `Quot.sound`.
 See the [verification record](lean/README.md) for the exact statement,
-certificate runs, reproduction commands, and pending final CI validation.
+successful certificate runs and reproduction commands. There are no remaining
+proof obligations or certificate assumptions in the final theorem.
 
 ## Main manuscript
 

@@ -1,7 +1,7 @@
 # Lean 4.35 formalization
 
-**Status: the full unconditional theorem compiled locally in Lean 4.35.0;
-the final CI validation is pending.**
+**Status: complete. The full unconditional theorem compiled locally and passed
+the complete-theorem CI build and axiom audit in Lean 4.35.0.**
 
 Source: `volume_bound_04144.tex` at upstream commit
 `8e57642c283f232ae9a782ad86408bfb7182dfb0`. The target is the strict bound
@@ -15,8 +15,11 @@ On 2026-11-16, the full build completed successfully (5,314 jobs), and
 `FinalAxiomAudit.lean` passed for all 96,894 imported project declarations.
 The final theorem depends only on `propext`, `Classical.choice`, and `Quot.sound`:
 there are no `sorry`, custom axioms, native-evaluation axioms, or unproved
-geometric interfaces in its transitive proof. Final validation requires the
-complete unconditional CI workflow to succeed as well.
+geometric interfaces in its transitive proof. The
+[complete-theorem CI run](https://github.com/lowrank/3d-blaschke-lebesgue/actions/runs/43975908193)
+passed the same build and audit at commit
+`cdbd1d1a64f6a34ca5487e74a32fa8dac196949c`. The final documentation update
+changes no Lean source, certificate input, toolchain, or workflow.
 
 ```lean
 theorem constantWidth_volume_gt (K : ConvexBody Space)
@@ -1519,8 +1522,10 @@ The **Complete unconditional Lean theorem** workflow requires all 64 projective
 kernel shards and both complete hull runs to have succeeded. It downloads their
 checked modules, restores them into Lake's
 shared artifact cache using atomic replacement, compiles the complete theorem,
-and runs the same full axiom audit. Final CI validation remains pending; the
-local unconditional proof and audit have passed.
+and runs the same full axiom audit.
+[Run 43975908193](https://github.com/lowrank/3d-blaschke-lebesgue/actions/runs/43975908193)
+passed on 2026-11-16, including the unconditional theorem and all 96,894 audited
+project declarations.
 
 ## Certificate generation and artifact reuse
 
@@ -1556,13 +1561,23 @@ kernel computation. Existing local mathlib artifacts continue to use the
 shared Lake cache; the transfer script also preserves cache hard links when
 replacing build files.
 
-## Remaining validation
+## Completed verification record
 
-The full unconditional theorem and its local axiom audit have passed. The
-remaining gate is successful complete-theorem CI validation. That workflow
-recompiles the entire projective analytic suite, so it need not wait for the
-older standalone projective assembly job. No mathematical
-proof obligation or finite certificate premise remains in the compiled endpoint.
+The unconditional theorem is verified locally and in CI. The following runs
+succeeded:
+
+| Check | Successful CI run |
+| --- | --- |
+| All 64 projective kernel shards and projective assembly | [43884585133](https://github.com/lowrank/3d-blaschke-lebesgue/actions/runs/43884585133) |
+| All 32 hull-sign jobs | [43923248067](https://github.com/lowrank/3d-blaschke-lebesgue/actions/runs/43923248067) |
+| All 32 hull-secant jobs | [43924066736](https://github.com/lowrank/3d-blaschke-lebesgue/actions/runs/43924066736) |
+| Default library, provenance, generators, and axiom audit | [43975879520](https://github.com/lowrank/3d-blaschke-lebesgue/actions/runs/43975879520) |
+| Complete unconditional theorem and full axiom audit | [43975908193](https://github.com/lowrank/3d-blaschke-lebesgue/actions/runs/43975908193) |
+
+The complete-theorem CI log prints the exact arbitrary-width endpoint and
+its axiom list `[propext, Classical.choice, Quot.sound]`. No mathematical proof
+obligation, unproved interface, or finite certificate premise remains in that
+compiled endpoint.
 
 A fresh execution of the original Python/C++ verifier at 52/192-bit precision
 passed on 2026-11-15: 584 integral rectangles, 3,200 derivative boxes, 512 hull
