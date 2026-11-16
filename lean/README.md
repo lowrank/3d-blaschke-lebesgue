@@ -1338,6 +1338,22 @@ functions used by the remaining clipped-hull certificate. There is no assumed
 geometric volume or curvature formula in this connection. The derivative-sign
 and secant certificate still needs its formal verifier and kernel checks.
 
+## Milestone 57: rigorous inverse-trigonometric certificate arithmetic
+
+`InverseTrigSeries.lean` proves even/odd arctangent partial-sum bounds and an
+arcsine half-angle reduction. `Certificates/InverseTrigComputation.lean`
+implements directed integer interval evaluation of arctangent, arcsine,
+arccosine, and Machin's formula for pi. The corresponding interval and jet
+soundness modules prove that every successful computation encloses the actual
+function and its first two derivatives, with all domain checks justified.
+
+`Certificates/TrigProgram.lean` extends the shared expression evaluator with
+these operations and proves its value and derivative correctness.
+`Certificates/InverseTrigExamples.lean` recomputes concrete 128-bit enclosures
+for pi, arcsine and its derivatives at `1/2`, and arccosine at `-1/2`, using
+`decide +kernel`. This arithmetic is ready for the clipped-hull formulas;
+the derivative identities, full sign cover, and secant checks remain pending.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

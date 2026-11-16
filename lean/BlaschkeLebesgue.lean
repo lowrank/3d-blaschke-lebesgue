@@ -176,6 +176,12 @@ public import BlaschkeLebesgue.ClippedMeanCurvature
 public import BlaschkeLebesgue.ClippedDualVolume
 public import BlaschkeLebesgue.ClippedScalarAngles
 public import BlaschkeLebesgue.ManuscriptVolumeFormula
+public import BlaschkeLebesgue.InverseTrigSeries
+public import BlaschkeLebesgue.InverseTrigJet
+public import BlaschkeLebesgue.Certificates.InverseTrigInterval
+public import BlaschkeLebesgue.Certificates.InverseTrigIntervalJet
+public import BlaschkeLebesgue.Certificates.TrigProgram
+public import BlaschkeLebesgue.Certificates.InverseTrigExamples
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap
