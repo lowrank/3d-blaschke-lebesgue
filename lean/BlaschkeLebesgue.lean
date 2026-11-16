@@ -1,9 +1,11 @@
 module
 
 public import BlaschkeLebesgue.Basic
+public import BlaschkeLebesgue.BlaschkeIdentity
 public import BlaschkeLebesgue.CapArea
 public import BlaschkeLebesgue.CapIntegration
 public import BlaschkeLebesgue.Certificates.RadialRows
+public import BlaschkeLebesgue.Certificates.RadialVolume
 public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.CompletionAlgebra
 public import BlaschkeLebesgue.ContactDirections
@@ -11,16 +13,28 @@ public import BlaschkeLebesgue.ContactExistence
 public import BlaschkeLebesgue.Contacts
 public import BlaschkeLebesgue.EnclosingBall
 public import BlaschkeLebesgue.InnerOuter
+public import BlaschkeLebesgue.JacobianCubic
+public import BlaschkeLebesgue.LipschitzJacobian
+public import BlaschkeLebesgue.Minkowski
 public import BlaschkeLebesgue.Normalization
+public import BlaschkeLebesgue.ParallelContinuity
+public import BlaschkeLebesgue.ParallelInverse
+public import BlaschkeLebesgue.ParallelJacobian
+public import BlaschkeLebesgue.ParallelParametrization
+public import BlaschkeLebesgue.ParallelPolynomial
+public import BlaschkeLebesgue.ParallelVolume
 public import BlaschkeLebesgue.PositivePropagation
 public import BlaschkeLebesgue.Radial
 public import BlaschkeLebesgue.RadialAnalysis
 public import BlaschkeLebesgue.RadialFunction
 public import BlaschkeLebesgue.RadialGeometry
+public import BlaschkeLebesgue.RadialMaster
 public import BlaschkeLebesgue.RadialVolume
 public import BlaschkeLebesgue.SliceVolume
 public import BlaschkeLebesgue.SphericalCaps
 public import BlaschkeLebesgue.SphericalMeasure
+public import BlaschkeLebesgue.SupportMap
+public import BlaschkeLebesgue.SupportParametrization
 public import BlaschkeLebesgue.Target
 public import BlaschkeLebesgue.Translation
 

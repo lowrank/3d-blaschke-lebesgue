@@ -98,13 +98,13 @@ tangent point and increases above it, and that a uniform margin survives limits.
 `CompletionAlgebra.lean` proves the polynomial minorant, the scalar curvature-weight
 inequality, the two convexity polynomials, and the coupled affine-budget sum.
 
-**Boundary:** the arithmetic row theorems do not yet bound the volume of an arbitrary
+**Boundary:** the arithmetic row theorems alone do not bound the volume of an arbitrary
 body. Milestones 5 and 6 prove both cap bounds, their disjointness, and the
 pointwise tangent-deficit estimates. Milestone 7 integrates these contributions
-against the actual spherical measure. The surface-area comparison and Blaschke
-identity needed to turn the resulting integral into a volume bound remain open.
-The completion-integral and clipped-hull
-finite certificates have not yet been checked in Lean.
+against the actual spherical measure. Milestone 8 proves the parallel-volume
+comparison and Blaschke identity and completes the radial branch.
+The completion-integral and clipped-hull finite certificates have not yet been
+checked in Lean.
 
 ## Milestone 4: actual circumspheres, contacts, and normalization
 
@@ -177,8 +177,8 @@ the checked rows now give actual pointwise tangent-deficit bounds on both cap
 families. The four positive caps in each layer are pairwise disjoint, as are the
 four negative caps, and every positive cap is disjoint from every negative cap. These are
 geometric consequences of the kernel-checked arithmetic and the constructed
-contacts. Milestone 7 supplies the spherical integration; the volume conclusion
-is still unproved.
+contacts. Milestone 7 supplies the spherical integration; milestone 8 supplies
+the radial branch's volume conclusion.
 
 ## Milestone 7: actual radial volume and cap integrals
 
@@ -207,18 +207,57 @@ unit-width body in the corresponding radius interval and constructs the four
 contacts itself. It assumes neither a numerical verification result nor an
 unproved cap-area or integration formula.
 
-**Boundary:** these integral bounds still need the geometric surface-area
-comparison and Blaschke's mixed-volume identity to imply the radial branch's
-volume bound. The near-Jung completion branch also remains incomplete.
+The integral bounds are used in milestone 8 to prove the radial branch's volume
+bound. The near-Jung completion branch remains incomplete.
+
+## Milestone 8: Blaschke identity and the complete radial branch
+
+`Minkowski.lean` proves the actual difference-body identity `K + (-K) = B` for
+unit-width bodies. `SupportMap.lean` proves uniqueness of support points and their
+1-Lipschitz dependence on the unit normal for every summand of the unit ball.
+`SupportParametrization.lean` extends this map homogeneously to the whole space
+and applies mathlib's Rademacher theorem to obtain differentiability almost
+everywhere.
+
+`ParallelParametrization.lean` proves that adding `t` times the identity to this
+map sends the closed unit ball onto the actual parallel body `K + tB`.
+`ParallelInverse.lean` proves a quantitative inverse bound and injectivity for
+`t > 0`. `LipschitzJacobian.lean` proves that the exceptional set and its image
+have volume zero, allowing mathlib's Jacobian theorem to apply without assuming
+smoothness. `ParallelJacobian.lean` proves positivity of the determinant and
+identifies its integral with actual parallel volume.
+
+`JacobianCubic.lean`, `ParallelContinuity.lean`, and `ParallelPolynomial.lean`
+derive the cubic parallel-volume formula, including its value and right
+derivative at zero. `BlaschkeIdentity.lean` uses complementary support maps and
+reflection to prove that the linear coefficient is `2 * bodyVolume K + 2*pi/3`
+and the quadratic coefficient is `2*pi`. These coefficients are defined through
+actual volume; no mixed-volume or boundary-area formula is assumed.
+
+`ParallelVolume.lean` bounds the radial expansion of actual parallel bodies
+using supporting planes and the opposite-point inequality. `RadialMaster.lean`
+combines that bound with the proved right derivative to obtain the radial master
+inequality. It proves the strict volume bound for enclosing radius `R ≤ 3/5`.
+
+`Certificates/RadialVolume.lean` combines the master inequality with the eight
+kernel-checked rows and their geometric integral bounds. It proves
+`bodyVolume K > 4144109/10000000` for `3/5 ≤ R ≤ 60849/100000`. The theorem
+`MinimumEnclosingBall.volume_gt_of_radius_le_radial_cutoff` therefore gives
+`bodyVolume K > 259/625` for every unit-width body with minimum enclosing radius
+at most `60849/100000`. This is an end-to-end proof of the whole radial branch,
+including nonsmooth bodies, with no unproved geometric interfaces.
+
+**Boundary:** the unrestricted main theorem is still unproved. The remaining
+radius range is `60849/100000 < R ≤ sqrt(3/8)`.
 
 ## Remaining proof obligations
 
-The main proof still needs quantitative tetrahedral geometry,
-mixed-volume and curvature variation identities, clipped-body boundary formulas,
-the antipodal completion integral, the radial surface-area inequality,
-the completion-integral and clipped-hull certificate verifiers, and final smoothing
-and assembly. None of these is hidden behind a custom axiom
-or an assumed instance claiming the main theorem.
+The larger-radius completion branch still needs quantitative tetrahedral geometry,
+the remaining mixed-volume and curvature variation identities, clipped-body
+boundary formulas, the antipodal completion integral, and the completion-integral
+and clipped-hull certificate verifiers. Its regularity arguments and the final
+assembly also remain. None of these is hidden behind a custom axiom or an assumed
+instance claiming the main theorem. The radial branch needs no further smoothing.
 
 A fresh execution of the original Python/C++ verifier at 52/192-bit precision
 passed on 2026-11-15: 584 integral rectangles, 3,200 derivative boxes, 512 hull

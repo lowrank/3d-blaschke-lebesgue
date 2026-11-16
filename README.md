@@ -5,6 +5,8 @@
 The `lean-4.35-formalization` branch adds a Lean 4.35.0 project in [`lean/`](lean/).
 See its [proof-status record](lean/README.md) for compiled lemmas and remaining
 obligations. The full volume theorem is not yet formally verified.
+The radial branch is proved for unit-width bodies with minimum enclosing radius
+at most `60849/100000`; the larger-radius completion branch remains open.
 
 ## Main manuscript
 

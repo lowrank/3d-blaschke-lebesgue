@@ -12,7 +12,7 @@ public import BlaschkeLebesgue.Certificates.RadialSoundness
 The generated row imports are chained to serialize the expensive kernel reductions
 on machines with limited memory. The endpoint cover, real-valued margins, and cap
 geometry are proved below, including the actual spherical deficit integrals.
-The surface-area argument and the volume theorem remain open.
+The resulting actual volume bounds are proved in `Certificates/RadialVolume.lean`.
 -/
 
 @[expose] public section
