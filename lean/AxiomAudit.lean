@@ -290,6 +290,14 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.ProjectivePointIntegral.check_sound,
       ``BlaschkeLebesgue.Certificates.ProjectivePointIntegral.origin_coarse_grid_verified,
       ``BlaschkeLebesgue.Certificates.ProjectivePointIntegral.origin_coarse_integral_lower,
+      ``BlaschkeLebesgue.Certificates.ProjectiveExpressions.parameterJet_values,
+      ``BlaschkeLebesgue.Certificates.ProjectiveExpressions.parameterJet_derivatives,
+      ``BlaschkeLebesgue.Certificates.ProjectiveGradientCell.slope_sound,
+      ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.sumRange_bounds,
+      ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.cell_sound,
+      ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.grid_sound,
+      ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.check_sound,
+      ``BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral.check_secantBounds,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

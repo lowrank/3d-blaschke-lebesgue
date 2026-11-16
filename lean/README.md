@@ -865,9 +865,38 @@ report center, `a=b=1/1600`, with the full 192-by-192 grid returned exactly
 `6998590736130 / 2^52`, matching the report. That larger comparison is an
 execution check, not a kernel certificate for that center.
 
-The point-integral checker is proved sound. Its kernel evaluations for all 584
-candidate centers, the parameter-variation checker and its evaluations, and
-the unconditional completion affine bound remain to be completed.
+The point-integral checker is proved sound. Milestone 37 supplies the
+parameter-variation checker. Their kernel evaluations for all 584 candidates
+and the unconditional completion affine bound remain to be completed.
+
+## Milestone 37: sound executable parameter-variation quadrature
+
+`Certificates/ProjectiveParameterJets.lean` proves the checked derivative
+rules in both parameter directions. `Certificates/ProjectiveGradientCell.lean`
+implements the verifier's three cases: an inactive cell has slope zero, a
+strictly active cell keeps the signed derivative interval, and a boundary
+cell adjoins zero. Successful evaluations imply signed secant bounds for the
+actual clamped density throughout each parameter subsegment. No derivative
+at an activation boundary is assumed.
+
+`Certificates/ProjectiveGradientIntegral.lean` multiplies each slope interval
+by its outward-rounded cell area and sums with exact integer addition. Its
+soundness theorem integrates the cell secant bounds and yields
+`SecantBounds` for the actual `fixedSquareIntegral` in either parameter
+direction. The supplied parameter rectangle must lie in `a,b >= 0`,
+`a+b <= 1/10`, which contains all accepted boxes. Numerical derivative
+enclosures are consequences of the successful computation, not hypotheses.
+
+Local executable 52-bit evaluations on the first accepted box with the
+64-by-64 gradient grid reproduced all four report endpoints exactly:
+`[-38305472032463,-8962798632166] / 2^52` in the `a` direction and
+`[23361772611441,131824902922151] / 2^52` in the `b` direction. These are
+execution comparisons; the full certificate still requires kernel checks.
+
+Both projective numerical algorithms now have soundness proofs. Applying
+them to every candidate, checking all resulting finite computations in the
+kernel, and removing the analytic premise from the affine completion bound
+remain open.
 
 ## Remaining proof obligations
 

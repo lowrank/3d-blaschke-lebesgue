@@ -152,6 +152,9 @@ public import BlaschkeLebesgue.Certificates.ProjectiveSpatialJets
 public import BlaschkeLebesgue.Certificates.ProjectiveCell
 public import BlaschkeLebesgue.Certificates.ProjectivePointIntegral
 public import BlaschkeLebesgue.Certificates.ProjectivePointExample
+public import BlaschkeLebesgue.Certificates.ProjectiveParameterJets
+public import BlaschkeLebesgue.Certificates.ProjectiveGradientCell
+public import BlaschkeLebesgue.Certificates.ProjectiveGradientIntegral
 public import BlaschkeLebesgue.SecondOrderJet
 public import BlaschkeLebesgue.UniformGridIntegral
 public import BlaschkeLebesgue.UniformGridBounds
