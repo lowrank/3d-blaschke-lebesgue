@@ -1062,6 +1062,37 @@ These are identities for the actual measurable normal regions. Evaluating
 the cap-intersection areas and moments, and assembling the global curvature
 integrals into the claimed volume formulas, remain separate proof obligations.
 
+## Milestone 45: actual face curvature and the surface-volume integrals
+
+`ActiveBallCurvature.lean` derives the perpendicularity of the support-map
+derivative to every active ball normal. If the tangent determinant is nonzero,
+that normal must equal the support direction; its sign is proved from the
+actual containing ball and membership of the origin. The determinant therefore
+vanishes everywhere outside the actual spherical face regions.
+
+`ClippedFaceBoundaries.lean` proves the contact points are distinct in the
+deficit range, the five normal regions are disjoint, and their defining
+inequalities are strict almost everywhere. `ClippedFaceCurvature.lean`
+differentiates the actual support map on each strict face region. The unit
+faces have trace `2` and determinant `1`; the enclosing faces have trace `2R`
+and determinant `R^2`. Together these give the full determinant as a sum of
+face indicators almost everywhere, including zero edge deficits.
+
+`ClippedSurfaceIntegrals.lean` substitutes this identity in the already proved
+support-curvature integrals. With `F_i` and `F_R` the actual normal regions,
+it proves
+
+```text
+S_C = sum_i area(F_i) + R^2 area(F_R),
+3 V_C = sum_i area(F_i) + R^3 area(F_R)
+        + sum_i integral_{F_i} <y_i,n> d sigma.
+```
+
+The areas and first moments here are actual spherical integrals, not interface
+inputs. Their explicit inverse-trigonometric evaluation and the integrated
+edge contributions to `M_C` remain to be proved before the manuscript's
+separable one-edge volume formulas follow.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all
@@ -1106,8 +1137,9 @@ replacing build files.
 
 ## Remaining proof obligations
 
-The larger-radius completion branch still needs the clipped-body boundary
-decomposition and volume formulas, completed kernel verification of the full
+The larger-radius completion branch still needs explicit cap-intersection
+areas and moments, the edge curvature integrals and separable volume formulas,
+completed kernel verification of the full
 completion-integral certificate, the clipped-hull certificate verifier and its
 kernel checks, and final assembly. None of these is hidden behind a custom axiom
 or an assumed instance claiming the main theorem.

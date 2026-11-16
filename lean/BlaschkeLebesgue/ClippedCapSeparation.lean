@@ -74,4 +74,21 @@ theorem no_three_strict_unit_constraints (hA : c.totalDeficit ≤ 2 / 25)
   have heq := c.three_unit_constraints_eq_one hA l hx (fun k hk ↦ (h k hk).le) j hj
   exact (ne_of_gt (h j hj)) heq
 
+theorem point_injective_of_small_deficit (hA : c.totalDeficit ≤ 2 / 25) :
+    Function.Injective c.point := by
+  classical
+  intro i j he
+  by_contra hij
+  have hed : c.edgeDeficit i j = 1 := by simp [edgeDeficit, he]
+  have hs : c.weight i + c.weight j ≤ 1 - 2 * c.radius ^ 2 := by
+    calc
+      _ = ∑ k ∈ ({i, j} : Finset (Fin 4)), c.weight k * c.edgeDeficit i k := by
+        rw [Finset.sum_pair hij, c.edgeDeficit_self, hed, mul_one, mul_one]
+      _ ≤ ∑ k, c.weight k * c.edgeDeficit i k :=
+        Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ _)
+          (fun k _ _ ↦ mul_nonneg (c.weight_nonneg k) (c.edgeDeficit_nonneg i k))
+      _ = _ := c.weighted_deficit i
+  linarith [c.weight_ge_eleven_fiftieths hA i, c.weight_ge_eleven_fiftieths hA j,
+    c.deficit_lower]
+
 end BlaschkeLebesgue.BalancedContacts

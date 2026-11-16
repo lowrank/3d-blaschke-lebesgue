@@ -4,6 +4,7 @@ public import BlaschkeLebesgue.Certificates.FirstProjectiveBox
 public import BlaschkeLebesgue.Certificates.Generated.ProjectiveProposalChecks
 
 public import BlaschkeLebesgue.ActiveCompletionIntegral
+public import BlaschkeLebesgue.ActiveBallCurvature
 public import BlaschkeLebesgue.ActiveProjectiveRegion
 public import BlaschkeLebesgue.ActiveSupportLabels
 public import BlaschkeLebesgue.AntipodalCompletion
@@ -24,7 +25,10 @@ public import BlaschkeLebesgue.CircleSupportRegion
 public import BlaschkeLebesgue.ClippedBodies
 public import BlaschkeLebesgue.ClippedCapSeparation
 public import BlaschkeLebesgue.ClippedFaceCaps
+public import BlaschkeLebesgue.ClippedFaceBoundaries
+public import BlaschkeLebesgue.ClippedFaceCurvature
 public import BlaschkeLebesgue.ClippedRelabeling
+public import BlaschkeLebesgue.ClippedSurfaceIntegrals
 public import BlaschkeLebesgue.ClippedVertexAngles
 public import BlaschkeLebesgue.ClippingCircle
 public import BlaschkeLebesgue.ClippingCircleCuts
