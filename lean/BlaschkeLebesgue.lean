@@ -1,6 +1,7 @@
 module
 
 public import BlaschkeLebesgue.Basic
+public import BlaschkeLebesgue.BallCurvature
 public import BlaschkeLebesgue.BlaschkeIdentity
 public import BlaschkeLebesgue.CapArea
 public import BlaschkeLebesgue.CapIntegration
@@ -14,6 +15,7 @@ public import BlaschkeLebesgue.ContactDirections
 public import BlaschkeLebesgue.ContactExistence
 public import BlaschkeLebesgue.Contacts
 public import BlaschkeLebesgue.CurvatureDensity
+public import BlaschkeLebesgue.CurvatureIntegrals
 public import BlaschkeLebesgue.CurvatureOperator
 public import BlaschkeLebesgue.EnclosingBall
 public import BlaschkeLebesgue.HomogeneousDifferentiation

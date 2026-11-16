@@ -98,6 +98,12 @@ run_cmd do
       ``BlaschkeLebesgue.volume_variation,
       ``BlaschkeLebesgue.area_variation,
       ``BlaschkeLebesgue.mean_coefficient_variation,
+      ``BlaschkeLebesgue.scaledBall_parallelCoefficients,
+      ``BlaschkeLebesgue.sphereCurvature_scaledBall,
+      ``BlaschkeLebesgue.parallelQuadratic_eq_integral_support,
+      ``BlaschkeLebesgue.integral_curvatureTrace,
+      ``BlaschkeLebesgue.integral_support_curvatureTrace,
+      ``BlaschkeLebesgue.parallelLinear_eq_integral_curvatureDet,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

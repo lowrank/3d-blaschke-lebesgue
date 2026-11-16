@@ -378,11 +378,24 @@ coefficient identity, proved without a smoothing assumption or mixed-volume
 interface. The nested clipped bodies used in the completion branch satisfy the
 interior hypothesis.
 
+## Milestone 14: the area and mean-coefficient integral formulas
+
+`BallCurvature.lean` constructs an actual centered inner ball and computes its
+support, tangent curvature, and parallel-volume coefficients. Applying the mean
+variation identity from this ball to `K` proves
+`M_K = integral h_K`. The previously established coefficient formula then gives
+`integral tr Q_K = 2 M_K`.
+
+`CurvatureIntegrals.lean` applies area variation from the same inner ball to
+prove `integral (h_K tr Q_K) = 2 S_K`. Comparing with the parallel-volume
+coefficient formula proves `S_K = integral det Q_K`. These identities hold for
+actual summands of the unit ball with zero in their interior, including the
+nonsmooth bodies in the completion argument.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs quantitative tetrahedral geometry,
-the simplified area and mean-coefficient integral formulas, the weighted completion
-inequality, clipped-body boundary formulas, the antipodal completion integral,
+the weighted completion inequality, clipped-body boundary formulas, the antipodal completion integral,
 the completion-integral and clipped-hull certificate verifiers, and final assembly. None of these
 is hidden behind a custom axiom or an assumed instance claiming the main theorem.
 The radial branch and the support-volume formula need no further smoothing.
