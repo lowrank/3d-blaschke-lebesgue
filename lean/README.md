@@ -1216,6 +1216,29 @@ volume now has an explicit separable formula. Rewriting its scalar terms in
 the manuscript's angle notation, proving the remaining edge contributions to
 `M_C`, and deriving the explicit dual-body formula are still pending.
 
+## Milestone 51: zero vertex curvature and exact normal-wedge integrals
+
+`ThreeActiveCurvature.lean` proves that three active unit-ball normals are
+linearly independent throughout the deficit range. It also proves independence
+for two active unit balls and the enclosing sphere, using the exact Gram
+determinant. The actual support-map derivative annihilates each active normal,
+so it is zero at every such support point. In particular, these vertex normal
+regions contribute zero to the integrated curvature trace.
+
+`LongitudeWedgeIntegral.lean` evaluates the circle-curvature density over an
+actual spherical height-longitude wedge:
+
+```text
+integral_{a <= height <= b, longitude in S} r/sqrt(1-height^2) d sigma
+  = r length(S) (arcsin(b)-arcsin(a)).
+```
+
+The specializations give `2 r length(S) arcsin(s/2)` for a unit--unit
+normal wedge and `r length(S) arccos(1/(2R))` for a unit--enclosing-sphere
+normal wedge. These are spherical integral identities. Identifying all actual
+edge normal regions with the wedges and assembling their curvature integrals
+into `M_C` are still separate outstanding obligations.
+
 ## Complete projective suite: kernel verification pending
 
 `scripts/generate_projective_suite.py` now emits the proposed proofs for all

@@ -157,6 +157,8 @@ public import BlaschkeLebesgue.CapLensFormula
 public import BlaschkeLebesgue.ClippedLensParameters
 public import BlaschkeLebesgue.ClippedLensFaces
 public import BlaschkeLebesgue.ClippedVolumeLenses
+public import BlaschkeLebesgue.ThreeActiveCurvature
+public import BlaschkeLebesgue.LongitudeWedgeIntegral
 public import BlaschkeLebesgue.SupportDifferentiation
 public import BlaschkeLebesgue.SupportInterior
 public import BlaschkeLebesgue.SupportMap
