@@ -836,9 +836,38 @@ give actual first and second derivatives of the smooth density, with interval
 enclosures. Constant and identity input jets select spatial or parameter
 directions. The shared-parameter case needed for point quadrature is included.
 
-The finite grid sums and their connection to the quadrature and cutoff
-variation theorems remain open. The 584 candidates' analytic bounds are still
+Milestone 36 connects the point quadrature's finite grid sums. The cutoff
+variation checker remains open. The 584 candidates' analytic bounds are still
 unproved; this milestone does not certify their numerical columns.
+
+## Milestone 36: sound executable point-integral quadrature
+
+`Certificates/ProjectiveSpatialJets.lean` specializes the checked derivative
+rules to the two spatial directions. `Certificates/ProjectiveCell.lean` uses
+these actual derivatives to prove the point-cell algorithm sound. Retained
+cells use the checked midpoint value minus the pure-second-derivative error;
+the proof includes the outward-rounded correction, truncation at zero, and
+rounded area multiplication. Unretained cells contribute zero using the
+nonnegativity of the true clamped density.
+
+`Certificates/ProjectivePointIntegral.lean` implements exact integer summation
+over a uniform grid. Every successful evaluation, at any positive grid size
+and fixed-dyadic precision, gives a proved lower bound on the actual
+`fixedSquareIntegral`. The hypotheses require contained parameters, `a >= 0`,
+and `abs(obliquity a b) < 1`; they do not assume the quadrature values or any
+derivative bounds. This also covers the accepted centers outside the geometric
+parameter triangle.
+
+`ProjectivePointExample.lean` checks a complete 8-by-8 grid at `a=b=0` using
+`decide +kernel` and deduces the unconditional geometric bound
+`F(0,0) >= 49/100000`. Separately, a local executable evaluation at the first
+report center, `a=b=1/1600`, with the full 192-by-192 grid returned exactly
+`6998590736130 / 2^52`, matching the report. That larger comparison is an
+execution check, not a kernel certificate for that center.
+
+The point-integral checker is proved sound. Its kernel evaluations for all 584
+candidate centers, the parameter-variation checker and its evaluations, and
+the unconditional completion affine bound remain to be completed.
 
 ## Remaining proof obligations
 

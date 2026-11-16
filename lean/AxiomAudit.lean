@@ -280,6 +280,16 @@ run_cmd do
       ``BlaschkeLebesgue.Certificates.ProjectiveExpressions.valuesJet_validAt,
       ``BlaschkeLebesgue.Certificates.ProjectiveExpressions.valuesJet_values_sound,
       ``BlaschkeLebesgue.Certificates.ProjectiveExpressions.valuesJet_density_derivatives,
+      ``BlaschkeLebesgue.Certificates.ProjectiveExpressions.spatialJetS_derivatives,
+      ``BlaschkeLebesgue.Certificates.ProjectiveExpressions.spatialJetT_derivatives,
+      ``BlaschkeLebesgue.Certificates.ProjectiveCell.contribution_le,
+      ``BlaschkeLebesgue.Certificates.ProjectiveCell.lower_sound,
+      ``BlaschkeLebesgue.Certificates.ProjectivePointIntegral.sumRange_lower,
+      ``BlaschkeLebesgue.Certificates.ProjectivePointIntegral.cell_sound,
+      ``BlaschkeLebesgue.Certificates.ProjectivePointIntegral.grid_sound,
+      ``BlaschkeLebesgue.Certificates.ProjectivePointIntegral.check_sound,
+      ``BlaschkeLebesgue.Certificates.ProjectivePointIntegral.origin_coarse_grid_verified,
+      ``BlaschkeLebesgue.Certificates.ProjectivePointIntegral.origin_coarse_integral_lower,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

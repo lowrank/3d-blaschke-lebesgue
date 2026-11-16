@@ -148,6 +148,10 @@ public import BlaschkeLebesgue.Certificates.IntervalExpression
 public import BlaschkeLebesgue.Certificates.IntervalProgram
 public import BlaschkeLebesgue.Certificates.ProjectiveExpressions
 public import BlaschkeLebesgue.Certificates.ProjectiveJets
+public import BlaschkeLebesgue.Certificates.ProjectiveSpatialJets
+public import BlaschkeLebesgue.Certificates.ProjectiveCell
+public import BlaschkeLebesgue.Certificates.ProjectivePointIntegral
+public import BlaschkeLebesgue.Certificates.ProjectivePointExample
 public import BlaschkeLebesgue.SecondOrderJet
 public import BlaschkeLebesgue.UniformGridIntegral
 public import BlaschkeLebesgue.UniformGridBounds
