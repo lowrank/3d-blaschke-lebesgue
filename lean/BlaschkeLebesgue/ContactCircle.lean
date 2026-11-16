@@ -114,4 +114,25 @@ theorem circlePoint_mem_radius_ball_iff (hA : c.totalDeficit ≤ 2 / 25)
     clippingCos, hinner, div_le_iff₀ hden, hcancel]
   constructor <;> intro h <;> linarith
 
+theorem circlePoint_mem_radius_openBall_iff (hA : c.totalDeficit ≤ 2 / 25)
+    {v : E} (hv : ‖v‖ = 1) :
+    circlePoint c v ∈ Metric.ball 0 c.radius ↔
+      clippingCos c < ⟪v, -NormedSpace.normalize (firstMidpoint c)⟫_ℝ := by
+  have hR : 0 ≤ c.radius := by rw [← c.on_sphere 0]; exact norm_nonneg _
+  have hr := circleRadius_pos c
+  have hm := firstMidpoint_norm_pos c hA
+  have hden : 0 < 2 * circleRadius c * ‖firstMidpoint c‖ := by positivity
+  have hinner : ⟪v, -NormedSpace.normalize (firstMidpoint c)⟫_ℝ =
+      -⟪firstMidpoint c, v⟫_ℝ / ‖firstMidpoint c‖ := by
+    simp only [NormedSpace.normalize, inner_neg_right, real_inner_smul_right,
+      real_inner_comm v (firstMidpoint c), div_eq_mul_inv]
+    ring
+  have hcancel : (-⟪firstMidpoint c, v⟫_ℝ / ‖firstMidpoint c‖) *
+      (2 * circleRadius c * ‖firstMidpoint c‖) =
+        -2 * circleRadius c * ⟪firstMidpoint c, v⟫_ℝ := by field_simp
+  rw [Metric.mem_ball, dist_zero_right,
+    ← sq_lt_sq₀ (norm_nonneg _) hR, circlePoint_norm_sq c hv,
+    clippingCos, hinner, div_lt_iff₀ hden, hcancel]
+  constructor <;> intro h <;> linarith
+
 end BlaschkeLebesgue.BalancedContacts.Opposite

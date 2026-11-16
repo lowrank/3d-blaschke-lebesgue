@@ -18,6 +18,9 @@ public import BlaschkeLebesgue.CompactHull
 public import BlaschkeLebesgue.ComplementaryBodies
 public import BlaschkeLebesgue.CompletionAlgebra
 public import BlaschkeLebesgue.CompletionRegion
+public import BlaschkeLebesgue.ContactArcCenter
+public import BlaschkeLebesgue.ContactArcIncidence
+public import BlaschkeLebesgue.ContactBallConstraints
 public import BlaschkeLebesgue.ContactCircle
 public import BlaschkeLebesgue.ContactCircleBounds
 public import BlaschkeLebesgue.ContactDirections
@@ -77,6 +80,7 @@ public import BlaschkeLebesgue.SliceVolume
 public import BlaschkeLebesgue.SmallBallIntersections
 public import BlaschkeLebesgue.SpectralBounds
 public import BlaschkeLebesgue.SphericalCaps
+public import BlaschkeLebesgue.SphericalCapPath
 public import BlaschkeLebesgue.SphericalDifferentiation
 public import BlaschkeLebesgue.SphericalMeasure
 public import BlaschkeLebesgue.SupportDifferentiation

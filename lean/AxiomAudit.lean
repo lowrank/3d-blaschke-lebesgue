@@ -135,6 +135,15 @@ run_cmd do
       ``BlaschkeLebesgue.curvatureDet_reflectBody_at,
       ``BlaschkeLebesgue.curvatureDet_complement_at,
       ``BlaschkeLebesgue.BalancedContacts.Opposite.clipped_circle_complement_det,
+      ``BlaschkeLebesgue.BalancedContacts.weighted_sq_dist_point,
+      ``BlaschkeLebesgue.BalancedContacts.no_unit_constraints_in_open_ball,
+      ``BlaschkeLebesgue.BalancedContacts.no_unit_constraints_in_closed_ball,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.arcCenter_mem_other_ball,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.circlePoint_mem_other_openBall,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.circlePoint_mem_other_closedBall,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.circlePoint_mem_clippedOuter_iff,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.clipped_circle_curvature_of_inside_radius,
+      ``BlaschkeLebesgue.BalancedContacts.Opposite.clipped_circle_complement_det_of_inside_radius,
       ``BlaschkeLebesgue.unitWidthVolumeBound_iff,
       ``BlaschkeLebesgue.ConstantWidthVolumeBound] do
     unless env.contains name do

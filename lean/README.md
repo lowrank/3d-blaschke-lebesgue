@@ -469,6 +469,29 @@ These statements do not assume curvature formulas or differentiability of the
 clipped body. The remaining incidence and angle arguments must still establish
 that the proposed integration rectangles satisfy the explicit ball constraints.
 
+## Milestone 18: the full clipped unit-unit arcs are valid
+
+`ContactBallConstraints.lean` extends the weighted squared-distance identity
+to every point: `sum lambda_i |x-y_i|^2 = |x|^2 + R^2`. Together with the
+contact weight bound, this excludes a triple unit-sphere intersection inside
+the enclosing ball. A positive incident deficit excludes the closed ball as
+well. Neither claim needs face normals or an assumed boundary incidence.
+
+`ContactArcCenter.lean` proves that the inward center of each clipped circle
+arc lies strictly in the other two unit balls for every configuration with
+`A <= 2/25`. `SphericalCapPath.lean` constructs a normalized-chord path within
+the clipping cap. `ContactArcIncidence.lean` then uses the intermediate value
+theorem and the triple-intersection exclusion to prove that every open arc
+point is strictly in the other balls. Continuity includes both endpoints in
+their closed balls.
+
+Thus the entire radius-clipped unit-sphere intersection is an actual arc of
+the four-ball clipped body, including configurations with zero deficits. This
+argument does not require continuation through the deficit simplex. The local
+curvature theorems from milestone 17 now require only the normal-cone condition
+and strict radius clipping; the other-ball constraints are proved consequences.
+The full surface decomposition and boundary-volume integration still remain.
+
 ## Remaining proof obligations
 
 The larger-radius completion branch still needs the remaining tetrahedral incidence geometry,
